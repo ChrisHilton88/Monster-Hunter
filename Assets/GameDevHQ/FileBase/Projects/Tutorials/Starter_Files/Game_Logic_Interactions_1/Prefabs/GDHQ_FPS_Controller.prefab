@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 3502090027590340550}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 1045620249}
   m_Layer: 0
   m_Name: GDHQ_FPS_Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,7 +408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a5997a88100e94f8672084c3626dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lookSensitivity: 5
   _initialCameraPos: {x: 0, y: 0, z: 0}
   _fpsCamera: {fileID: 3518291814107247131}
 --- !u!1 &4853617159413387565
@@ -532,8 +531,25 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8bff370d0411644d69b67be95a43fd3e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92ece287a1617e44ea09ac5be20da1d3, type: 3}
+--- !u!1 &2089189765417857539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 92ece287a1617e44ea09ac5be20da1d3, type: 3}
+  m_PrefabInstance: {fileID: 1170692722740285266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1708442785262905529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 92ece287a1617e44ea09ac5be20da1d3, type: 3}
   m_PrefabInstance: {fileID: 1170692722740285266}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5085556897962022687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089189765417857539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa336a0a3577cd94896f6f0e432ed1b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -9,7 +9,7 @@
                     "name": "Look Movement",
                     "type": "Value",
                     "id": "5610f1cf-e10a-4ac2-90b1-085aa3b6a23c",
-                    "expectedControlType": "",
+                    "expectedControlType": "Delta",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "Shoot",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "c226df7a-ff49-450e-9281-46d5f17b9866",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Crouch",
@@ -63,6 +63,15 @@
                     "name": "Running",
                     "type": "Button",
                     "id": "9ee5ea33-d4d5-495c-a21d-461850004593",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sniper Zoom",
+                    "type": "Button",
+                    "id": "924659ed-3a8e-4f81-9178-7089a566bf46",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -309,6 +318,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4895fb93-4d40-4c20-af54-ffe2018b1508",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Sniper Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1462debc-4f32-43c2-bd53-9a5b23b78ae6",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Sniper Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

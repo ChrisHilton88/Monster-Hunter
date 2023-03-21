@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - StartingPoint
+  - Ghoul
   layers:
   - Default
   - TransparentFX

@@ -35,8 +35,13 @@ public class EnemyBase : MonoBehaviour
     }
 
     // Make virtual so it can be overridden.
-    void Movement()
+    protected virtual void Movement()
     {
         // Add individual movement code
+    }
+
+    void Die()
+    {
+        this.gameObject.SetActive(false);   
     }
 }

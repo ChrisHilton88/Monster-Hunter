@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 {
@@ -35,25 +33,19 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         [SerializeField][Tooltip("How dramatic the headbob is")][Range(0.0f, 0.2f)]
         private float _heightOffset = 0.05f;        // How dramatic the bobbing is.
         private float _timer = Mathf.PI / 2;        // This is where Sin = 1 -- used to simulate walking forward. 
-        private Vector3 _initialCameraPos;          // Local position where we reset the camera when it's not bobbing.
 
-        [Header("Camera Settings")]
-        [SerializeField][Tooltip("Control the look sensitivty of the camera")]
-        private float _lookSensitivity = 5.0f;      // Mouse sensitivity 
-
-        private Camera _fpsCamera;
+        private PlayerCameraController _playerCam;
+        [SerializeField] private Camera _fpsCamera;
 
 
-
-        private void Start()
+        void Start()
         {
             _controller = GetComponent<CharacterController>();      // Assign the reference variable to the component.
-            _fpsCamera = GetComponentInChildren<Camera>();
-            _initialCameraPos = _fpsCamera.transform.localPosition;
+            _playerCam = GetComponent<PlayerCameraController>();   
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        private void Update()
+        void Update()
         {
             // Update to NIS
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -62,7 +54,6 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             }
 
             FPSController();
-            CameraController();
             HeadBobbing(); 
         }
 
@@ -124,23 +115,7 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
         }
 
-        // Camera Movement
-        // Update to NIS
-        void CameraController()
-        {
-            float mouseX = Input.GetAxis("Mouse X");        // Get mouse movement on the X axis.
-            float mouseY = Input.GetAxis("Mouse Y");        // Get mouse movement on the Y axis.
-
-            Vector3 rot = transform.localEulerAngles;       // Store current rotation.
-            rot.y += mouseX * _lookSensitivity;             // Add our mouseX movement to the Y axis.
-            transform.localRotation = Quaternion.AngleAxis(rot.y, Vector3.up);      // Rotate along the Y axis by movement amount.
-
-            Vector3 camRot = _fpsCamera.transform.localEulerAngles;                 // Store the current rotation.
-            camRot.x += -mouseY * _lookSensitivity;         // Add the mouseY movement to the X axis.
-            _fpsCamera.transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.right);         // Rotate along the X axis by movement amount.
-        }
-
-        // Head Bobbing
+        // Head Bobbing - Consider moving to PlayerCameraController
         // Update to NIS
         void HeadBobbing()
         {
@@ -161,8 +136,8 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 
                 Vector3 headPosition = new Vector3          // Calculate the head position in our walk cycle.
                     (
-                        _initialCameraPos.x + Mathf.Cos(_timer) * _heightOffset,        // X value.
-                        _initialCameraPos.y + Mathf.Sin(_timer) * _heightOffset,        // Y value.
+                        _playerCam._initialCameraPos.x + Mathf.Cos(_timer) * _heightOffset,        // X value.
+                        _playerCam._initialCameraPos.y + Mathf.Sin(_timer) * _heightOffset,        // Y value.
                         0       // Z value.
                     );
 
@@ -179,8 +154,8 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 
                 Vector3 resetHead = new Vector3         // Calculate reset head position back to initial camera position.
                     (
-                    Mathf.Lerp(_fpsCamera.transform.localPosition.x, _initialCameraPos.x, _smooth * Time.deltaTime),        // X vlaue.
-                    Mathf.Lerp(_fpsCamera.transform.localPosition.y, _initialCameraPos.y, _smooth * Time.deltaTime),        // Y value.
+                    Mathf.Lerp(_fpsCamera.transform.localPosition.x, _playerCam._initialCameraPos.x, _smooth * Time.deltaTime),        // X vlaue.
+                    Mathf.Lerp(_fpsCamera.transform.localPosition.y, _playerCam._initialCameraPos.y, _smooth * Time.deltaTime),        // Y value.
                     0       // Z value.
                     );
 

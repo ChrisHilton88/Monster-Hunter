@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 3522221881866731913}
   - component: {fileID: 3559926251135889283}
   - component: {fileID: 1897638467068076002}
+  - component: {fileID: 1045620249}
   m_Layer: 0
   m_Name: GDHQ_FPS_Controller
   m_TagString: Untagged
@@ -394,7 +395,22 @@ MonoBehaviour:
   _walkFrequency: 4.8
   _runFrequency: 7.8
   _heightOffset: 0.05
+  _fpsCamera: {fileID: 3518291814107247131}
+--- !u!114 &1045620249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503760010013013579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a5997a88100e94f8672084c3626dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _lookSensitivity: 5
+  _initialCameraPos: {x: 0, y: 0, z: 0}
+  _fpsCamera: {fileID: 3518291814107247131}
 --- !u!1 &4853617159413387565
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
     // Virtual - Allows for the derived class to override this method.
     protected virtual void Initialisation()
     {
-        Debug.Log(typeof(T).ToString() + " is initialised!");
+        // Add code here 
     }
 
 }

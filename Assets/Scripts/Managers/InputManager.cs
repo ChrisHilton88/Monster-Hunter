@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Enable();
         _playerInputActions.Player.LookMovement.performed += LookMovementPerformed;
-        _playerInputActions.Player.Shoot.started += ShootStarted;
+        _playerInputActions.Player.Shoot.performed += ShootPerformed;
         _playerInputActions.Player.Shoot.canceled += ShootCanceled;
     }
 
@@ -31,24 +31,23 @@ public class InputManager : MonoBehaviour
 
 
     #region INPUT ACTION EVENTS
+    
     // Shoot - Started Event
-    void ShootStarted(InputAction.CallbackContext context)
+    void ShootPerformed(InputAction.CallbackContext context)
     {
-        // By using started, we should be able to prevent the use of holding down the button to fire.
-        // The player should lift the button before being able to fire again.
-        _weaponShooting.RaycastShoot();
+        if (_weaponShooting.CanShoot)                           // If CanShoot is true, shoot bullet.
+            _weaponShooting.ShootBullet();
+        else
+            return;                                             // Else, do nothing.
     }
 
     // Shoot - Canceled Event
     void ShootCanceled(InputAction.CallbackContext context)
     {
-        Debug.Log(context.phase);   
-        // When the player releases the left mouse button is when they can fire again.
-        // Can add a fire rate delay here to give it more authenticity of a sniper reload.
-        // Once this event has been triggered, start the timer before they can shoot again.
+        _weaponShooting.ShootDelayTimer();                                      // Start fire rate delay
     }
 
-    // LookMovement Performed Event
+    // LookMovement - Performed Event
     void LookMovementPerformed(InputAction.CallbackContext context)
     {
         Vector2 lookMovement = context.ReadValue<Vector2>();                    // Cache context callback values

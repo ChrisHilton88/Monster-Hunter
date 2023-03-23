@@ -631,24 +631,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 92ece287a1617e44ea09ac5be20da1d3, type: 3}
   m_PrefabInstance: {fileID: 1170692722740285266}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5085556897962022687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089189765417857539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa336a0a3577cd94896f6f0e432ed1b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _laserOrigin: {fileID: 7346113263329580842}
-  _crosshair: {fileID: 0}
-  _bulletSpawnPos: {fileID: 4045105381627961207}
-  _mainCam: {fileID: 3518291814107247131}
-  _bulletPrefab: {fileID: 7722936696962348782, guid: 5d30215f9121a4e4d8bd10d02784bed1, type: 3}
-  _bulletContainer: {fileID: 8160780921138620493}
 --- !u!82 &1053421735
 AudioSource:
   m_ObjectHideFlags: 0
@@ -661,7 +643,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -745,3 +727,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5085556897962022687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089189765417857539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa336a0a3577cd94896f6f0e432ed1b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponFiredClip: {fileID: 8300000, guid: bc55c77b381da8744a1c21e1ae625548, type: 3}
+  _weaponReloadClip: {fileID: 8300000, guid: 1271cd525b0e85645a0ab7f727f340bf, type: 3}
+  _laserOrigin: {fileID: 7346113263329580842}
+  _crosshair: {fileID: 0}
+  _bulletSpawnPos: {fileID: 4045105381627961207}
+  _mainCam: {fileID: 3518291814107247131}
+  _bulletPrefab: {fileID: 7722936696962348782, guid: 5d30215f9121a4e4d8bd10d02784bed1, type: 3}
+  _bulletContainer: {fileID: 8160780921138620493}

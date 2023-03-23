@@ -2761,6 +2761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1480852256}
+  _managers: {fileID: 943698706}
 --- !u!1001 &124695035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32276,14 +32277,6 @@ PrefabInstance:
       propertyPath: _crosshair
       value: 
       objectReference: {fileID: 48605867}
-    - target: {fileID: 5085556897962022687, guid: 964413c647e7ca441b457d50316abc87, type: 3}
-      propertyPath: _weaponFiredClip
-      value: 
-      objectReference: {fileID: 8300000, guid: bc55c77b381da8744a1c21e1ae625548, type: 3}
-    - target: {fileID: 5085556897962022687, guid: 964413c647e7ca441b457d50316abc87, type: 3}
-      propertyPath: _weaponReloadClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1271cd525b0e85645a0ab7f727f340bf, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 964413c647e7ca441b457d50316abc87, type: 3}
 --- !u!1001 &1525819182

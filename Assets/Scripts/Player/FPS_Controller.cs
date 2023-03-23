@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 {
@@ -48,83 +50,101 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         private PlayerCameraController _playerCam;
         [SerializeField] private Camera _fpsCamera;
 
+        private Vector2 _movement; 
+
+        private PlayerInputActions _playerInputActions;
+
+
+        private bool _canMove;
+        public bool CanMove
+        {
+            get { return _canMove; }
+            set { _canMove = value; }   
+        }
+
 
         void Start()
         {
-            _controller = GetComponent<CharacterController>();      // Assign the reference variable to the component.
+            _playerInputActions = new PlayerInputActions();
+            _playerInputActions.Player.Enable();
+            _controller = GetComponent<CharacterController>();      
             _playerCam = GetComponent<PlayerCameraController>();
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
         void Update()
         {
-            // Update to NIS
-            //if (Input.GetKeyDown(KeyCode.Escape))
-            //{
-            //    Cursor.lockState = CursorLockMode.None;
-            //}
+            FPSController(_movement);
 
-            //FPSController();
             //HeadBobbing(); 
         }
 
-        //void FPSController()
-        //{
-        //    float h = Input.GetAxis("Horizontal"); //horizontal inputs (a, d, leftarrow, rightarrow)
-        //    float v = Input.GetAxis("Vertical"); //veritical inputs (w, s, uparrow, downarrow)
+        void FPSController(Vector2 movement)
+        {
+            if (CanMove)
+            {
+                //float h = Input.GetAxis("Horizontal"); //horizontal inputs (a, d, leftarrow, rightarrow)
+                //float v = Input.GetAxis("Vertical"); //veritical inputs (w, s, uparrow, downarrow)
 
-        //    Vector3 direction = new Vector3(h, 0, v); //direction to move
-        //    Vector3 velocity = direction * _walkSpeed; //velocity is the direction and speed we travel
+                Vector3 direction = new Vector3(movement.x, 0, movement.y);                                   //direction to move
+                Vector3 velocity = direction * _walkSpeed;                                                    //velocity is the direction and speed we travel
 
-        //    // Update Crouching to NIS
-        //    if (Input.GetKeyDown(KeyCode.C) && _isRunning == false)
-        //    {
+                // Update Crouching to NIS
+                //if (Input.GetKeyDown(KeyCode.C) && _isRunning == false)
+                //{
 
-        //        if (_crouching == true)
-        //        {
-        //            _crouching = false;
-        //            _controller.height = 2.0f;
-        //        }
-        //        else
-        //        {
-        //            _crouching = true;
-        //            _controller.height = 1.0f;
-        //        }
+                //    if (_crouching == true)
+                //    {
+                //        _crouching = false;
+                //        _controller.height = 2.0f;
+                //    }
+                //    else
+                //    {
+                //        _crouching = true;
+                //        _controller.height = 1.0f;
+                //    }
 
-        //    }
+                //}
 
-        //    // Running
-        //    // Update Running to NIS
-        //    if (Input.GetKey(KeyCode.LeftShift) && _crouching == false)
-        //    {
-        //        velocity = direction * _runSpeed;           // Use the run velocity.
-        //        _isRunning = true;
-        //    }
-        //    else
-        //    {
-        //        _isRunning = false;
-        //    }
+                // Running
+                // Update Running to NIS
+                //if (Input.GetKey(KeyCode.LeftShift) && _crouching == false)
+                //{
+                //    velocity = direction * _runSpeed;           // Use the run velocity.
+                //    _isRunning = true;
+                //}
+                //else
+                //{
+                //    _isRunning = false;
+                //}
 
-        //    // Jumping
-        //    // Update Jump to NIS
-        //    if (_controller.isGrounded == true)             // Check if we're grounded.
-        //    {
-        //        if (Input.GetKeyDown(KeyCode.Space))        
-        //        {
-        //            _yVelocity = _jumpHeight;               // Assign the cache velocity to our jump height.
-        //        }
-        //    }
-        //    else                                            // We're not grounded.
-        //    {
-        //        _yVelocity -= _gravity;                     // Subtract gravity from our yVelocity. 
-        //    }
+                // Jumping
+                // Update Jump to NIS
+                //if (_controller.isGrounded == true)             // Check if we're grounded.
+                //{
+                //    if (Input.GetKeyDown(KeyCode.Space))
+                //    {
+                //        _yVelocity = _jumpHeight;               // Assign the cache velocity to our jump height.
+                //    }
+                //}
+                //else                                            // We're not grounded.
+                //{
+                //    _yVelocity -= _gravity;                     // Subtract gravity from our yVelocity. 
+                //}
 
-        //    velocity.y = _yVelocity;                        // Assign the cached value of our 'Y' velocity.
+                //velocity.y = _yVelocity;                        // Assign the cached value of our 'Y' velocity.
 
-        //    velocity = transform.TransformDirection(velocity);
+                //velocity = transform.TransformDirection(velocity);
 
-        //    _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
-        //}
+                _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
+                Debug.Log("Moving: " + velocity);
+            }
+            
+        }
+
+        public void PlayerMovement(Vector2 context)
+        {
+            _movement = context;
+        }
 
         // Head Bobbing - Consider moving to PlayerCameraController
         // Update to NIS

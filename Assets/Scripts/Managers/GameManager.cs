@@ -9,6 +9,14 @@ public class GameManager : MonoSingleton<GameManager>
     void Start()
     {
         GameOver = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    // Set Cursor State to None
+    public void SetCursorStateToNone()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Debug.Log("Cursor visible");
     }
 
     // Sets GameOver state.

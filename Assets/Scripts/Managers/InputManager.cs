@@ -29,9 +29,10 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.Shoot.canceled += ShootCanceled;
         _playerInputActions.Player.Crouch.performed += CrouchPerformed;
         _playerInputActions.Player.Crouch.canceled += CrouchCanceled;
+        _playerInputActions.Player.Running.performed += RunningPerformed;
+        _playerInputActions.Player.Running.canceled += RunningCanceled;
         _playerInputActions.Player.Cursor.performed += CursorPerformed;
     }
-
 
 
     void Start()
@@ -91,6 +92,18 @@ public class InputManager : MonoBehaviour
     {
         _fpsController.Crouching(context.ReadValue<float>());
         Debug.Log("Not Crouching!");
+    }
+
+    void RunningPerformed(InputAction.CallbackContext context)
+    {
+        _fpsController.Running(context.ReadValue<float>());
+        Debug.Log("Running");
+    }
+
+    void RunningCanceled(InputAction.CallbackContext context)
+    {
+        _fpsController.Running(context.ReadValue<float>());
+        Debug.Log("Not Running");
     }
 
     void CursorPerformed(InputAction.CallbackContext context)

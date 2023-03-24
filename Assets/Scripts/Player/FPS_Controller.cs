@@ -75,24 +75,21 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             //float h = Input.GetAxis("Horizontal"); //horizontal inputs (a, d, leftarrow, rightarrow)
             //float v = Input.GetAxis("Vertical"); //veritical inputs (w, s, uparrow, downarrow)
 
-            Vector3 direction = new Vector3(movement.x, 0, movement.y);                                   //direction to move
-            Vector3 velocity = direction * _walkSpeed;                                                    //velocity is the direction and speed we travel
+            if(!_isRunning)
+            {
+                Vector3 direction = new Vector3(movement.x, 0, movement.y);                                   //direction to move
+                Vector3 velocity = direction * _walkSpeed;                                                    //velocity is the direction and speed we travel
+                _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
+            }
+            else
+            {
+                Vector3 direction = new Vector3(movement.x, 0, movement.y);                                   //direction to move
+                Vector3 velocity = direction * _runSpeed;                                                     //velocity is the direction and speed we travel
+                _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
+            }
 
-
-            // Running
-            // Update Running to NIS
-            //if (Input.GetKey(KeyCode.LeftShift) && _crouching == false)
-            //{
-            //    velocity = direction * _runSpeed;           // Use the run velocity.
-            //    _isRunning = true;
-            //}
-            //else
-            //{
-            //    _isRunning = false;
-            //}
 
             // Jumping
-            // Update Jump to NIS
             //if (_controller.isGrounded == true)             // Check if we're grounded.
             //{
             //    if (Input.GetKeyDown(KeyCode.Space))
@@ -108,9 +105,6 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             //velocity.y = _yVelocity;                        // Assign the cached value of our 'Y' velocity.
 
             //velocity = transform.TransformDirection(velocity);
-
-            _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
-            Debug.Log("Moving: " + velocity);
         }
 
         public void PlayerMovement(Vector2 context)
@@ -120,21 +114,6 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 
         public void Crouching(float context)
         {
-            // Old Input System
-            //if (Input.GetKeyDown(KeyCode.C) && _isRunning == false)
-            //{
-            //    if (_crouching == true)
-            //    {
-            //        _crouching = false;
-            //        _controller.height = 2.0f;
-            //    }
-            //    else
-            //    {
-            //        _crouching = true;
-            //        _controller.height = 1.0f;
-            //    }
-            //}
-
             if (_isRunning == false && context == 1)
             {
                 _crouching = true;
@@ -149,10 +128,35 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
                 _controller.Move(_standingPos);
                 Debug.Log("Cont height: " + _controller.height);
             }
+
+            // Old Input System
+            //if (Input.GetKeyDown(KeyCode.C) && _isRunning == false)
+            //{
+            //    if (_crouching == true)
+            //    {
+            //        _crouching = false;
+            //        _controller.height = 2.0f;
+            //    }
+            //    else
+            //    {
+            //        _crouching = true;
+            //        _controller.height = 1.0f;
+            //    }
+            //}
         }
 
-        // Head Bobbing - Consider moving to PlayerCameraController
-        // Update to NIS
+        public void Running(float context)
+        {
+            if (_crouching == false && context == 1)
+            {
+                _isRunning = true;
+            }
+            else
+            {
+                _isRunning = false;
+            }
+        }
+
         //    void HeadBobbing()
         //    {
         //        float h = Input.GetAxis("Horizontal");          // Horizontal input.
@@ -199,12 +203,6 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         //        }
         //    }
         //}
-
-        // OLD INPUT SYSTEM CODE
-        #region OLD INPUT SYSTEM CODE
-
-
-        #endregion
     }
 }
 

@@ -203,7 +203,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""id"": ""a9fb49cc-ce4f-4921-a79e-10b3898ff9c5"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": ""InvertVector2"",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Player Movement"",
                     ""isComposite"": true,

@@ -24,6 +24,9 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         [Tooltip("Returns true if the player is running")]
         private bool _isRunning = false;            // Bool to display if we are running.
         [SerializeField]
+        [Tooltip("Returns true if the player is jumping")]
+        private bool _isJumping = false;            // Bool to display if we are jumping.
+        [SerializeField]
         [Tooltip("Returns true if the player is crouching")]
         private bool _crouching = false;            // Bool to display if we are crouched or not.
 
@@ -47,7 +50,6 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         private float _heightOffset = 0.05f;        // How dramatic the bobbing is.
         private float _timer = Mathf.PI / 2;        // This is where Sin = 1 -- used to simulate walking forward. 
 
-        private PlayerCameraController _playerCam;
         [SerializeField] private Camera _fpsCamera;
 
         private Vector2 _movement;
@@ -58,15 +60,12 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 
         void Start()
         {
-            _controller = GetComponent<CharacterController>();      
-            _playerCam = GetComponent<PlayerCameraController>();
+            _controller = GetComponent<CharacterController>();
         }
 
         void Update()
         {
             FPSController(_movement);
-
-
             //HeadBobbing(); 
         }
 
@@ -75,36 +74,32 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             //float h = Input.GetAxis("Horizontal"); //horizontal inputs (a, d, leftarrow, rightarrow)
             //float v = Input.GetAxis("Vertical"); //veritical inputs (w, s, uparrow, downarrow)
 
-            if(!_isRunning)
-            {
-                Vector3 direction = new Vector3(movement.x, 0, movement.y);                                   //direction to move
-                Vector3 velocity = direction * _walkSpeed;                                                    //velocity is the direction and speed we travel
-                _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
-            }
+            Vector3 direction = new Vector3(movement.x, 0, movement.y);                                       // direction to move
+            Vector3 velocity;
+
+            // Running
+            if (!_isRunning)                                                                                  // If isRunning is false - Set to walk speed
+                velocity = direction * _walkSpeed;                                                            // velocity is the direction and speed we travel
             else
-            {
-                Vector3 direction = new Vector3(movement.x, 0, movement.y);                                   //direction to move
-                Vector3 velocity = direction * _runSpeed;                                                     //velocity is the direction and speed we travel
-                _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
-            }
+                velocity = direction * _runSpeed;                                                             // Else, set it to running speed.                                            
 
 
             // Jumping
-            //if (_controller.isGrounded == true)             // Check if we're grounded.
-            //{
-            //    if (Input.GetKeyDown(KeyCode.Space))
-            //    {
-            //        _yVelocity = _jumpHeight;               // Assign the cache velocity to our jump height.
-            //    }
-            //}
-            //else                                            // We're not grounded.
-            //{
-            //    _yVelocity -= _gravity;                     // Subtract gravity from our yVelocity. 
-            //}
+            if (_isJumping)                                                                                   // If player is jumping 
+            {
+                _yVelocity = _jumpHeight;                                                                     //assign the cache velocity to our jump height
+                _isJumping = false;
+            }
+            else
+            {
+                _yVelocity -= _gravity;
+                Debug.Log("_yvelocity less gravity: " + _yVelocity);
+            }
 
-            //velocity.y = _yVelocity;                        // Assign the cached value of our 'Y' velocity.
-
-            //velocity = transform.TransformDirection(velocity);
+            velocity.y = _yVelocity;                                                                          // Assign the cached value of our 'Y' velocity.
+            velocity = transform.TransformDirection(velocity);
+            
+            _controller.Move(velocity * Time.deltaTime);                                                      // Move the controller 'X' meters per second.
         }
 
         public void PlayerMovement(Vector2 context)
@@ -157,6 +152,29 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             }
         }
 
+        public void Jumping(float context)
+        {
+            if (_controller.isGrounded && context == 1)                                                                       // Check if we're grounded.
+            {
+                _isJumping = true;
+                Debug.Log("Controller grounded - Jumping");
+            }
+
+            // Old Input System
+            //if (_controller.isGrounded == true) 
+            //{
+            //    if (Input.GetKeyDown(KeyCode.Space)) 
+            //    {
+            //        _yVelocity = _jumpHeight; 
+            //    }
+            //}
+            //else 
+            //{
+            //    _yVelocity -= _gravity; //subtract gravity from our yVelocity 
+            //}
+        }
+
+
         //    void HeadBobbing()
         //    {
         //        float h = Input.GetAxis("Horizontal");          // Horizontal input.
@@ -202,7 +220,7 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         //            _fpsCamera.transform.localPosition = resetHead;         // Assign the head position back to the initial camera position.
         //        }
         //    }
-        //}
+
     }
 }
 

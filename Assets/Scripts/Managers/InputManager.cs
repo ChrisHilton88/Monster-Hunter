@@ -66,7 +66,7 @@ public class InputManager : MonoBehaviour
 
     void JumpPerformed(InputAction.CallbackContext context)
     {
-        
+        _fpsController.Jumping(context.ReadValue<float>());
     }
 
     void ShootPerformed(InputAction.CallbackContext context)
@@ -85,7 +85,6 @@ public class InputManager : MonoBehaviour
     void CrouchPerformed(InputAction.CallbackContext context)
     {
         _fpsController.Crouching(context.ReadValue<float>());
-        Debug.Log("Crouching");
     }
 
     void CrouchCanceled(InputAction.CallbackContext context)
@@ -97,13 +96,11 @@ public class InputManager : MonoBehaviour
     void RunningPerformed(InputAction.CallbackContext context)
     {
         _fpsController.Running(context.ReadValue<float>());
-        Debug.Log("Running");
     }
 
     void RunningCanceled(InputAction.CallbackContext context)
     {
         _fpsController.Running(context.ReadValue<float>());
-        Debug.Log("Not Running");
     }
 
     void CursorPerformed(InputAction.CallbackContext context)

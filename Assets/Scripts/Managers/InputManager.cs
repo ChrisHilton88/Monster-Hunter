@@ -31,8 +31,11 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.Crouch.canceled += CrouchCanceled;
         _playerInputActions.Player.Running.performed += RunningPerformed;
         _playerInputActions.Player.Running.canceled += RunningCanceled;
+        _playerInputActions.Player.SniperZoom.performed += SniperZoomPerformed;
+        _playerInputActions.Player.SniperZoom.canceled += SniperZoomCanceled;
         _playerInputActions.Player.Cursor.performed += CursorPerformed;
     }
+
 
 
     void Start()
@@ -103,6 +106,18 @@ public class InputManager : MonoBehaviour
         _fpsController.Running(context.ReadValue<float>());
     }
 
+    void SniperZoomPerformed(InputAction.CallbackContext context)
+    {
+        // Start zooming in process
+        _fpsController.SniperZoom(context.ReadValue<float>());  
+    }
+
+    void SniperZoomCanceled(InputAction.CallbackContext context)
+    {
+        // Stop zooming out process and go back to normal
+        _fpsController.SniperZoom(context.ReadValue<float>());
+    }
+
     void CursorPerformed(InputAction.CallbackContext context)
     {
         _gameManager.SetCursorStateToNone();
@@ -116,9 +131,17 @@ public class InputManager : MonoBehaviour
     {
         _playerInputActions.Player.Disable();
         _playerInputActions.Player.LookMovement.performed -= LookMovementPerformed;
+        _playerInputActions.Player.PlayerMovement.performed -= PlayerMovementPerformed;
+        _playerInputActions.Player.PlayerMovement.canceled -= PlayerMovementCanceled;
+        _playerInputActions.Player.Jump.performed -= JumpPerformed;
         _playerInputActions.Player.Shoot.performed -= ShootPerformed;
         _playerInputActions.Player.Shoot.canceled -= ShootCanceled;
         _playerInputActions.Player.Crouch.performed -= CrouchPerformed;
         _playerInputActions.Player.Crouch.canceled -= CrouchCanceled;
+        _playerInputActions.Player.Running.performed -= RunningPerformed;
+        _playerInputActions.Player.Running.canceled -= RunningCanceled;
+        _playerInputActions.Player.SniperZoom.performed -= SniperZoomPerformed;
+        _playerInputActions.Player.SniperZoom.canceled -= SniperZoomCanceled;
+        _playerInputActions.Player.Cursor.performed -= CursorPerformed;
     }
 }

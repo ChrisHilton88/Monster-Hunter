@@ -51,6 +51,10 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         private float _timer = Mathf.PI / 2;        // This is where Sin = 1 -- used to simulate walking forward. 
 
         [SerializeField] private Camera _fpsCamera;
+        [SerializeField] private PlayerCameraController _playerCam;
+
+        private bool _isZooming = false;
+        private float _zoomMultiplier = 0.5f;
 
         private Vector2 _movement;
         private Vector3 _crouchingPos = new Vector3(0, -0.3f, 0);
@@ -61,12 +65,13 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         void Start()
         {
             _controller = GetComponent<CharacterController>();
+            _playerCam = GetComponent<PlayerCameraController>();
         }
 
         void Update()
         {
             FPSController(_movement);
-            //HeadBobbing(); 
+            HeadBobbing(); 
         }
 
         void FPSController(Vector2 movement)
@@ -82,7 +87,6 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
                 velocity = direction * _walkSpeed;                                                            // velocity is the direction and speed we travel
             else
                 velocity = direction * _runSpeed;                                                             // Else, set it to running speed.                                            
-
 
             // Jumping
             if (_isJumping)                                                                                   // If player is jumping 
@@ -174,53 +178,131 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             //}
         }
 
+        public void SniperZoom(float context)
+        { 
+            // Zoom in
+            if(context == 1 && _isZooming == false)
+            {
+                while (_fpsCamera.fieldOfView > 30)
+                {
+                    _fpsCamera.fieldOfView -= _zoomMultiplier;
 
-        //    void HeadBobbing()
-        //    {
-        //        float h = Input.GetAxis("Horizontal");          // Horizontal input.
-        //        float v = Input.GetAxis("Vertical");            // Veritical inputs.
+                    if (_fpsCamera.fieldOfView <= 30)
+                    {
+                        _fpsCamera.fieldOfView = 30;
+                        
+                    }
 
-        //        if (h != 0 || v != 0)                           // Are we moving?
-        //        {
+                    _isZooming = true;
+                }
+            }
+            // Zoom out
+            else
+            {
+                while(_fpsCamera.fieldOfView < 55)
+                {
+                    _fpsCamera.fieldOfView += _zoomMultiplier;
 
-        //            if (Input.GetKey(KeyCode.LeftShift))        // Check if running.
-        //            {
-        //                _timer += _runFrequency * Time.deltaTime;       // Increment timer for our sin/cos waves when running.
-        //            }
-        //            else
-        //            {
-        //                _timer += _walkFrequency * Time.deltaTime;      // Increment timer for our sin/cos waves when walking.
-        //            }
+                    if (_fpsCamera.fieldOfView >= 55)
+                    {
+                        _fpsCamera.fieldOfView = 55;
+                    }
 
-        //            Vector3 headPosition = new Vector3          // Calculate the head position in our walk cycle.
-        //                (
-        //                    _playerCam._initialCameraPos.x + Mathf.Cos(_timer) * _heightOffset,        // X value.
-        //                    _playerCam._initialCameraPos.y + Mathf.Sin(_timer) * _heightOffset,        // Y value.
-        //                    0       // Z value.
-        //                );
+                    _isZooming = false;
+                }
+            }
+        }
 
-        //            _fpsCamera.transform.localPosition = headPosition;      // Assign the head position.
+        void HeadBobbing()
+        {
+            //float h = Input.GetAxis("Horizontal");          // Horizontal input.
+            //float v = Input.GetAxis("Vertical");            // Veritical inputs.
 
-        //            if (_timer > Mathf.PI * 2)      // Reset the timer when we complete a full walk cycle on the unit circle.
-        //            {
-        //                _timer = 0;                 // Completed walk cycle. Reset. 
-        //            }
-        //        }
-        //        else
-        //        {
-        //            _timer = Mathf.PI / 2;          // Reset timer back to 1 for initial walk cycle.
+            if (_movement.x != 0 || _movement.y != 0)                                              // Are we moving?
+            {
+                if (_isRunning)                                                                    // Check if running.
+                {
+                    _timer += _runFrequency * Time.deltaTime;                                      // Increment timer for our sin/cos waves when running.
+                }
+                else
+                {
+                    _timer += _walkFrequency * Time.deltaTime;                                     // Increment timer for our sin/cos waves when walking.
+                }
 
-        //            Vector3 resetHead = new Vector3         // Calculate reset head position back to initial camera position.
-        //                (
-        //                Mathf.Lerp(_fpsCamera.transform.localPosition.x, _playerCam._initialCameraPos.x, _smooth * Time.deltaTime),        // X vlaue.
-        //                Mathf.Lerp(_fpsCamera.transform.localPosition.y, _playerCam._initialCameraPos.y, _smooth * Time.deltaTime),        // Y value.
-        //                0       // Z value.
-        //                );
+                Vector3 headPosition = new Vector3                                                 // Calculate the head position in our walk cycle.
+                    (
+                        _playerCam._initialCameraPos.x + Mathf.Cos(_timer) * _heightOffset,        // X value.
+                        _playerCam._initialCameraPos.y + Mathf.Sin(_timer) * _heightOffset,        // Y value.
+                        0                                                                          // Z value.
+                    );
 
-        //            _fpsCamera.transform.localPosition = resetHead;         // Assign the head position back to the initial camera position.
-        //        }
-        //    }
+                _fpsCamera.transform.localPosition = headPosition;                                 // Assign the head position.
 
+                if (_timer > Mathf.PI * 2)                                                         // Reset the timer when we complete a full walk cycle on the unit circle.
+                {
+                    _timer = 0;                                                                    // Completed walk cycle. Reset. 
+                }
+            }
+            else
+            {
+                _timer = Mathf.PI / 2;                                                             // Reset timer back to 1 for initial walk cycle.
+
+                Vector3 resetHead = new Vector3                                                    // Calculate reset head position back to initial camera position.
+                    (
+                    Mathf.Lerp(_fpsCamera.transform.localPosition.x, _playerCam._initialCameraPos.x, _smooth * Time.deltaTime),        // X vlaue.
+                    Mathf.Lerp(_fpsCamera.transform.localPosition.y, _playerCam._initialCameraPos.y, _smooth * Time.deltaTime),        // Y value.
+                    0                                                                                                                  // Z value.
+                    );
+
+                _fpsCamera.transform.localPosition = resetHead;                                    // Assign the head position back to the initial camera position.
+            }
+
+            // Old Input System
+            //void HeadBobbing()
+            //{
+
+            //    if (_movement.x != 0 || _movement.y != 0)                                                         // Are we moving?
+            //    {
+
+            //        if (Input.GetKey(KeyCode.LeftShift))        // Check if running.
+            //        {
+            //            _timer += _runFrequency * Time.deltaTime;       // Increment timer for our sin/cos waves when running.
+            //        }
+            //        else
+            //        {
+            //            _timer += _walkFrequency * Time.deltaTime;      // Increment timer for our sin/cos waves when walking.
+            //        }
+
+            //        Vector3 headPosition = new Vector3          // Calculate the head position in our walk cycle.
+            //            (
+            //                _playerCam._initialCameraPos.x + Mathf.Cos(_timer) * _heightOffset,        // X value.
+            //                _playerCam._initialCameraPos.y + Mathf.Sin(_timer) * _heightOffset,        // Y value.
+            //                0       // Z value.
+            //            );
+
+            //        _fpsCamera.transform.localPosition = headPosition;      // Assign the head position.
+
+            //        if (_timer > Mathf.PI * 2)      // Reset the timer when we complete a full walk cycle on the unit circle.
+            //        {
+            //            _timer = 0;                 // Completed walk cycle. Reset. 
+            //        }
+            //    }
+            //    else
+            //    {
+            //        _timer = Mathf.PI / 2;          // Reset timer back to 1 for initial walk cycle.
+
+            //        Vector3 resetHead = new Vector3         // Calculate reset head position back to initial camera position.
+            //            (
+            //            Mathf.Lerp(_fpsCamera.transform.localPosition.x, _playerCam._initialCameraPos.x, _smooth * Time.deltaTime),        // X vlaue.
+            //            Mathf.Lerp(_fpsCamera.transform.localPosition.y, _playerCam._initialCameraPos.y, _smooth * Time.deltaTime),        // Y value.
+            //            0       // Z value.
+            //            );
+
+            //        _fpsCamera.transform.localPosition = resetHead;         // Assign the head position back to the initial camera position.
+            //    }
+        }
     }
+
+
 }
 

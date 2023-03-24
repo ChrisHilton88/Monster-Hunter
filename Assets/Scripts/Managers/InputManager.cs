@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.LookMovement.performed += LookMovementPerformed;
         _playerInputActions.Player.PlayerMovement.performed += PlayerMovementPerformed;
         _playerInputActions.Player.PlayerMovement.canceled += PlayerMovementCanceled;
+        _playerInputActions.Player.Jump.performed += JumpPerformed;
         _playerInputActions.Player.Shoot.performed += ShootPerformed;
         _playerInputActions.Player.Shoot.canceled += ShootCanceled;
         _playerInputActions.Player.Crouch.performed += CrouchPerformed;
@@ -46,27 +47,27 @@ public class InputManager : MonoBehaviour
     
 
 
-    // LookMovement - Performed Event
     void LookMovementPerformed(InputAction.CallbackContext context)
     {
         Vector2 lookMovement = context.ReadValue<Vector2>();                    // Cache context callback values
         _playerCameraController.CameraController(lookMovement);                 // Pass in those values to CameraController() method.
     }
 
-    // PlayerMovement - Started Event
     void PlayerMovementPerformed(InputAction.CallbackContext context)
     {
-        _fpsController.CanMove = true;
         _fpsController.PlayerMovement(context.ReadValue<Vector2>());    
     }
 
-    // PlayerMovement - Canceled Event
     void PlayerMovementCanceled(InputAction.CallbackContext context)
     {
-        _fpsController.CanMove = false;
+        _fpsController.PlayerMovement(Vector2.zero);
     }
 
-    // Shoot - Started Event
+    void JumpPerformed(InputAction.CallbackContext context)
+    {
+        
+    }
+
     void ShootPerformed(InputAction.CallbackContext context)
     {
         if (_weaponShooting.CanShoot)                           // If CanShoot is true, shoot bullet.
@@ -75,25 +76,23 @@ public class InputManager : MonoBehaviour
             return;                                             // Else, do nothing.
     }
 
-    // Shoot - Canceled Event
     void ShootCanceled(InputAction.CallbackContext context)
     {
         _weaponShooting.ShootDelayTimer();                                      // Start fire rate delay
     }
 
-    // Crouch - Performed Event
     void CrouchPerformed(InputAction.CallbackContext context)
     {
-
+        _fpsController.Crouching(context.ReadValue<float>());
+        Debug.Log("Crouching");
     }
 
-    // Crouch - Canceled Event
     void CrouchCanceled(InputAction.CallbackContext context)
     {
-        
+        _fpsController.Crouching(context.ReadValue<float>());
+        Debug.Log("Not Crouching!");
     }
 
-    // Cursor - Performed Event
     void CursorPerformed(InputAction.CallbackContext context)
     {
         _gameManager.SetCursorStateToNone();

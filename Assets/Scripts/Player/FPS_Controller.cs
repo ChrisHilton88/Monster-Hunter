@@ -21,10 +21,10 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         [Tooltip("How high can the player jump?")]
         private float _jumpHeight = 15.0f;          // How high can the character jump
         [SerializeField]
-        [Tooltip("Returns true (tick) if the player is running")]
+        [Tooltip("Returns true if the player is running")]
         private bool _isRunning = false;            // Bool to display if we are running.
         [SerializeField]
-        [Tooltip("Returns true (tick) if the player is crouching")]
+        [Tooltip("Returns true if the player is crouching")]
         private bool _crouching = false;            // Bool to display if we are crouched or not.
 
         private CharacterController _controller;    // Reference variable to the 'CharacterController' component.
@@ -50,23 +50,14 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         private PlayerCameraController _playerCam;
         [SerializeField] private Camera _fpsCamera;
 
-        private Vector2 _movement; 
+        private Vector2 _movement;
+        private Vector3 _crouchingPos = new Vector3(0, -0.3f, 0);
+        private Vector3 _standingPos = new Vector3(0, 0.3f, 0);
 
-        private PlayerInputActions _playerInputActions;
-
-
-        private bool _canMove;
-        public bool CanMove
-        {
-            get { return _canMove; }
-            set { _canMove = value; }   
-        }
 
 
         void Start()
         {
-            _playerInputActions = new PlayerInputActions();
-            _playerInputActions.Player.Enable();
             _controller = GetComponent<CharacterController>();      
             _playerCam = GetComponent<PlayerCameraController>();
         }
@@ -75,75 +66,89 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         {
             FPSController(_movement);
 
+
             //HeadBobbing(); 
         }
 
         void FPSController(Vector2 movement)
         {
-            if (CanMove)
-            {
-                //float h = Input.GetAxis("Horizontal"); //horizontal inputs (a, d, leftarrow, rightarrow)
-                //float v = Input.GetAxis("Vertical"); //veritical inputs (w, s, uparrow, downarrow)
+            //float h = Input.GetAxis("Horizontal"); //horizontal inputs (a, d, leftarrow, rightarrow)
+            //float v = Input.GetAxis("Vertical"); //veritical inputs (w, s, uparrow, downarrow)
 
-                Vector3 direction = new Vector3(movement.x, 0, movement.y);                                   //direction to move
-                Vector3 velocity = direction * _walkSpeed;                                                    //velocity is the direction and speed we travel
+            Vector3 direction = new Vector3(movement.x, 0, movement.y);                                   //direction to move
+            Vector3 velocity = direction * _walkSpeed;                                                    //velocity is the direction and speed we travel
 
-                // Update Crouching to NIS
-                //if (Input.GetKeyDown(KeyCode.C) && _isRunning == false)
-                //{
 
-                //    if (_crouching == true)
-                //    {
-                //        _crouching = false;
-                //        _controller.height = 2.0f;
-                //    }
-                //    else
-                //    {
-                //        _crouching = true;
-                //        _controller.height = 1.0f;
-                //    }
+            // Running
+            // Update Running to NIS
+            //if (Input.GetKey(KeyCode.LeftShift) && _crouching == false)
+            //{
+            //    velocity = direction * _runSpeed;           // Use the run velocity.
+            //    _isRunning = true;
+            //}
+            //else
+            //{
+            //    _isRunning = false;
+            //}
 
-                //}
+            // Jumping
+            // Update Jump to NIS
+            //if (_controller.isGrounded == true)             // Check if we're grounded.
+            //{
+            //    if (Input.GetKeyDown(KeyCode.Space))
+            //    {
+            //        _yVelocity = _jumpHeight;               // Assign the cache velocity to our jump height.
+            //    }
+            //}
+            //else                                            // We're not grounded.
+            //{
+            //    _yVelocity -= _gravity;                     // Subtract gravity from our yVelocity. 
+            //}
 
-                // Running
-                // Update Running to NIS
-                //if (Input.GetKey(KeyCode.LeftShift) && _crouching == false)
-                //{
-                //    velocity = direction * _runSpeed;           // Use the run velocity.
-                //    _isRunning = true;
-                //}
-                //else
-                //{
-                //    _isRunning = false;
-                //}
+            //velocity.y = _yVelocity;                        // Assign the cached value of our 'Y' velocity.
 
-                // Jumping
-                // Update Jump to NIS
-                //if (_controller.isGrounded == true)             // Check if we're grounded.
-                //{
-                //    if (Input.GetKeyDown(KeyCode.Space))
-                //    {
-                //        _yVelocity = _jumpHeight;               // Assign the cache velocity to our jump height.
-                //    }
-                //}
-                //else                                            // We're not grounded.
-                //{
-                //    _yVelocity -= _gravity;                     // Subtract gravity from our yVelocity. 
-                //}
+            //velocity = transform.TransformDirection(velocity);
 
-                //velocity.y = _yVelocity;                        // Assign the cached value of our 'Y' velocity.
-
-                //velocity = transform.TransformDirection(velocity);
-
-                _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
-                Debug.Log("Moving: " + velocity);
-            }
-            
+            _controller.Move(velocity * Time.deltaTime);    // Move the controller 'X' meters per second.
+            Debug.Log("Moving: " + velocity);
         }
 
         public void PlayerMovement(Vector2 context)
         {
             _movement = context;
+        }
+
+        public void Crouching(float context)
+        {
+            // Old Input System
+            //if (Input.GetKeyDown(KeyCode.C) && _isRunning == false)
+            //{
+            //    if (_crouching == true)
+            //    {
+            //        _crouching = false;
+            //        _controller.height = 2.0f;
+            //    }
+            //    else
+            //    {
+            //        _crouching = true;
+            //        _controller.height = 1.0f;
+            //    }
+            //}
+
+            if (_isRunning == false && context == 1)
+            {
+                _crouching = true;
+                _controller.height = 1f;
+                _controller.Move(_crouchingPos);
+                Debug.Log("Cont height: " + _controller.height);
+            }
+            else
+            {
+                _crouching = false;
+                _controller.height = 2f;
+                _controller.Move(_standingPos);
+                Debug.Log("Cont height: " + _controller.height);
+            }
         }
 
         // Head Bobbing - Consider moving to PlayerCameraController

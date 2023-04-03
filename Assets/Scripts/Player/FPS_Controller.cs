@@ -53,6 +53,7 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         [SerializeField] private Camera _fpsCamera;
         [SerializeField] private PlayerCameraController _playerCam;
 
+        private int minFOV = 30, maxFOV = 55;
         private bool _isZooming = false;
         private float _zoomMultiplier = 0.5f;
 
@@ -96,7 +97,6 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             }
             else
             {
-                _yVelocity -= _gravity;
                 Debug.Log("_yvelocity less gravity: " + _yVelocity);
             }
 
@@ -183,13 +183,13 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             // Zoom in
             if(context == 1 && _isZooming == false)
             {
-                while (_fpsCamera.fieldOfView > 30)
+                while (_fpsCamera.fieldOfView > minFOV)
                 {
                     _fpsCamera.fieldOfView -= _zoomMultiplier;
 
-                    if (_fpsCamera.fieldOfView <= 30)
+                    if (_fpsCamera.fieldOfView <= minFOV)
                     {
-                        _fpsCamera.fieldOfView = 30;
+                        _fpsCamera.fieldOfView = minFOV;
                         
                     }
 
@@ -199,13 +199,13 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             // Zoom out
             else
             {
-                while(_fpsCamera.fieldOfView < 55)
+                while(_fpsCamera.fieldOfView < maxFOV)
                 {
                     _fpsCamera.fieldOfView += _zoomMultiplier;
 
-                    if (_fpsCamera.fieldOfView >= 55)
+                    if (_fpsCamera.fieldOfView >= maxFOV)
                     {
-                        _fpsCamera.fieldOfView = 55;
+                        _fpsCamera.fieldOfView = maxFOV;
                     }
 
                     _isZooming = false;

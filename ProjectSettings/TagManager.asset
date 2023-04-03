@@ -10,6 +10,7 @@ TagManager:
   - Floor
   - Ceiling
   - Bullet
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,7 @@ public class WeaponShooting : MonoBehaviour
     // Make the color red so we can see it
     // Limit it's distance, don't use infinity.
 
-    Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
+    private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _weaponFiredClip;
@@ -48,7 +48,7 @@ public class WeaponShooting : MonoBehaviour
     public void ShootBullet()
     {
         GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawnPos.position, Quaternion.LookRotation(transform.forward));        // Sets rotation of bullet to forward spawning direction
-        newBullet.transform.parent = _bulletContainer.transform;
+        newBullet.transform.parent = _bulletContainer.transform;                           // Store bullet in a parent container
     }
 
     public void ShootDelayTimer()
@@ -72,22 +72,5 @@ public class WeaponShooting : MonoBehaviour
         _shootDelayCoroutine = null;
         CanShoot = true;
     }
-
-
-
-
-    //public void RaycastShoot()
-    //{
-    //    Ray rayOrigin = _mainCam.ViewportPointToRay(_reticulePos);
-    //    RaycastHit hitInfo;
-
-    //    if(Physics.Raycast(rayOrigin, out hitInfo))
-    //    {
-    //        Debug.Log("I found a: " + hitInfo.collider.tag);
-    //    }
-    //}
-
-
-    // Fix - Draw bullet from an Object Pool instead of instantiating.
 
 }

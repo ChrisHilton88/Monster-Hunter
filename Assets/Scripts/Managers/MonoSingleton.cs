@@ -2,7 +2,6 @@ using UnityEngine;
 
 // Template that utilises Generics for Singleton Managers. Any Manager that inherits this class, will automatically inherit the Singleton pattern.
 // Abstract - Not meant to create instances of. It is built as a template for other classes to inherit from.
-// Abstract classes are basically an interface that allows you to provide implementation instead of just a method declaration.
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
     #region MONOSINGLETON

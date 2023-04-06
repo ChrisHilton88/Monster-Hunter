@@ -7,6 +7,7 @@ public class StringManager : MonoSingleton<StringManager>
     public const string _wallTag = "Wall";
     public const string _floorTag = "Floor";
     public const string _columnTag = "Column";
+    public const string _consoleTag = "Console";
     public const string _enemy = "Enemy";
     public const string _player = "Player";
     public const string _bullet = "Bullet";

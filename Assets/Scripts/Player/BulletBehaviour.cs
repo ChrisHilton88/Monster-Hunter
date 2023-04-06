@@ -5,14 +5,14 @@ public class BulletBehaviour : MonoBehaviour
 {
     private float _speed = 100f;
 
-    string _name;
-
     private readonly Vector3 _bulletScale = new Vector3(200, 200, 200);
+
     Rigidbody _rb;
     AudioSource _audioSource;
-    AudioClip _audioClip;
-    [SerializeField] private AudioClip _bulletMetalHitClip;
+    AudioClip _currentAudioClip;
     Coroutine _audioClipRoutine;
+
+    [SerializeField] private AudioClip _bulletMetalHitClip;
 
 
     void Start()
@@ -38,7 +38,6 @@ public class BulletBehaviour : MonoBehaviour
         {
             SwitchThroughTags(other);               // Switch through the different game object tags
             _audioClipRoutine = StartCoroutine(PlayAudioClipOnce());            // Assign coroutine to be treated as a bool so it only plays once.
-            DestroyBullet();                        // Destroy/SetInactive after the bullet has played out it's audio collision clip. 
         }
     }
 
@@ -47,11 +46,12 @@ public class BulletBehaviour : MonoBehaviour
     {
         switch (other.collider.tag)
         {
-            case StringManager._wallTag:                        // Fall through cases. Wall and Floor will fall through to Column because it runs the same code.
-            case StringManager._floorTag:                           
+            case StringManager._wallTag:                        // Fall through cases. Wall, Floor & Console will fall through to Column because it runs the same code.
+            case StringManager._floorTag:
+            case StringManager._consoleTag:
             case StringManager._columnTag:
                 _audioSource.clip = _bulletMetalHitClip;        // Assign audio clip
-                _audioClip = _bulletMetalHitClip;
+                _currentAudioClip = _bulletMetalHitClip;
                 break;
             case StringManager._enemy:
                 Debug.Log("About time you hit something worthwhile");
@@ -63,17 +63,12 @@ public class BulletBehaviour : MonoBehaviour
         Debug.Log("The Bullet hit: " + other.collider.tag);
     }
 
-    // Destroys gameobject based on audio clips length.
-    void DestroyBullet()
-    {
-        Destroy(gameObject, _audioClip.length);
-    }
-
     // It as bool routine for making sure only 1 audio sound effect is played.
     IEnumerator PlayAudioClipOnce()
     {
         _audioSource.Play();                                    // Play the audioclip that was assigned in switch statement.
-        yield return new WaitForSeconds(_audioClip.length);            
+        yield return new WaitForSeconds(_currentAudioClip.length);
+        gameObject.SetActive(false);
         _audioClipRoutine = null;
     }
 }

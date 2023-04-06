@@ -76,8 +76,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5743811, y: 10.386861, z: 1.6727457}
-  m_Center: {x: 0.0008443594, y: -1.248343, z: 0.33637285}
+  m_Size: {x: 1.5743811, y: 15.346986, z: 1.6727457}
+  m_Center: {x: 0.0008443594, y: 1.2317195, z: 0.33637285}
 --- !u!1001 &37522499615605537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,6 +88,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -168,6 +172,10 @@ PrefabInstance:
       value: Scifi_Column_04 (8)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -232,6 +240,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -312,6 +324,10 @@ PrefabInstance:
       value: Scifi_Column_04 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -376,6 +392,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -456,6 +476,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (20)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -532,6 +556,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -612,6 +640,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (19)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -688,6 +720,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -768,6 +804,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (21)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -846,6 +886,10 @@ PrefabInstance:
       value: Scifi_Column_04 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -910,6 +954,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -990,6 +1038,10 @@ PrefabInstance:
       value: Scifi_Column_04 (6)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1056,6 +1108,10 @@ PrefabInstance:
       value: Scifi_Column_04 (7)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1120,6 +1176,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1200,6 +1260,10 @@ PrefabInstance:
       value: Scifi_Column_04 (9)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1264,6 +1328,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1344,6 +1412,10 @@ PrefabInstance:
       value: Scifi_Column_04
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1410,6 +1482,10 @@ PrefabInstance:
       value: Scifi_Column_04 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1474,6 +1550,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1554,6 +1634,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (18)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1630,6 +1714,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1710,6 +1798,10 @@ PrefabInstance:
       value: Scifi_Column_04 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1774,6 +1866,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1854,6 +1950,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (9)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1930,6 +2030,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2010,6 +2114,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (14)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2088,6 +2196,10 @@ PrefabInstance:
       value: Scifi_Column_04 (5)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2152,6 +2264,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2232,6 +2348,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (11)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2308,6 +2428,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2388,6 +2512,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (22)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2466,6 +2594,10 @@ PrefabInstance:
       value: Scifi_Wall_04 (16)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2542,6 +2674,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_Name
       value: Scifi_Wall_04 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
+      propertyPath: m_TagString
+      value: Column
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 25457142623534554971bf209f8976d3, type: 3}
       propertyPath: m_StaticEditorFlags

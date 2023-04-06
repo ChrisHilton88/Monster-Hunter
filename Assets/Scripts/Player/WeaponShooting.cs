@@ -3,12 +3,8 @@ using UnityEngine;
 
 public class WeaponShooting : MonoBehaviour
 {
-    // Shoot raycast to middle of screen position (crosshair)
-    // Build a raycast from the end of the weapon barrel (raycast origin)
-    // Make the color red so we can see it
-    // Limit it's distance, don't use infinity.
-
     private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
+    private Quaternion _bulletRotation;
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _weaponFiredClip;
@@ -37,7 +33,7 @@ public class WeaponShooting : MonoBehaviour
     void Start()
     {
         _shootDelayCoroutine = null;
-        _audioSource = GetComponent<AudioSource>(); 
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -45,10 +41,11 @@ public class WeaponShooting : MonoBehaviour
         Debug.DrawRay(_bulletSpawnPos.position, _mainCam.ViewportPointToRay(_reticulePos).direction * _maxShootDistace, Color.red);     // Draws a line from gun to crosshair
     }
 
+    // Request a bullet from ObjectPoolManager and Shoot.
     public void ShootBullet()
     {
-        GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawnPos.position, Quaternion.LookRotation(transform.forward));        // Sets rotation of bullet to forward spawning direction
-        newBullet.transform.parent = _bulletContainer.transform;                           // Store bullet in a parent container
+        _bulletRotation.SetLookRotation(transform.forward);             // Sets bullet rotation to face the forward direction of the gun.
+        ObjectPoolManager.Instance.RequestBullet(_bulletSpawnPos, _bulletRotation);         // Move bullet objects to gun and passes in rotation.
     }
 
     public void ShootDelayTimer()
@@ -66,11 +63,10 @@ public class WeaponShooting : MonoBehaviour
         _audioSource.clip = _weaponFiredClip;
          _audioSource.Play();
         yield return new WaitForSeconds(_audioSource.clip.length);                  // Can't make changes unless using a separate AudioSource component, OR amend audio clip.
-        _audioSource.clip = _weaponReloadClip;
-        _audioSource.Play();
-        yield return new WaitForSeconds(_audioSource.clip.length);
+        //_audioSource.clip = _weaponReloadClip;
+        //_audioSource.Play();
+        //yield return new WaitForSeconds(_audioSource.clip.length);
         _shootDelayCoroutine = null;
         CanShoot = true;
     }
-
 }

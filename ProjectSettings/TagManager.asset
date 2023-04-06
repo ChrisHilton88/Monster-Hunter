@@ -11,6 +11,11 @@ TagManager:
   - Ceiling
   - Bullet
   - Wall
+  - Console
+  - Light
+  - Door
+  - Railing
+  - Barrier
   layers:
   - Default
   - TransparentFX

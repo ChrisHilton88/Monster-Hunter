@@ -34,9 +34,21 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.SniperZoom.performed += SniperZoomPerformed;
         _playerInputActions.Player.SniperZoom.canceled += SniperZoomCanceled;
         _playerInputActions.Player.Cursor.performed += CursorPerformed;
+        _playerInputActions.Player.OptionsMenu.performed += OptionsMenuPerformed;
     }
 
-
+    void OptionsMenuPerformed(InputAction.CallbackContext context)
+    {
+        if (UIManager.Instance.IsOptionsMenuOpen)
+        {
+            // Close menu
+        }
+        else
+        {
+            // Open menu
+        }
+        Debug.Log("Opened the Options Menu");
+    }
 
     void Start()
     {

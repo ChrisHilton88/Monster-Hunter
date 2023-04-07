@@ -6,6 +6,7 @@ public class GameManager : MonoSingleton<GameManager>
     public bool GameOver { get; private set; }
 
 
+
     void Start()
     {
         GameOver = false;

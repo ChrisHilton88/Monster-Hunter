@@ -17,9 +17,12 @@ public class WeaponShooting : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletContainer;
 
+    private int _reloadAmount = 10;
+
     private float _maxShootDistace = 500f;
 
     Coroutine _shootDelayCoroutine;
+    Coroutine _reloadingCoroutine;
     WaitForSeconds _shootDelayTime = new WaitForSeconds(2f);
 
     private bool _canShoot;
@@ -33,6 +36,7 @@ public class WeaponShooting : MonoBehaviour
     void Start()
     {
         _shootDelayCoroutine = null;
+        _reloadingCoroutine = null;
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -44,8 +48,19 @@ public class WeaponShooting : MonoBehaviour
     // Request a bullet from ObjectPoolManager and Shoot.
     public void ShootBullet()
     {
-        _bulletRotation.SetLookRotation(transform.forward);             // Sets bullet rotation to face the forward direction of the gun.
-        ObjectPoolManager.Instance.RequestBullet(_bulletSpawnPos, _bulletRotation);         // Move bullet objects to gun and passes in rotation.
+        if(UIManager.Instance.AmmoCount > 0)
+        {
+            _bulletRotation.SetLookRotation(transform.forward);             // Sets bullet rotation to face the forward direction of the gun.
+            ObjectPoolManager.Instance.RequestBullet(_bulletSpawnPos, _bulletRotation);         // Move bullet objects to gun and passes in rotation.
+            UIManager.Instance.UpdateAmmoCount(1);
+        }
+        else
+        {
+            Debug.Log("Testing");
+            // Add a display message and audio sound to tell the player they need to reload.
+            // Play audio sounds for reloading, and once reloaded set the count to 10.
+            _reloadingCoroutine = StartCoroutine(ReloadingRoutine());
+        }
     }
 
     public void ShootDelayTimer()
@@ -62,11 +77,19 @@ public class WeaponShooting : MonoBehaviour
         CanShoot = false;
         _audioSource.clip = _weaponFiredClip;
          _audioSource.Play();
-        yield return new WaitForSeconds(_audioSource.clip.length);                  // Can't make changes unless using a separate AudioSource component, OR amend audio clip.
-        //_audioSource.clip = _weaponReloadClip;
-        //_audioSource.Play();
-        //yield return new WaitForSeconds(_audioSource.clip.length);
+        yield return new WaitForSeconds(_weaponFiredClip.length);                  // Can't make changes unless using a separate AudioSource component, OR amend audio clip.
+        Debug.Log(_weaponReloadClip.length.ToString());    
         _shootDelayCoroutine = null;
         CanShoot = true;
+    }
+
+    IEnumerator ReloadingRoutine()
+    {
+        _audioSource.clip = _weaponReloadClip;          // Assign reloading audio clip
+        _audioSource.Play();
+        yield return _weaponReloadClip.length;          // Yield until the clip finishes playing
+        UIManager.Instance.IsReloading = true;          
+        UIManager.Instance.UpdateAmmoCount(10);         // Set Ammo Display count to 10
+        _reloadingCoroutine = null;                     // Let the player be able to reload again
     }
 }

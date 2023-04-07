@@ -107,6 +107,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Options Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""2985995c-48af-47b6-bb51-21d83790931b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -395,6 +404,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1fee2edc-63c1-44bb-bac1-5170a408c316"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Options Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0740692-b9cc-4ddd-8288-89604942b30f"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Options Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -463,6 +494,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Running = m_Player.FindAction("Running", throwIfNotFound: true);
         m_Player_SniperZoom = m_Player.FindAction("Sniper Zoom", throwIfNotFound: true);
         m_Player_Cursor = m_Player.FindAction("Cursor", throwIfNotFound: true);
+        m_Player_OptionsMenu = m_Player.FindAction("Options Menu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -534,6 +566,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Running;
     private readonly InputAction m_Player_SniperZoom;
     private readonly InputAction m_Player_Cursor;
+    private readonly InputAction m_Player_OptionsMenu;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -547,6 +580,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Running => m_Wrapper.m_Player_Running;
         public InputAction @SniperZoom => m_Wrapper.m_Player_SniperZoom;
         public InputAction @Cursor => m_Wrapper.m_Player_Cursor;
+        public InputAction @OptionsMenu => m_Wrapper.m_Player_OptionsMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -583,6 +617,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Cursor.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
                 @Cursor.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
                 @Cursor.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
+                @OptionsMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOptionsMenu;
+                @OptionsMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOptionsMenu;
+                @OptionsMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOptionsMenu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -614,6 +651,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Cursor.started += instance.OnCursor;
                 @Cursor.performed += instance.OnCursor;
                 @Cursor.canceled += instance.OnCursor;
+                @OptionsMenu.started += instance.OnOptionsMenu;
+                @OptionsMenu.performed += instance.OnOptionsMenu;
+                @OptionsMenu.canceled += instance.OnOptionsMenu;
             }
         }
     }
@@ -680,6 +720,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnRunning(InputAction.CallbackContext context);
         void OnSniperZoom(InputAction.CallbackContext context);
         void OnCursor(InputAction.CallbackContext context);
+        void OnOptionsMenu(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

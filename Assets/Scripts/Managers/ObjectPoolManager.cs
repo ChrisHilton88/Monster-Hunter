@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>   
 {
-    public int _bulletPoolCount { get; private set; }           // Sets the size of the bullet pool.
-    public int _enemyPoolCount { get; private set; }            // Sets the size of the enemy pool.
-    private int _maxEnemyPrefabPools { get; set; }              // Max size of each enemy type.
+    public int _bulletPoolCount { get; private set; } = 10;        // Sets the size of the bullet pool.
+    public int _enemyPoolCount { get; private set; } = 5;           // Sets the size of the enemy pool.
+    private int _maxEnemyPrefabPools { get; set; } = 5;            // Max size of each enemy type.
 
     private Vector3 _spawnPos = new Vector3(40, 0, 1);          // Spawn point for enemies.
 
@@ -22,9 +22,6 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
 
     void OnEnable()
     {
-        _enemyPoolCount = 5;                                    // Total size of each enemy object pool.
-        _bulletPoolCount = 5;                                   // Total size of bullet pool
-        _maxEnemyPrefabPools = 5;
         _enemyPool = GenerateEnemy(_enemyPoolCount);    
         _bulletPool = GenerateBullets(_bulletPoolCount);    
     }

@@ -42,15 +42,15 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
     }
 
     // Returns a Bullet GameObject, either from the pre-generated list or create one dynamically if needed.
-    public GameObject RequestBullet(Transform pos, Quaternion rot)
+    public GameObject RequestBullet(RaycastHit hitInfo)
     {
         foreach (GameObject bullet in _bulletPool)          // Loop through bullet pool
         {
             if(bullet.activeInHierarchy == false)           // Find first INACTIVE
             {
-                bullet.SetActive(true);                     // Set to ACTIVE
-                bullet.transform.position = pos.position;
-                bullet.transform.rotation = rot;
+                bullet.SetActive(true);                     // Set to ACTIVE and assign position, rotation of passed in parameters.
+                bullet.transform.position = hitInfo.point;
+                //bullet.transform.rotation = rot;
                 return bullet;                              // Return the object.
             }
         }
@@ -63,7 +63,6 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
         Debug.Log("Created Bullet on the fly!");
         return newBullet;                                            // Return this enemy GameObject instead
     }
-
     #endregion
 
     #region Enemy Object Pool

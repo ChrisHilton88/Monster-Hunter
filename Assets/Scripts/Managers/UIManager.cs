@@ -33,13 +33,11 @@ public class UIManager : MonoSingleton<UIManager>
         {
             _currentAmmoCount = count;
             IsReloading = false;
-            Debug.Log("Reloading");
         }
         else
         {                                           // Else, run this
             AmmoCount -= count;
             _ammoText.text = _currentAmmoCount.ToString();
-            Debug.Log("Shooting bullets");
         }
     }
 }

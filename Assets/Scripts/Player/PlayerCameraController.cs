@@ -5,7 +5,7 @@ public class PlayerCameraController : MonoBehaviour
     [Tooltip("Control the look sensitivty of the camera")]
     private float _lookSensitivity = 0.2f;      // Mouse sensitivity 
     
-    public Vector3 _initialCameraPos;          // Local position where we reset the camera when it's not bobbing.
+    public Vector3 _initialCameraPos;           // Local position where we reset the camera when it's not bobbing.
 
     [SerializeField] private Camera _fpsCamera;
 
@@ -16,7 +16,6 @@ public class PlayerCameraController : MonoBehaviour
         _initialCameraPos = _fpsCamera.transform.localPosition;
     }
 
-    // Update to NIS
     public void CameraController(Vector2 direction)
     {   
         //float mouseX = Input.GetAxis("Mouse X");                              // Get mouse movement on the X axis.

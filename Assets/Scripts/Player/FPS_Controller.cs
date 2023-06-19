@@ -97,7 +97,7 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             }
             else
             {
-                Debug.Log("_yvelocity less gravity: " + _yVelocity);
+                return;
             }
 
             velocity.y = _yVelocity;                                                                          // Assign the cached value of our 'Y' velocity.

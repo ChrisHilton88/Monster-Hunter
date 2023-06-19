@@ -1,57 +1,43 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider), typeof(BulletBehaviour), (typeof(AudioSource)))]
 public class BulletBehaviour : MonoBehaviour
 {
-    private float _speed = 100f;
-
-    private readonly Vector3 _bulletScale = new Vector3(200, 200, 200);
-
-    Rigidbody _rb;
-    AudioSource _audioSource;
-    AudioClip _currentAudioClip;
-    Coroutine _audioClipRoutine;
-
     [SerializeField] private AudioClip _bulletMetalHitClip;
+
+    AudioSource _audioSource;
+    Coroutine _audioClipRoutine;
 
 
     void Start()
     {
-        transform.localScale = _bulletScale;
-        _rb = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
+        _audioClipRoutine = null;
     }
 
-    void FixedUpdate()
+    void OnCollisionEnter(Collision other)          
     {
-        // Not shooting in the direction the laser is pointing
-        _rb.velocity = transform.TransformDirection(Vector3.forward * _speed); 
+        // Disable game object
+        gameObject.SetActive(false);
 
-        //Debug.DrawRay(_bulletSpawnPos.position, _mainCam.ViewportPointToRay(_reticulePos).direction);     
-
-        // Add more here as bullet is not bouncing off surfaces and instead fights against the collider until it is able to continue moving forward.
-    }
-
-    void OnCollisionEnter(Collision other)          // Collide with another collider
-    {
-        if(_audioClipRoutine == null)               // Check if the coroutine is already running, if so, do nothing.
+        if(_audioClipRoutine == null)               
         {
-            SwitchThroughTags(other);               // Switch through the different game object tags
-            _audioClipRoutine = StartCoroutine(PlayAudioClipOnce());            // Assign coroutine to be treated as a bool so it only plays once.
+            SwitchThroughTags(other);                                           
+            _audioClipRoutine = StartCoroutine(PlayAudioClipOnce());            
         }
     }
 
-    // Runs a switch statement through game object TAGS
+    // Switch statement using game object TAGS
     void SwitchThroughTags(Collision other)
     {
         switch (other.collider.tag)
         {
-            case StringManager._wallTag:                        // Fall through cases. Wall, Floor & Console will fall through to Column because it runs the same code.
+            case StringManager._wallTag:                        // Fall through cases. Wall, Floor & Console will fall through to Column.
             case StringManager._floorTag:
             case StringManager._consoleTag:
             case StringManager._columnTag:
                 _audioSource.clip = _bulletMetalHitClip;        // Assign audio clip
-                _currentAudioClip = _bulletMetalHitClip;
                 break;
             case StringManager._enemy:
                 Debug.Log("About time you hit something worthwhile");
@@ -59,16 +45,21 @@ public class BulletBehaviour : MonoBehaviour
             default:
                 break;
         }
-
-        Debug.Log("The Bullet hit: " + other.collider.tag);
     }
 
-    // It as bool routine for making sure only 1 audio sound effect is played.
     IEnumerator PlayAudioClipOnce()
     {
-        _audioSource.Play();                                    // Play the audioclip that was assigned in switch statement.
-        yield return new WaitForSeconds(_currentAudioClip.length);
-        gameObject.SetActive(false);
+        _audioSource.Play();                                    
+        yield return new WaitForSeconds(_audioSource.clip.length);
+        gameObject.SetActive(false);         
         _audioClipRoutine = null;
     }
+
+    // Steps to create Ricochet bouncing effect:
+    // 1. Make sure both game objects have a collider and at least 1 game object has a Rigidbody - Done
+    // 2. Make sure bullet has force or initial velocity applied to it - Done
+    // 3. Physics Materials - Create and assign Physics materials to both game objects. Adjust bounciness to be greater than 0 - Done
+    // 4. Enable collision detection - Check collision matrix - Done
+    // 5. Handle Collision Events - OnCollisionEnter - Done
+    // 6. Reflect the bullets direction - Calculate the reflection direction of the bullet based on the collision normal - Done
 }

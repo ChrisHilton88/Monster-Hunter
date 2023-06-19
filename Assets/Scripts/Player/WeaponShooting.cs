@@ -1,25 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponShooting : MonoBehaviour
 {
     private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
-    private Quaternion _bulletRotation;
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _weaponFiredClip;
     [SerializeField] private AudioClip _weaponReloadClip;
 
     [SerializeField] private Transform _laserOrigin;
-    [SerializeField] private Transform _crosshair;
-    [SerializeField] private Transform _bulletSpawnPos;
-    [SerializeField] private Camera _mainCam;
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private GameObject _bulletContainer;
-
-    private int _reloadAmount = 10;
-
-    private float _maxShootDistace = 500f;
+    [SerializeField] private Transform _crosshair;              // Not used
 
     Coroutine _shootDelayCoroutine;
     Coroutine _reloadingCoroutine;
@@ -32,6 +24,8 @@ public class WeaponShooting : MonoBehaviour
         private set { _canShoot = value; }  
     }
 
+    
+
 
     void Start()
     {
@@ -42,24 +36,31 @@ public class WeaponShooting : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(_bulletSpawnPos.position, _mainCam.ViewportPointToRay(_reticulePos).direction * _maxShootDistace, Color.red);     // Draws a line from gun to crosshair
+        Debug.DrawRay(transform.position, Vector3.forward, Color.red);
     }
 
+    // Called from InputManager
     // Request a bullet from ObjectPoolManager and Shoot.
     public void ShootBullet()
     {
-        if(UIManager.Instance.AmmoCount > 0)
+        Debug.Log("Test 1");
+
+        if (UIManager.Instance.AmmoCount > 0)               // Check that there is a bullet available
         {
-            _bulletRotation.SetLookRotation(transform.forward);             // Sets bullet rotation to face the forward direction of the gun.
-            ObjectPoolManager.Instance.RequestBullet(_bulletSpawnPos, _bulletRotation);         // Move bullet objects to gun and passes in rotation.
-            UIManager.Instance.UpdateAmmoCount(1);
-        }
-        else
-        {
-            Debug.Log("Testing");
-            // Add a display message and audio sound to tell the player they need to reload.
-            // Play audio sounds for reloading, and once reloaded set the count to 10.
-            _reloadingCoroutine = StartCoroutine(ReloadingRoutine());
+            Debug.Log("Test 2");
+            Ray rayOrigin = Camera.main.ViewportPointToRay(_reticulePos);
+            RaycastHit hitInfo;
+            Debug.Log("Shot Ray");
+
+
+
+            // If the raycast hits a game object with an "Environment" layer on it
+            if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Environment")))            // Layermask 6 is Environment
+            {
+                Debug.Log("Test 3");
+                GameObject newObject = ObjectPoolManager.Instance.RequestBullet(hitInfo);
+                UIManager.Instance.UpdateAmmoCount(1);
+            }
         }
     }
 
@@ -78,11 +79,13 @@ public class WeaponShooting : MonoBehaviour
         _audioSource.clip = _weaponFiredClip;
          _audioSource.Play();
         yield return new WaitForSeconds(_weaponFiredClip.length);                  // Can't make changes unless using a separate AudioSource component, OR amend audio clip.
-        Debug.Log(_weaponReloadClip.length.ToString());    
         _shootDelayCoroutine = null;
         CanShoot = true;
     }
 
+    // TODO: Call this from somewhere
+    // TODO: Add a display message and audio sound to tell the player they need to reload.
+    // Play audio sounds for reloading, and once reloaded set the count to 10.
     IEnumerator ReloadingRoutine()
     {
         _audioSource.clip = _weaponReloadClip;          // Assign reloading audio clip

@@ -18,7 +18,7 @@ public class BulletBehaviour : MonoBehaviour
 
     void OnCollisionEnter(Collision other)          
     {
-        // Disable game object
+        // Disable bullet
         gameObject.SetActive(false);
 
         if(_audioClipRoutine == null)               
@@ -55,11 +55,13 @@ public class BulletBehaviour : MonoBehaviour
         _audioClipRoutine = null;
     }
 
+
+
     // Steps to create Ricochet bouncing effect:
-    // 1. Make sure both game objects have a collider and at least 1 game object has a Rigidbody - Done
-    // 2. Make sure bullet has force or initial velocity applied to it - Done
-    // 3. Physics Materials - Create and assign Physics materials to both game objects. Adjust bounciness to be greater than 0 - Done
-    // 4. Enable collision detection - Check collision matrix - Done
-    // 5. Handle Collision Events - OnCollisionEnter - Done
-    // 6. Reflect the bullets direction - Calculate the reflection direction of the bullet based on the collision normal - Done
+    // 1. Make sure both game objects have a collider and at least 1 game object has a Rigidbody
+    // 2. Make sure bullet has force or initial velocity applied to it
+    // 3. Physics Materials - Create and assign Physics materials to both game objects. Adjust bounciness to be greater than 0
+    // 4. Enable collision detection - Check collision matrix
+    // 5. Handle Collision Events - OnCollisionEnter
+    // 6. Reflect the bullets direction - Calculate the reflection direction of the bullet based on the collision normal 
 }

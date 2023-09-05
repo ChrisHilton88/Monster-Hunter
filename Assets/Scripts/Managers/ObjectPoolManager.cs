@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>   
 {
-    public int _bulletPoolCount { get; private set; } = 10;        // Sets the size of the bullet pool.
-    public int _enemyPoolCount { get; private set; } = 5;           // Sets the size of the enemy pool.
-    private int _maxEnemyPrefabPools { get; set; } = 5;            // Max size of each enemy type.
+    public int _bulletPoolCount { get; private set; } = 10;        // Sets the size of the bullet pool
+    public int _enemyPoolCount { get; private set; } = 5;           // Sets the size of the enemy pool
+    private int _maxEnemyPrefabPools { get; set; } = 5;            // Max size of each enemy type
 
-    private Vector3 _spawnPos = new Vector3(40, 0, 1);          // Spawn point for enemies.
+    private Vector3 _spawnPos = new Vector3(40, 0, 1);          // Spawn point for enemies
 
-    [SerializeField] private GameObject _bulletContainer;       // Container to store bullets.
+    [SerializeField] private GameObject _bulletContainer;       // Container to store bullets
     [SerializeField] private List<GameObject> _bulletPool;      // Size of bullet pool
-    [SerializeField] private GameObject _bulletPrefab;          // Bullet prefab.
+    [SerializeField] private GameObject _bulletPrefab;          // Bullet prefab
 
-    [SerializeField] private GameObject _enemyContainer;        // Container to store our spawning enemies in the Hierarchy to keep it tidy.       
-    [SerializeField] private List<GameObject> _enemyPool;       // Growing size of object pool as the waves increase.
-    [SerializeField] private GameObject[] _enemyPrefabs;        // 5 prefab monsters to randomly select from or Level Designer can choose.
+    [SerializeField] private GameObject _enemyContainer;        // Container to store our spawning enemies in the Hierarchy to keep it tidy    
+    [SerializeField] private List<GameObject> _enemyPool;       // Growing size of object pool as the waves increase
+    [SerializeField] private GameObject[] _enemyPrefabs;        // 5 prefab monsters to randomly select from or Level Designer can choose
 
-    //WaitForSeconds _instantiateTimer = new WaitForSeconds(0.25f);       // Spaces out the instantiation of the object pool (if needed - for optimisation).
+    //WaitForSeconds _instantiateTimer = new WaitForSeconds(0.25f);       // Spaces out the instantiation of the object pool (if needed - for optimisation)
 
 
     void OnEnable()
@@ -27,38 +27,38 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
     }
 
     #region Bullet Object Pool
-    // List of bullets genereated at the start of the game and set to INACTIVE.
+    // List of bullets genereated at the start of the game and set to INACTIVE
     List<GameObject> GenerateBullets (int poolCount)
     {
         for (int i = 0; i < poolCount; i++)
         {
             GameObject bullet = Instantiate(_bulletPrefab, _spawnPos, Quaternion.identity);
-            bullet.transform.parent = _bulletContainer.transform;           // Set new objects parent to the holding container.
-            bullet.SetActive(false);            // Disable game object at start of game.
+            bullet.transform.parent = _bulletContainer.transform;           // Set new objects parent to the holding container
+            bullet.SetActive(false);            // Disable game object at start of game
             _bulletPool.Add(bullet);            // Add bullet to the list
         }
 
-        return _bulletPool;                     // Return a list of bullet GameObjects.
+        return _bulletPool;                     // Return a list of bullet GameObjects
     }
 
-    // Returns a Bullet GameObject, either from the pre-generated list or create one dynamically if needed.
+    // Returns a Bullet GameObject, either from the pre-generated list or create one dynamically if needed
     public GameObject RequestBullet(RaycastHit hitInfo)
     {
         foreach (GameObject bullet in _bulletPool)          // Loop through bullet pool
         {
             if(bullet.activeInHierarchy == false)           // Find first INACTIVE
             {
-                bullet.SetActive(true);                     // Set to ACTIVE and assign position, rotation of passed in parameters.
+                bullet.SetActive(true);                     // Set to ACTIVE and assign position, rotation of passed in parameters
                 bullet.transform.position = hitInfo.point;
                 //bullet.transform.rotation = rot;
-                return bullet;                              // Return the object.
+                return bullet;                              // Return the object
             }
         }
 
-        // Dynamically create a bullet - This should not be needed!
-        // If ALL Bullets are ACTIVE in Hierarchy, we have depleted our list - We must create one dynamically.
-        GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);       // Instantiate new bullet.
-        newBullet.transform.parent = _bulletContainer.transform;      // Set newBullet's parent to be the bullet Container.
+        // Dynamically create a bullet - This should not be needed, but much safer to have it!
+        // If ALL Bullets are ACTIVE in Hierarchy, we have depleted our list - We must create one dynamically
+        GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);       // Instantiate new bullet
+        newBullet.transform.parent = _bulletContainer.transform;      // Set newBullet's parent to be the bullet Container
         _bulletPool.Add(newBullet);                                   // Add the newBullet to the List 
         Debug.Log("Created Bullet on the fly!");
         return newBullet;                                            // Return this enemy GameObject instead

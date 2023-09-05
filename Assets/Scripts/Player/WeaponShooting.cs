@@ -1,20 +1,15 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class WeaponShooting : MonoBehaviour
 {
     private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
-    private readonly Vector3 _screenCenterPoint = new Vector3(0.5f, 0.5f, 0);
-
-    private int _drawRayLength = 1000000;
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _weaponFiredClip;
     [SerializeField] private AudioClip _weaponReloadClip;
 
     [SerializeField] private Transform _laserOrigin;
-    [SerializeField] private Transform _crosshair;              // Not used
 
     Coroutine _shootDelayCoroutine;
     Coroutine _reloadingCoroutine;
@@ -35,14 +30,8 @@ public class WeaponShooting : MonoBehaviour
         _shootDelayCoroutine = null;
         _reloadingCoroutine = null;
         _audioSource = GetComponent<AudioSource>();
-
-        Ray ray = Camera.main.ViewportPointToRay(_screenCenterPoint);
     }
 
-    void Update()
-    {
-
-    }
 
     // Called from InputManager
     // Request a bullet from ObjectPoolManager and Shoot.
@@ -54,8 +43,9 @@ public class WeaponShooting : MonoBehaviour
             RaycastHit hitInfo;
 
             // If the raycast hits a game object with an "Environment" layer on it
-            if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Environment")))            // Layermask 6 is Environment
+            if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity))           
             {
+                StringManager.Instance.SwitchThroughTags(hitInfo);
                 Debug.DrawLine(_laserOrigin.transform.position, hitInfo.point, Color.red, 3f);
                 GameObject newObject = ObjectPoolManager.Instance.RequestBullet(hitInfo);
                 UIManager.Instance.UpdateAmmoCount(1);

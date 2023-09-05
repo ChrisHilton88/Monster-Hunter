@@ -16,6 +16,10 @@ TagManager:
   - Door
   - Railing
   - Barrier
+  - Cannibal
+  - Creeper
+  - Tank
+  - Warlock
   layers:
   - Default
   - TransparentFX
@@ -25,7 +29,7 @@ TagManager:
   - UI
   - Environment
   - Bullet
-  - 
+  - Enemy
   - 
   - 
   - 

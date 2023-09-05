@@ -1,34 +1,65 @@
 // Handles a collection of strings globally as one instance that can be referenced.
-using System.Collections.Generic;
+using UnityEngine;
 
 public class StringManager : MonoSingleton<StringManager>
 {
     // Tags
-    public const string _wallTag = "Wall";
-    public const string _floorTag = "Floor";
-    public const string _columnTag = "Column";
-    public const string _consoleTag = "Console";
-    public const string _enemy = "Enemy";
-    public const string _player = "Player";
-    public const string _bullet = "Bullet";
+    public const string columnTag = "Column";
+    public const string consoleTag = "Console";
+    public const string floorTag = "Floor";
+    public const string wallTag = "Wall";
 
-    
+    public const string cannibal = "Cannibal";
+    public const string creeper = "Creeper";
+    public const string ghoul = "Ghoul";
+    public const string tank = "Tank";
+    public const string warlock = "Warlock";
 
-    //public List<string> _tagList = new List<string> ();
-
-
-    //void Start()
-    //{
-    //    CreateStringList();
-    //}
+    public const string bullet = "Bullet";
+    public const string enemy = "Enemy";
+    public const string player = "Player";
 
 
-    //private void CreateStringList()
-    //{
-    //    _tagList.Add(_wallTag); 
-    //    _tagList.Add(_floorTag); 
-    //    _tagList.Add(_columnTag); 
-    //    _tagList.Add(_enemy);    
-    //    _tagList.Add (_player); 
-    //}
+    // Methods to search through tags
+    public void SwitchThroughTags(RaycastHit hitInfo)
+    {
+        switch (hitInfo.collider.tag)
+        {
+            case columnTag:
+            case consoleTag:
+            case floorTag:
+            case wallTag:
+                break;
+
+            case cannibal:
+                DebugHitTarget(cannibal);
+                break;
+            case creeper:
+                DebugHitTarget(creeper);
+                break;
+            case ghoul:
+                DebugHitTarget(ghoul);
+                break;
+            case tank:
+                DebugHitTarget(tank);
+                break;
+            case warlock:
+                DebugHitTarget(warlock);
+                break;
+
+            case bullet:
+                break;
+            case enemy:
+                break;
+            case player:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void DebugHitTarget(string target)
+    {
+        Debug.Log("You hit a: " +  target);
+    }
 }

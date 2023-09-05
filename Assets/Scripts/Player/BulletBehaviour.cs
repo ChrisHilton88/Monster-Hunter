@@ -23,29 +23,14 @@ public class BulletBehaviour : MonoBehaviour
 
         if(_audioClipRoutine == null)               
         {
-            SwitchThroughTags(other);                                           
+            // TODO - switch through tags                                          
             _audioClipRoutine = StartCoroutine(PlayAudioClipOnce());            
         }
     }
 
+    // TODO - PULL OUT INTO OWN CLASS
     // Switch statement using game object TAGS
-    void SwitchThroughTags(Collision other)
-    {
-        switch (other.collider.tag)
-        {
-            case StringManager._wallTag:                        // Fall through cases. Wall, Floor & Console will fall through to Column.
-            case StringManager._floorTag:
-            case StringManager._consoleTag:
-            case StringManager._columnTag:
-                _audioSource.clip = _bulletMetalHitClip;        // Assign audio clip
-                break;
-            case StringManager._enemy:
-                Debug.Log("About time you hit something worthwhile");
-                break;
-            default:
-                break;
-        }
-    }
+    
 
     IEnumerator PlayAudioClipOnce()
     {

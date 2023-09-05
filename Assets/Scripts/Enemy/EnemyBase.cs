@@ -1,24 +1,23 @@
 using UnityEditor.Animations;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
 
-// This will be the base class for all enemies
+// This will be the base class for all enemies and is inherited
 
 [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
-public class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
-    [Range(100, 501)] [SerializeField] private int health;
-    [Range(5, 50)] [SerializeField] private float _movementSpeed;
+    [Range(100, 501)] [SerializeField] private int _enemyHealth;
+    [Range(5, 50)] [SerializeField] private float _enemyMovementSpeed;
 
-    private Vector3 _spawnPoint = new Vector3(0, 0, 0);
-    private Quaternion _spawnRotation = Quaternion.identity;
+    private Vector3 _spawnPoint = new Vector3(0, 0, 0);     // Update to actual start point when finalised
+    private Quaternion _spawnRotation = Quaternion.identity;        // Make sure spawn rotation is always facing the door
 
-    private Animator _anim;
+    private Animator _anim;     
     private NavMeshAgent _agent;
 
-    // Create a Controller to assign.
+    // Create a Controller to assign
     [SerializeField] private AnimatorController _animController;
 
 
@@ -31,7 +30,7 @@ public class EnemyBase : MonoBehaviour
 
     void OnEnable()
     {
-        // Assign all the fields in the required components.
+
     }
 
     // Make virtual so it can be overridden.
@@ -43,5 +42,6 @@ public class EnemyBase : MonoBehaviour
     void Die()
     {
         this.gameObject.SetActive(false);   
+        // Add different death animations or VFX such as disintegrate
     }
 }

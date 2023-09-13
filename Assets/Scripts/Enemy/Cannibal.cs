@@ -1,14 +1,19 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Cannibal : EnemyBase
 {
-    private void Start()
+    NavMeshAgent _agent;
+
+
+    void Start()
     {
-        Debug.Log(_enemyHealth);
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.destination = SpawnManager.Instance.EndPoint.position;
     }
 
     protected override void Movement()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

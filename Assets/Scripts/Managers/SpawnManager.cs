@@ -1,16 +1,21 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 public class SpawnManager : MonoSingleton<SpawnManager> 
 {
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private Transform _endPoint;
+
+    private Quaternion _spawnRotation = Quaternion.identity;        // Make sure spawn rotation is always facing the door
+
     WaitForSeconds _spawnWaitTime = new WaitForSeconds(2);      // Caching the wait time between enemies spawning.
     Coroutine _enemySpawnRoutine;                               // Stores a coroutine so only 1 can play.
     [SerializeField] private List<SOEnemyWaves> _waveList;      // Contains a list of all the SO wave assets.
 
 
+    public Transform EndPoint { get { return _endPoint; } } 
     public int WaveCount { get; private set; }                  // Counter to control the waves.
 
 
@@ -23,7 +28,10 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         //    _enemySpawnRoutine = StartCoroutine(SpawningEnemiesRoutine());
     }
 
+    void Update()
+    {
 
+    }
 
     // Spawning Enemies Routine
     IEnumerator SpawningEnemiesRoutine()

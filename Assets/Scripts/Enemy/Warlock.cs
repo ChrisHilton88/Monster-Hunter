@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
-[RequireComponent (typeof(Animator), typeof(NavMeshAgent))]
+//[RequireComponent (typeof(Animator), typeof(NavMeshAgent))]
 public class Warlock : EnemyBase, IDamageable
 {
+    NavMeshAgent _agent;
 
 
     void Start()
     {
-        Debug.Log(_enemyHealth);
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.destination = SpawnManager.Instance.EndPoint.position;
     }
 
     void Update()
     {
-        Movement();
+
     }
 
     protected override void Movement()

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class SpawnManager : MonoSingleton<SpawnManager> 
 {
     [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private Transform _endPoint;
+    [SerializeField] private Transform _endPoint;   
 
     private Quaternion _spawnRotation = Quaternion.identity;        // Make sure spawn rotation is always facing the door
 
@@ -26,11 +26,6 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         // When ready, change this so it starts after the first cutscene has finished.
         //if (_enemySpawnRoutine == null)
         //    _enemySpawnRoutine = StartCoroutine(SpawningEnemiesRoutine());
-    }
-
-    void Update()
-    {
-
     }
 
     // Spawning Enemies Routine

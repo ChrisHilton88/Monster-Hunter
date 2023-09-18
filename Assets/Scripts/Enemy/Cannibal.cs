@@ -9,11 +9,6 @@ public class Cannibal : EnemyBase
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _agent.destination = SpawnManager.Instance.EndPoint.position;
-    }
-
-    protected override void Movement()
-    {
-        
+        //_agent.destination = SpawnManager.Instance.EndPoint.position;
     }
 }

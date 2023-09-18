@@ -6,13 +6,9 @@ using UnityEngine.AI;
 public abstract class EnemyBase : MonoBehaviour
 {
     [Range(100, 501)] public int _enemyHealth;     
-    [Range(5, 50)] [SerializeField] public float _enemyMovementSpeed;
 
+    // Don't need enemy movement speed variable - Can use NavMeshAgent speed field
 
-    protected virtual void Movement()
-    {
-
-    }
     
 
     protected virtual void Die()

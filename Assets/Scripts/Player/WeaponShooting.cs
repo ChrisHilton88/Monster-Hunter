@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class WeaponShooting : MonoBehaviour
 {
+
     private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
 
     private AudioSource _audioSource;
@@ -22,7 +24,15 @@ public class WeaponShooting : MonoBehaviour
         private set { _canShoot = value; }  
     }
 
-    
+    private int _damageDealt;
+    public int DamageDealt
+    {
+        get { return _damageDealt; }
+        set { _damageDealt = value; }
+    }
+
+    // Event - When a Game Object takes damage
+    public static Action<int> OnDamageDealt;
 
 
     void Start()
@@ -31,6 +41,10 @@ public class WeaponShooting : MonoBehaviour
         _reloadingCoroutine = null;
         _audioSource = GetComponent<AudioSource>();
     }
+
+
+    // Player shoots -> Player checks if object is an enemy -> Checks if enemy health > 0 -> Trigger event to take damage
+    // As this is the script that holds the event, we need to check that we have subscribers before calling the event. Subscribers responsibility to subscribe/desubscribe
 
 
     // Called from InputManager
@@ -42,14 +56,25 @@ public class WeaponShooting : MonoBehaviour
             Ray rayOrigin = Camera.main.ViewportPointToRay(_reticulePos);   
             RaycastHit hitInfo;
 
-            // If the raycast hits a game object with an "Environment" layer on it
             if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity))           
             {
                 StringManager.Instance.SwitchThroughTags(hitInfo);
-                Debug.DrawLine(_laserOrigin.transform.position, hitInfo.point, Color.red, 3f);
+                //Debug.DrawLine(_laserOrigin.transform.position, hitInfo.point, Color.red, 3f);
                 GameObject newObject = ObjectPoolManager.Instance.RequestBullet(hitInfo);
                 UIManager.Instance.UpdateAmmoCount(1);
+
+                // Check if the Game Object hit has the interface IDamageable on it
+                if(hitInfo.transform.GetComponent<IDamageable>() != null)
+                {
+                    // Check that we have subscribers to the event. If yes -> invoke method that returns a random int value 
+                    hitInfo.transform.GetComponent<IDamageable>().ReceiveDamage(RandomDamageDealt());
+                }
             }
+        }
+        else
+        {
+            // Play sound effect to indicate empty ammo and the player needs to reload
+            // Add a UI element on the players gameplayer HUD to also visualise this
         }
     }
 
@@ -59,6 +84,14 @@ public class WeaponShooting : MonoBehaviour
             _shootDelayCoroutine = StartCoroutine(ShootDelayTimerRoutine());                    // Cache coroutine so we can can create a bool null check.
         else
             return;
+    }
+
+    // Returns a random int value
+    int RandomDamageDealt()
+    {
+        int randomNumber = UnityEngine.Random.Range(20, 41);
+        Debug.Log("random value: " + randomNumber); 
+        return randomNumber;
     }
 
     // Coroutine controlling delay time of shooting and audio 

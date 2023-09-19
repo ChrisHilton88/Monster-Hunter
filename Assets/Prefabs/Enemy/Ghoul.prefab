@@ -1883,6 +1883,8 @@ GameObject:
   - component: {fileID: 2491302348921333100}
   - component: {fileID: 2491302348913871500}
   - component: {fileID: 1177239058289293836}
+  - component: {fileID: 5019713966281075797}
+  - component: {fileID: 6297109309407224608}
   m_Layer: 8
   m_Name: Ghoul
   m_TagString: Ghoul
@@ -1916,7 +1918,7 @@ Animator:
   m_GameObject: {fileID: 2491302348921174348}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 27b865f79d6e78347a673473e711bd70, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ead80bb5c7e90a540a81844b199be7bf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1948,6 +1950,34 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5019713966281075797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491302348921174348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81bbf3585daed346b0544709599b7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyHealth: 100
+  _agent: {fileID: 0}
+  _animator: {fileID: 0}
+--- !u!65 &6297109309407224608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491302348921174348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8239363, y: 1.911581, z: 1}
+  m_Center: {x: -0.0012861192, y: 0.9462967, z: 0}
 --- !u!1 &2491302348921174350
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,16 +5,23 @@ using UnityEngine.AI;
 
 public abstract class EnemyBase : MonoBehaviour
 {
-    [Range(100, 501)] public int _enemyHealth;     
+    public int _enemyHealth = 100;
 
-    // Don't need enemy movement speed variable - Can use NavMeshAgent speed field
+    public NavMeshAgent _agent;
+    public Animator _animator;
 
-    
+
+    protected virtual void GrabComponents()
+    {
+        _agent = GetComponent<NavMeshAgent>();  
+        Debug.Log(this._agent.gameObject.name);
+        _animator = GetComponent<Animator>();
+        Debug.Log(this._animator.gameObject.name);
+    }
 
     protected virtual void Die()
     {
-        // Play death animation...
-        // Add different death animations or VFX such as disintegrate
+        _animator.SetTrigger("IsDead");
     }
 
     // VIRTUAL VS ABSTRACT METHODS:

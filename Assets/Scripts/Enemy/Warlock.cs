@@ -4,22 +4,34 @@ using UnityEngine.AI;
 [RequireComponent (typeof(Animator), typeof(NavMeshAgent))]
 public class Warlock : EnemyBase, IDamageable
 {
-    NavMeshAgent _agent;
-    Animator _animator;     // Anim states - Idle, Walk, Hide, Death, Scream, Teleport, Summon
+    // 3 shot enemy
+    // Anim states - Idle, Walk, Hide, Death, Scream, Teleport, Summon, Flinch
 
+    // Take Damage Event - Display a UI text that shows the amount of damage dealt above the enemy
+    // Update enemies health
+    // Play sound effect
+    // Play Flinch animation?
+    // Check health is < 0 = Death animation
+    // Add/Remove from total enemy count
+    // Return back to Object Pool
 
+    public int _health;
+
+    
+    void OnEnable()
+    {
+        base.GrabComponents();
+    }
 
     void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
+        _health = _enemyHealth;     // Assign the base health for this enemy to it's own health value
         _agent.destination = SpawnManager.Instance.EndPoint.position;     // Set agents initial end point
     }
 
     void Update()
     {
-        // Set these up as events so we don't need to be constantly checking and setting
-        if(_agent.velocity.magnitude > 0.01f) 
+        if (_agent.velocity.magnitude > 0.01f)
         {
             _animator.SetBool("IsMoving", true);
         }
@@ -29,22 +41,22 @@ public class Warlock : EnemyBase, IDamageable
         }
     }
 
-    protected override void Die()
+    public void ReceiveDamage(int damageReceived)
     {
-        _animator.SetTrigger("IsDead");
-
-        //base.Die();     // Calling the base Die() method unless we choose to add some here
-
-        // Tell the Animator to Play the Die animation
-        // Disable colliders to make sure that nothing can affect it
-        // Disable game object when animation finishes
-        // Return game object to the enemy list pool manager
+        if (damageReceived > _health)
+        {
+            _health = 0;
+            base.Die();
+        }
+        else
+        {
+            Debug.Log("Hit: " + gameObject.name);
+            _health -= damageReceived;
+        }
     }
 
-    public void ReceiveDamage(int damage)
+    public void ShowDamage()
     {
-        
+
     }
-
-
 }

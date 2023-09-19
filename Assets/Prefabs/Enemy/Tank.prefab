@@ -1906,6 +1906,8 @@ GameObject:
   - component: {fileID: 2689444756129972444}
   - component: {fileID: 2689444756139601736}
   - component: {fileID: -7241294516376476756}
+  - component: {fileID: 9206802496163496222}
+  - component: {fileID: 8324817426567803969}
   m_Layer: 8
   m_Name: Tank
   m_TagString: Tank
@@ -1920,9 +1922,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2689444756130209084}
-  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 2689444756129972396}
   - {fileID: 2689444756129972442}
@@ -1939,10 +1941,10 @@ Animator:
   m_GameObject: {fileID: 2689444756130209084}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 31ca41b66a3054daaa9b8cd1a6e79e74, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ead80bb5c7e90a540a81844b199be7bf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1971,3 +1973,31 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &9206802496163496222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689444756130209084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf95af019cb804a48b35a09e10cfa5f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyHealth: 100
+  _agent: {fileID: 0}
+  _animator: {fileID: 0}
+--- !u!65 &8324817426567803969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689444756130209084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8817305, y: 1.900992, z: 1}
+  m_Center: {x: 0.0042458475, y: 0.96586055, z: 0}

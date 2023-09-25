@@ -22,15 +22,5 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
         _instance = this as T;
         // Or,
         //_instance = (T)this;
-
-        Initialisation();
     }
-
-    // Abstract method - Forces inheritance for deriving class. Will receive errors in derived class if method isn't implemented.
-    // Virtual - Allows for the derived class to override this method.
-    protected virtual void Initialisation()
-    {
-        // Add code here 
-    }
-
 }

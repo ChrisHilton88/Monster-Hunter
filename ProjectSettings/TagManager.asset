@@ -17,9 +17,9 @@ TagManager:
   - Railing
   - Barrier
   - Cannibal
-  - Creeper
   - Tank
   - Warlock
+  - Golem
   layers:
   - Default
   - TransparentFX

@@ -219,7 +219,7 @@ Transform:
   - {fileID: 2689444756129972418}
   - {fileID: 2689444756129972420}
   m_Father: {fileID: 2689444756129972444}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2689444756130208910
 GameObject:
@@ -1795,7 +1795,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2689444756129972444}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2689444756143804808
 SkinnedMeshRenderer:
@@ -1904,10 +1904,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2689444756129972444}
+  - component: {fileID: 8324817426567803969}
   - component: {fileID: 2689444756139601736}
   - component: {fileID: -7241294516376476756}
   - component: {fileID: 9206802496163496222}
-  - component: {fileID: 8324817426567803969}
   m_Layer: 8
   m_Name: Tank
   m_TagString: Tank
@@ -1926,11 +1926,25 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
+  - {fileID: 129110467009189479}
   - {fileID: 2689444756129972396}
   - {fileID: 2689444756129972442}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8324817426567803969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689444756130209084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8817305, y: 1.900992, z: 1}
+  m_Center: {x: 0.0042458475, y: 0.96586055, z: 0}
 --- !u!95 &2689444756139601736
 Animator:
   serializedVersion: 5
@@ -1985,19 +1999,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf95af019cb804a48b35a09e10cfa5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyHealth: 100
+  _enemyHealth: 1000
   _agent: {fileID: 0}
   _animator: {fileID: 0}
---- !u!65 &8324817426567803969
-BoxCollider:
+  _health: 0
+--- !u!1 &4677862199204626828
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2689444756130209084}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8817305, y: 1.900992, z: 1}
-  m_Center: {x: 0.0042458475, y: 0.96586055, z: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 129110467009189479}
+  m_Layer: 8
+  m_Name: Damage PopUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &129110467009189479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677862199204626828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.94, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2689444756129972444}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

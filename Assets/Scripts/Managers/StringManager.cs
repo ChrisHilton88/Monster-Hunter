@@ -10,7 +10,7 @@ public class StringManager : MonoSingleton<StringManager>
     public const string wallTag = "Wall";
 
     public const string cannibal = "Cannibal";
-    public const string creeper = "Creeper";
+    public const string golem = "Golem";
     public const string ghoul = "Ghoul";
     public const string tank = "Tank";
     public const string warlock = "Warlock";
@@ -34,8 +34,8 @@ public class StringManager : MonoSingleton<StringManager>
             case cannibal:
                 DebugHitTarget(cannibal);
                 break;
-            case creeper:
-                DebugHitTarget(creeper);
+            case golem:
+                DebugHitTarget(golem);
                 break;
             case ghoul:
                 DebugHitTarget(ghoul);

@@ -5,7 +5,7 @@ public class FloatingCombatTextPopUp : MonoSingleton<FloatingCombatTextPopUp>
 {
     [SerializeField] GameObject _damageTextPrefab;
 
-    private float _minValue = -0.5f, _maxValue = 0.5f;
+    private float _minValue = -0.3f, _maxValue = 0.3f;
 
 
     // Create Damage PopUp Text

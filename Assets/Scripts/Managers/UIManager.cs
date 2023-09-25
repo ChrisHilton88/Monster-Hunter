@@ -12,7 +12,7 @@ public class UIManager : MonoSingleton<UIManager>
     private bool _isReloading;
     public bool IsReloading { get; set; }
 
-    private int _minAmmo = 0, _maxAmmo = 10, _currentAmmoCount;
+    private int _minAmmo = 0, _maxAmmo = 50, _currentAmmoCount;
     public int AmmoCount
     {
         get { return _currentAmmoCount; }

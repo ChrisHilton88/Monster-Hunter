@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>   
 {
-    public int _bulletPoolCount { get; private set; } = 10;        // Sets the size of the bullet pool
+    public int _bulletPoolCount { get; private set; } = 50;        // Sets the size of the bullet pool
     public int _enemyPoolCount { get; private set; } = 5;           // Sets the size of the enemy pool
     private int _maxEnemyPrefabPools { get; set; } = 5;            // Max size of each enemy type
 

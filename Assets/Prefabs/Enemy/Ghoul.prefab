@@ -1881,10 +1881,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2491302348921333100}
+  - component: {fileID: 6297109309407224608}
   - component: {fileID: 2491302348913871500}
   - component: {fileID: 1177239058289293836}
   - component: {fileID: 5019713966281075797}
-  - component: {fileID: 6297109309407224608}
   m_Layer: 8
   m_Name: Ghoul
   m_TagString: Ghoul
@@ -1908,6 +1908,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6297109309407224608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491302348921174348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8239363, y: 1.911581, z: 1}
+  m_Center: {x: -0.0012861192, y: 0.9462967, z: 0}
 --- !u!95 &2491302348913871500
 Animator:
   serializedVersion: 5
@@ -1965,19 +1978,7 @@ MonoBehaviour:
   _enemyHealth: 100
   _agent: {fileID: 0}
   _animator: {fileID: 0}
---- !u!65 &6297109309407224608
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2491302348921174348}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8239363, y: 1.911581, z: 1}
-  m_Center: {x: -0.0012861192, y: 0.9462967, z: 0}
+  _health: 0
 --- !u!1 &2491302348921174350
 GameObject:
   m_ObjectHideFlags: 0

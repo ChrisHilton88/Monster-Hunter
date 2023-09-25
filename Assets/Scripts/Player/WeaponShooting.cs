@@ -6,6 +6,7 @@ public class WeaponShooting : MonoBehaviour
 {
 
     private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
+    private readonly float _damagePopUpOffset = 0.25f;
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _weaponFiredClip;
@@ -37,6 +38,7 @@ public class WeaponShooting : MonoBehaviour
 
     void Start()
     {
+        CanShoot = true;
         _shootDelayCoroutine = null;
         _reloadingCoroutine = null;
         _audioSource = GetComponent<AudioSource>();
@@ -59,15 +61,18 @@ public class WeaponShooting : MonoBehaviour
             if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity))           
             {
                 StringManager.Instance.SwitchThroughTags(hitInfo);
-                //Debug.DrawLine(_laserOrigin.transform.position, hitInfo.point, Color.red, 3f);
-                GameObject newObject = ObjectPoolManager.Instance.RequestBullet(hitInfo);
+                ObjectPoolManager.Instance.RequestBullet(hitInfo);      
                 UIManager.Instance.UpdateAmmoCount(1);
 
                 // Check if the Game Object hit has the interface IDamageable on it
                 if(hitInfo.transform.GetComponent<IDamageable>() != null)
                 {
-                    // Check that we have subscribers to the event. If yes -> invoke method that returns a random int value 
-                    hitInfo.transform.GetComponent<IDamageable>().ReceiveDamage(RandomDamageDealt());
+                    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();     // Store object reference to the script
+                    Vector3 _damageSpawnPos = hitInfo.transform.GetChild(0).transform.position;     // All enemies first child is the spawn box 
+
+                    int damageDealt = RandomDamageDealt();
+                    FloatingCombatTextPopUp.Instance.InstantiateDamagePopUp(_damageSpawnPos, damageDealt);
+                    damageable.ReceiveDamage(damageDealt);
                 }
             }
         }
@@ -78,13 +83,13 @@ public class WeaponShooting : MonoBehaviour
         }
     }
 
-    public void ShootDelayTimer()
-    {
-        if (_shootDelayCoroutine == null)
-            _shootDelayCoroutine = StartCoroutine(ShootDelayTimerRoutine());                    // Cache coroutine so we can can create a bool null check.
-        else
-            return;
-    }
+    //public void ShootDelayTimer()
+    //{
+    //    if (_shootDelayCoroutine == null)
+    //        _shootDelayCoroutine = StartCoroutine(ShootDelayTimerRoutine());                    // Cache coroutine so we can can create a bool null check.
+    //    else
+    //        return;
+    //}
 
     // Returns a random int value
     int RandomDamageDealt()
@@ -95,15 +100,15 @@ public class WeaponShooting : MonoBehaviour
     }
 
     // Coroutine controlling delay time of shooting and audio 
-    IEnumerator ShootDelayTimerRoutine()
-    {
-        CanShoot = false;
-        _audioSource.clip = _weaponFiredClip;
-         _audioSource.Play();
-        yield return new WaitForSeconds(_weaponFiredClip.length);                  // Can't make changes unless using a separate AudioSource component, OR amend audio clip.
-        _shootDelayCoroutine = null;
-        CanShoot = true;
-    }
+    //IEnumerator ShootDelayTimerRoutine()
+    //{
+    //    CanShoot = false;
+    //    _audioSource.clip = _weaponFiredClip;
+    //     _audioSource.Play();
+    //    yield return new WaitForSeconds(_weaponFiredClip.length);                  // Can't make changes unless using a separate AudioSource component, OR amend audio clip.
+    //    _shootDelayCoroutine = null;
+    //    CanShoot = true;
+    //}
 
     // TODO: Call this from somewhere
     // TODO: Add a display message and audio sound to tell the player they need to reload.

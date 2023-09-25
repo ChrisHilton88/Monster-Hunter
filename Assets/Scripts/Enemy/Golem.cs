@@ -18,7 +18,7 @@ public class Golem : EnemyBase, IDamageable
     void Start()
     {
         _health = _enemyHealth;
-        _agent.destination = SpawnManager.Instance.EndPoint.position;
+        //_agent.destination = SpawnManager.Instance.EndPoint.position;
     }
 
     void Update()
@@ -45,10 +45,5 @@ public class Golem : EnemyBase, IDamageable
             Debug.Log("Hit: " + gameObject.name);
             _health -= damageReceived;
         }
-    }
-
-    public void ShowDamage()
-    {
-
     }
 }

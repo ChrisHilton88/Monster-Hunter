@@ -5,5 +5,4 @@ using System;
 public interface IDamageable 
 {
     void ReceiveDamage(int damageReceived);
-    void ShowDamage();
 }

@@ -26,7 +26,7 @@ public class Warlock : EnemyBase, IDamageable
     void Start()
     {
         _health = _enemyHealth;     // Assign the base health for this enemy to it's own health value
-        _agent.destination = SpawnManager.Instance.EndPoint.position;     // Set agents initial end point
+        //_agent.destination = SpawnManager.Instance.EndPoint.position;     // Set agents initial end point
     }
 
     void Update()
@@ -53,10 +53,5 @@ public class Warlock : EnemyBase, IDamageable
             Debug.Log("Hit: " + gameObject.name);
             _health -= damageReceived;
         }
-    }
-
-    public void ShowDamage()
-    {
-
     }
 }

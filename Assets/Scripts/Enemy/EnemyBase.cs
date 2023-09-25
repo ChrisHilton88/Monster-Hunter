@@ -14,9 +14,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void GrabComponents()
     {
         _agent = GetComponent<NavMeshAgent>();  
-        Debug.Log(this._agent.gameObject.name);
         _animator = GetComponent<Animator>();
-        Debug.Log(this._animator.gameObject.name);
     }
 
     protected virtual void Die()

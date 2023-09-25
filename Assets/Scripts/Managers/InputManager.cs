@@ -61,8 +61,6 @@ public class InputManager : MonoBehaviour
 
     #region INPUT ACTION EVENTS
     
-
-
     void LookMovementPerformed(InputAction.CallbackContext context)
     {
         Vector2 lookMovement = context.ReadValue<Vector2>();                    // Cache context callback values
@@ -94,7 +92,7 @@ public class InputManager : MonoBehaviour
 
     void ShootCanceled(InputAction.CallbackContext context)
     {
-        _weaponShooting.ShootDelayTimer();                                      // Start fire rate delay
+        //_weaponShooting.ShootDelayTimer();                                      // Start fire rate delay
     }
 
     void CrouchPerformed(InputAction.CallbackContext context)

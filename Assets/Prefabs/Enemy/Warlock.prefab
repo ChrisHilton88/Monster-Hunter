@@ -707,7 +707,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6363227948703197307}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3418012247911311357
 SkinnedMeshRenderer:
@@ -1960,10 +1960,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6363227948703197307}
-  - component: {fileID: 6900644267010645949}
-  - component: {fileID: 6919234752225773383}
   - component: {fileID: 1956019740788305383}
   - component: {fileID: 8032761035538785677}
+  - component: {fileID: 6900644267010645949}
+  - component: {fileID: 6919234752225773383}
+  - component: {fileID: 6900644267600428804}
   m_Layer: 0
   m_Name: Warlock
   m_TagString: Untagged
@@ -1982,11 +1983,47 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
+  - {fileID: 5451461691895609215}
   - {fileID: 4635803732431909514}
   - {fileID: 7086044955985585135}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1956019740788305383
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982305016826491585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.8306575, z: 0.5617081}
+  m_Center: {x: 0, y: 0.9801924, z: -0.01839979}
+--- !u!195 &8032761035538785677
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982305016826491585}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 1
+  m_Speed: 5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 200
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 2
 --- !u!95 &6900644267010645949
 Animator:
   serializedVersion: 5
@@ -2023,41 +2060,19 @@ MonoBehaviour:
   _agent: {fileID: 0}
   _animator: {fileID: 0}
   _health: 0
---- !u!65 &1956019740788305383
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5982305016826491585}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.8306575, z: 0.5617081}
-  m_Center: {x: 0, y: 0.9801924, z: -0.01839979}
---- !u!195 &8032761035538785677
-NavMeshAgent:
+--- !u!114 &6900644267600428804
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5982305016826491585}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 1
-  m_Speed: 5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 200
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae24efa56d97b234f9a7971bcc451e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageTextPrefab: {fileID: 2154880791821872466, guid: 0e712600ed142b04eb1efab95b4301f8, type: 3}
 --- !u!1 &6002203895010904584
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,7 +2690,7 @@ Transform:
   m_Children:
   - {fileID: 4743324400025604898}
   m_Father: {fileID: 6363227948703197307}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7650879707832709933
 GameObject:
@@ -2980,6 +2995,36 @@ Transform:
   m_Children:
   - {fileID: 8943264686890771224}
   m_Father: {fileID: 408313981741223357}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8262988141635094226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5451461691895609215}
+  m_Layer: 0
+  m_Name: Damage PopUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5451461691895609215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8262988141635094226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6363227948703197307}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8283829407359882751

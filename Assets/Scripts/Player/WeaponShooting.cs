@@ -75,7 +75,7 @@ public class WeaponShooting : MonoBehaviour
     //}
 
     
-    int RandomDamageDealt()     // Roll a dice and return an int value
+    int RandomDamageDealt()     
     {
         int randomNumber = Random.Range(_minDiceRoll, _maxDiceRoll);
         return randomNumber;

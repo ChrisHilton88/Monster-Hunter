@@ -20,6 +20,7 @@ TagManager:
   - Tank
   - Warlock
   - Golem
+  - Critical
   layers:
   - Default
   - TransparentFX

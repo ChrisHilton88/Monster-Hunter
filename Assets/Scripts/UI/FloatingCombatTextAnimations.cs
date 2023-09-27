@@ -15,6 +15,11 @@ public class FloatingCombatTextAnimations : MonoBehaviour
     private Vector3 _origin;
 
 
+    private void OnEnable()
+    {
+        _time = 0;
+    }
+
     void Start()
     {
         _origin = transform.position;
@@ -23,13 +28,19 @@ public class FloatingCombatTextAnimations : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(_time);
         Color currentColor = _tmpU.color;
         currentColor.a = animAlphaColor.Evaluate(_time);
         _tmpU.color = currentColor;
-        
+
         transform.localScale = NewScale(_time);
         transform.position = NewPosition(_time);
         _time += Time.deltaTime;
+
+        if(_time > 1)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     Vector3 NewScale(float time)
@@ -40,7 +51,7 @@ public class FloatingCombatTextAnimations : MonoBehaviour
 
     Vector3 NewPosition(float time)
     {
-        Vector3 textPos = _origin + new Vector3(0, 1 * animHeight.Evaluate(_time), 0);
+        Vector3 textPos = _origin + new Vector3(0, 1 * animHeight.Evaluate(time), 0);
         return textPos;
     }
 }

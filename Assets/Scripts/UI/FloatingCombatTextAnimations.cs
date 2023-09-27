@@ -28,7 +28,6 @@ public class FloatingCombatTextAnimations : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_time);
         Color currentColor = _tmpU.color;
         currentColor.a = animAlphaColor.Evaluate(_time);
         _tmpU.color = currentColor;

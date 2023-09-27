@@ -56,41 +56,35 @@ public class FloatingCombatTextObjectPooling : MonoSingleton<FloatingCombatTextO
 
     #region Request & Return from Object Pools
     //Handles GameObject requests
-    public GameObject RequestCriticalPrefab()
+    public GameObject RequestCriticalPrefab(Vector3 pos)
     {
         foreach(GameObject prefab in _criticalTextPopUpList)
         {
             if(prefab.activeInHierarchy == false)
             {
                 prefab.SetActive(true);
+                prefab.transform.position = pos;
                 return prefab;
             }
-
-            Debug.Log("Test 1");
         }
 
-        Debug.Log("Test 2");
-
         GameObject newObject = CreateSinglePrefab(_criticalTextPopUpPrefab, _criticalTextPopUpList, _criticalContainer);
-        Debug.Log("Test 3");
         return newObject;
     }
 
-    public GameObject RequestNormalPrefab()
+    public GameObject RequestNormalPrefab(Vector3 pos)
     {
-        GameObject newObject = null;
-
         foreach (GameObject prefab in _normalTextPopUpList)
         {
             if (prefab.activeInHierarchy == false)
             {
                 prefab.SetActive(true);
+                prefab.transform.position = pos;    
                 return prefab;
             }
         }
 
-        GameObject temp = CreateSinglePrefab(_normalTextPopUpPrefab, _normalTextPopUpList, _normalContainer);
-        newObject = temp;
+        GameObject newObject = CreateSinglePrefab(_normalTextPopUpPrefab, _normalTextPopUpList, _normalContainer);
         return newObject;
     }
 

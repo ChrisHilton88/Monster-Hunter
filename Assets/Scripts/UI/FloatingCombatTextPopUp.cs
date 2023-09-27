@@ -13,25 +13,26 @@ public class FloatingCombatTextPopUp : MonoSingleton<FloatingCombatTextPopUp>
 
         if(damage > 70)
         {
-            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestCriticalPrefab();
-            obj.transform.position = pos + RandomVectorPos();   
+            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestCriticalPrefab(pos);
+            obj.transform.position += RandomVectorPos();
             newPopUp = obj;
         }
         else
         {
-            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestNormalPrefab();
-            obj.transform.position = pos + RandomVectorPos();
+            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestNormalPrefab(pos);
+            obj.transform.position += RandomVectorPos();
             newPopUp = obj;
         }
 
         TextMeshProUGUI temp = newPopUp.transform.GetComponentInChildren<TextMeshProUGUI>();
         temp.text = damage.ToString();
+        Debug.Log(pos);
     }
 
     // Generate a random Vector3
     Vector3 RandomVectorPos()
     {
-        Vector3 newVector = new Vector3(Random.Range(_minRange, _maxRange), Random.Range(_minRange, _maxRange), 0);
+        Vector3 newVector = new Vector3(Random.Range(-1f, 1f), Random.Range(_minRange, _maxRange), 0);
         return newVector;
     }
 }

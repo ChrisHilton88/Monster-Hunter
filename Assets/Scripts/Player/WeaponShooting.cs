@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -37,7 +38,7 @@ public class WeaponShooting : MonoBehaviour
 
     public void ShootBullet()
     {
-        if (UIManager.Instance.AmmoCount > 0)               // Check that there is a bullet available
+        if (AmmoManager.Instance.AmmoCount > 0)               // Check that there is a bullet available
         {
             Ray rayOrigin = Camera.main.ViewportPointToRay(_reticulePos);   
             RaycastHit hitInfo;
@@ -46,7 +47,7 @@ public class WeaponShooting : MonoBehaviour
             {
                 StringManager.Instance.SwitchThroughTags(hitInfo);
                 ObjectPoolManager.Instance.RequestBullet(hitInfo);      
-                UIManager.Instance.UpdateAmmoCount(1);
+                AmmoManager.Instance.UpdateAmmoCount();
 
                 if(hitInfo.transform.GetComponent<IDamageable>() != null)       // Check if GameObject has IDamageable
                 {
@@ -77,7 +78,7 @@ public class WeaponShooting : MonoBehaviour
     
     int RandomDamageDealt()     
     {
-        int randomNumber = Random.Range(_minDiceRoll, _maxDiceRoll);
+        int randomNumber = UnityEngine.Random.Range(_minDiceRoll, _maxDiceRoll);
         return randomNumber;
     }
 
@@ -95,13 +96,13 @@ public class WeaponShooting : MonoBehaviour
     // TODO: Call this from somewhere
     // TODO: Add a display message and audio sound to tell the player they need to reload.
     // Play audio sounds for reloading, and once reloaded set the count to 10.
-    IEnumerator ReloadingRoutine()
-    {
-        _audioSource.clip = _weaponReloadClip;          // Assign reloading audio clip
-        _audioSource.Play();
-        yield return _weaponReloadClip.length;          // Yield until the clip finishes playing
-        UIManager.Instance.IsReloading = true;          
-        UIManager.Instance.UpdateAmmoCount(10);         // Set Ammo Display count to 10
-        _reloadingCoroutine = null;                     // Let the player be able to reload again
-    }
+    //IEnumerator ReloadingRoutine()
+    //{
+    //    _audioSource.clip = _weaponReloadClip;          // Assign reloading audio clip
+    //    _audioSource.Play();
+    //    yield return _weaponReloadClip.length;          // Yield until the clip finishes playing
+    //    //AmmoManager.Instance.IsReloading = true;          
+    //    AmmoManager.Instance.UpdateAmmoCount();         // Set Ammo Display count to 10
+    //    _reloadingCoroutine = null;                     // Let the player be able to reload again
+    //}
 }

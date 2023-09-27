@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.VFX;
 
 namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 {

@@ -1,43 +1,36 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoSingleton<UIManager>
 {
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _enemyText;
-    [SerializeField] private TextMeshProUGUI _remainingTimeText;
+    //[SerializeField] private TextMeshProUGUI _remainingTimeText;
 
-    private bool _isReloading;
-    public bool IsReloading { get; set; }
+    public bool IsOptionsMenuOpen { get; set; }
 
-    private int _minAmmo = 0, _maxAmmo = 50, _currentAmmoCount;
-    public int AmmoCount
+
+
+    void OnEnable()
     {
-        get { return _currentAmmoCount; }
-        set { _currentAmmoCount = value; }  
+        InputManager.reloadWeapon += UpdateAmmoDisplay;
     }
-
-    public bool IsOptionsMenuOpen { get; set; } 
 
     void Start()
     {
-        _currentAmmoCount = _maxAmmo;
-        _ammoText.text = _maxAmmo.ToString();
+        _ammoText.text = AmmoManager.Instance.MaxAmmo.ToString();
     }
 
-    public void UpdateAmmoCount(int count)
+    // Update the visual display
+    void UpdateAmmoDisplay()
     {
-        if (_isReloading)                           // If Reloading, run this
-        {
-            _currentAmmoCount = count;
-            IsReloading = false;
-        }
-        else
-        {                                           // Else, run this
-            AmmoCount -= count;
-            _ammoText.text = _currentAmmoCount.ToString();
-        }
+
+        Debug.Log("Update Ammo Display to: " + AmmoManager.Instance.MaxAmmo);
+    }
+
+    void OnDisable()
+    {
+        InputManager.reloadWeapon -= UpdateAmmoDisplay; 
     }
 }

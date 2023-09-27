@@ -13,7 +13,9 @@ public class InputManager : MonoBehaviour
     PlayerCameraController _playerCameraController;
     WeaponShooting _weaponShooting; 
     GameManager _gameManager;
+    AmmoManager _ammoManager;
 
+    public static Action reloadWeapon;     // Event that is responsible for reloading ammo in current weapon
 
 
     // Subscribe to events
@@ -27,6 +29,8 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.Jump.performed += JumpPerformed;
         _playerInputActions.Player.Shoot.performed += ShootPerformed;
         _playerInputActions.Player.Shoot.canceled += ShootCanceled;
+        _playerInputActions.Player.Reload.performed += ReloadPerformed;
+        _playerInputActions.Player.Reload.canceled += ReloadCanceled;
         _playerInputActions.Player.Crouch.performed += CrouchPerformed;
         _playerInputActions.Player.Crouch.canceled += CrouchCanceled;
         _playerInputActions.Player.Running.performed += RunningPerformed;
@@ -84,15 +88,37 @@ public class InputManager : MonoBehaviour
 
     void ShootPerformed(InputAction.CallbackContext context)
     {
-        if (_weaponShooting.CanShoot)                           // If CanShoot is true, shoot bullet.
+        if (_weaponShooting.CanShoot)                           
             _weaponShooting.ShootBullet();
         else
-            return;                                             // Else, do nothing.
+            return;                    
+        // TODO: Add a parameter to ShootBullet<int> 
     }
 
     void ShootCanceled(InputAction.CallbackContext context)
     {
         //_weaponShooting.ShootDelayTimer();                                      // Start fire rate delay
+    }
+
+    private void ReloadPerformed(InputAction.CallbackContext context)
+    {
+        if (AmmoManager.Instance.IsReloading == false)
+        {
+            Debug.Log("Reloading weapon");
+            AmmoManager.Instance.IsReloading = true;
+            reloadWeapon?.Invoke();
+        }
+        else
+            Debug.Log("DIDN'T RELOAD!");
+            return;
+
+        // TODO: Need to add a time variable here (use context parameter) for how long the reload process will take, upon finishing, set isReloading to false.
+        // Possibly better to use the time length of an audio clip.
+    }
+
+    private void ReloadCanceled(InputAction.CallbackContext context)
+    {
+        // TODO: When the player presses the Reload button while the weapon is currently reloading, cancel reload.
     }
 
     void CrouchPerformed(InputAction.CallbackContext context)

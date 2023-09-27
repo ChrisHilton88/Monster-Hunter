@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     GameManager _gameManager;
     AmmoManager _ammoManager;
 
-    public static Action reloadWeapon;     // Event that is responsible for reloading ammo in current weapon
+
 
 
     // Subscribe to events
@@ -38,21 +38,21 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.SniperZoom.performed += SniperZoomPerformed;
         _playerInputActions.Player.SniperZoom.canceled += SniperZoomCanceled;
         _playerInputActions.Player.Cursor.performed += CursorPerformed;
-        _playerInputActions.Player.OptionsMenu.performed += OptionsMenuPerformed;
+        //_playerInputActions.Player.OptionsMenu.performed += OptionsMenuPerformed;
     }
 
-    void OptionsMenuPerformed(InputAction.CallbackContext context)
-    {
-        if (UIManager.Instance.IsOptionsMenuOpen)
-        {
-            // Close menu
-        }
-        else
-        {
-            // Open menu
-        }
-        Debug.Log("Opened the Options Menu");
-    }
+    //void OptionsMenuPerformed(InputAction.CallbackContext context)
+    //{
+    //    if (UIManager.Instance.IsOptionsMenuOpen)
+    //    {
+    //        // Close menu
+    //    }
+    //    else
+    //    {
+    //        // Open menu
+    //    }
+    //    Debug.Log("Opened the Options Menu");
+    //}
 
     void Start()
     {
@@ -88,9 +88,13 @@ public class InputManager : MonoBehaviour
 
     void ShootPerformed(InputAction.CallbackContext context)
     {
-        if (_weaponShooting.CanShoot)                           
-            _weaponShooting.ShootBullet();
+        if (AmmoManager.Instance.CanShoot == true)
+        {
+            _weaponShooting.TriggerWeaponShootingEvent();
+            Debug.Log("Shot weapon");
+        }
         else
+            Debug.Log("DIDN'T SHOOT!");
             return;                    
         // TODO: Add a parameter to ShootBullet<int> 
     }
@@ -106,12 +110,15 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Reloading weapon");
             AmmoManager.Instance.IsReloading = true;
-            reloadWeapon?.Invoke();
+            _weaponShooting.TriggerReloadWeaponEvent();
         }
         else
+        {
             Debug.Log("DIDN'T RELOAD!");
             return;
+        }
 
+        AmmoManager.Instance.IsReloading = false;
         // TODO: Need to add a time variable here (use context parameter) for how long the reload process will take, upon finishing, set isReloading to false.
         // Possibly better to use the time length of an audio clip.
     }

@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class WeaponShooting : MonoBehaviour
 {
     private int _minDiceRoll = 0, _maxDiceRoll = 101; 
-
 
     private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
 
@@ -19,21 +17,24 @@ public class WeaponShooting : MonoBehaviour
     Coroutine _reloadingCoroutine;
     WaitForSeconds _shootDelayTime = new WaitForSeconds(2f);
 
-    private bool _canShoot;
-    public bool CanShoot
+    public static Action shootWeapon;      // Event that is responsible for passing ammo when shooting a weapon 
+    public static Action reloadWeapon;     // Event that is responsible for reloading ammo in current weapon
+
+
+    void Awake()
     {
-        get { return _canShoot; }
-        private set { _canShoot = value; }  
+        _audioSource = GetComponent<AudioSource>();
     }
 
-
+    void OnEnable()
+    {
+        shootWeapon += ShootBullet;
+    }
 
     void Start()
     {
-        CanShoot = true;
         _shootDelayCoroutine = null;
         _reloadingCoroutine = null;
-        _audioSource = GetComponent<AudioSource>();
     }
 
     public void ShootBullet()
@@ -46,8 +47,7 @@ public class WeaponShooting : MonoBehaviour
             if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity))           
             {
                 StringManager.Instance.SwitchThroughTags(hitInfo);
-                ObjectPoolManager.Instance.RequestBullet(hitInfo);      
-                AmmoManager.Instance.UpdateAmmoCount();
+                //ObjectPoolManager.Instance.RequestBullet(hitInfo);      
 
                 if(hitInfo.transform.GetComponent<IDamageable>() != null)       // Check if GameObject has IDamageable
                 {
@@ -67,6 +67,16 @@ public class WeaponShooting : MonoBehaviour
         }
     }
 
+    public void TriggerWeaponShootingEvent()
+    {
+        shootWeapon?.Invoke();
+    }
+
+    public void TriggerReloadWeaponEvent()
+    {
+        reloadWeapon?.Invoke();
+    }
+
     //public void ShootDelayTimer()
     //{
     //    if (_shootDelayCoroutine == null)
@@ -75,11 +85,15 @@ public class WeaponShooting : MonoBehaviour
     //        return;
     //}
 
-    
     int RandomDamageDealt()     
     {
         int randomNumber = UnityEngine.Random.Range(_minDiceRoll, _maxDiceRoll);
         return randomNumber;
+    }
+
+    void OnDisable()
+    {
+        shootWeapon -= ShootBullet;
     }
 
     // Coroutine controlling delay time of shooting and audio 

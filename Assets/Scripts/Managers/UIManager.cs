@@ -8,13 +8,14 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private TextMeshProUGUI _enemyText;
     //[SerializeField] private TextMeshProUGUI _remainingTimeText;
 
-    public bool IsOptionsMenuOpen { get; set; }
+    //public bool IsOptionsMenuOpen { get; private set; }
 
 
 
     void OnEnable()
     {
-        InputManager.reloadWeapon += UpdateAmmoDisplay;
+        WeaponShooting.reloadWeapon += UpdateAmmoDisplay;
+        WeaponShooting.shootWeapon += ShotWeapon;
     }
 
     void Start()
@@ -25,12 +26,18 @@ public class UIManager : MonoSingleton<UIManager>
     // Update the visual display
     void UpdateAmmoDisplay()
     {
-
+        _ammoText.text = AmmoManager.Instance.MaxAmmo.ToString();
         Debug.Log("Update Ammo Display to: " + AmmoManager.Instance.MaxAmmo);
+    }
+
+    void ShotWeapon()
+    {
+        _ammoText.text = AmmoManager.Instance.CurrentAmmoCount.ToString();  
     }
 
     void OnDisable()
     {
-        InputManager.reloadWeapon -= UpdateAmmoDisplay; 
+        WeaponShooting.reloadWeapon -= UpdateAmmoDisplay; 
+        WeaponShooting.shootWeapon -= ShotWeapon;   
     }
 }

@@ -37,7 +37,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         {
             for (int i = 0; i < _waveList[i].enemyList.Count; i++)              // pass in an enemy count number to determine length of routine 
             {
-                ObjectPoolManager.Instance.RequestEnemy();          // Keep requesting a new enemy every iteration.
+                EnemyObjectPool.Instance.RequestEnemy();          // Keep requesting a new enemy every iteration.
                 yield return _spawnWaitTime;                        // Wait 2 seconds
             }
 

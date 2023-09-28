@@ -20,19 +20,19 @@ public class UIManager : MonoSingleton<UIManager>
 
     void Start()
     {
-        _ammoText.text = AmmoManager.Instance.MaxAmmo.ToString();
+        _ammoText.text = Ammo.Instance.MaxAmmo.ToString();
     }
 
     // Update the visual display
     void UpdateAmmoDisplay()
     {
-        _ammoText.text = AmmoManager.Instance.MaxAmmo.ToString();
-        Debug.Log("Update Ammo Display to: " + AmmoManager.Instance.MaxAmmo);
+        _ammoText.text = Ammo.Instance.MaxAmmo.ToString();
+        Debug.Log("Update Ammo Display to: " + Ammo.Instance.MaxAmmo);
     }
 
     void ShotWeapon()
     {
-        _ammoText.text = AmmoManager.Instance.CurrentAmmoCount.ToString();  
+        _ammoText.text = Ammo.Instance.CurrentAmmoCount.ToString();  
     }
 
     void OnDisable()

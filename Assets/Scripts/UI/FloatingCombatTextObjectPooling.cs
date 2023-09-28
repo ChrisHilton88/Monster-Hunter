@@ -19,8 +19,6 @@ public class FloatingCombatTextObjectPooling : MonoSingleton<FloatingCombatTextO
 
     void Start()
     {
-        _criticalContainer = GameObject.Find("Critical Container");
-        _normalContainer = GameObject.Find("Normal Container");
         CreateCriticalTexPopUpPool();
         CreateNormalTexPopUpPool();
     }
@@ -54,16 +52,15 @@ public class FloatingCombatTextObjectPooling : MonoSingleton<FloatingCombatTextO
 
 
 
-    #region Request & Return from Object Pools
+    #region Request from Object Pools
     //Handles GameObject requests
-    public GameObject RequestCriticalPrefab(Vector3 pos)
+    public GameObject RequestCriticalPrefab()
     {
         foreach(GameObject prefab in _criticalTextPopUpList)
         {
             if(prefab.activeInHierarchy == false)
             {
                 prefab.SetActive(true);
-                prefab.transform.position = pos;
                 return prefab;
             }
         }
@@ -72,14 +69,13 @@ public class FloatingCombatTextObjectPooling : MonoSingleton<FloatingCombatTextO
         return newObject;
     }
 
-    public GameObject RequestNormalPrefab(Vector3 pos)
+    public GameObject RequestNormalPrefab()
     {
         foreach (GameObject prefab in _normalTextPopUpList)
         {
             if (prefab.activeInHierarchy == false)
             {
                 prefab.SetActive(true);
-                prefab.transform.position = pos;    
                 return prefab;
             }
         }

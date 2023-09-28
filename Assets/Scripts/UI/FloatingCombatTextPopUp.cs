@@ -3,30 +3,29 @@ using UnityEngine;
 
 public class FloatingCombatTextPopUp : MonoSingleton<FloatingCombatTextPopUp>
 {
-    private float _minRange = -0.3f, _maxRange = 0.3f;      // min and max range for vector position
+    private float _minRange = -0.25f, _maxRange = 0.25f;      // min and max range for vector position
 
 
     // Create Damage PopUp Text
-    public void InstantiateDamagePopUp(Vector3 pos, int damage)
+    public void ActivateDamagePopUp(Vector3 pos, int damage)
     {
         GameObject newPopUp;
 
         if(damage > 70)
         {
-            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestCriticalPrefab(pos);
-            obj.transform.position += RandomVectorPos();
+            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestCriticalPrefab();
+            obj.transform.position = pos + RandomVectorPos();
             newPopUp = obj;
         }
         else
         {
-            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestNormalPrefab(pos);
-            obj.transform.position += RandomVectorPos();
+            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestNormalPrefab();
+            obj.transform.position = pos + RandomVectorPos();
             newPopUp = obj;
         }
 
         TextMeshProUGUI temp = newPopUp.transform.GetComponentInChildren<TextMeshProUGUI>();
         temp.text = damage.ToString();
-        Debug.Log(pos);
     }
 
     // Generate a random Vector3

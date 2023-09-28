@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
     PlayerCameraController _playerCameraController;
     WeaponShooting _weaponShooting; 
     GameManager _gameManager;
-    AmmoManager _ammoManager;
+    Ammo _ammo;
 
 
 
@@ -88,7 +88,7 @@ public class InputManager : MonoBehaviour
 
     void ShootPerformed(InputAction.CallbackContext context)
     {
-        if (AmmoManager.Instance.CanShoot == true)
+        if (Ammo.Instance.CanShoot == true)
         {
             _weaponShooting.TriggerWeaponShootingEvent();
             Debug.Log("Shot weapon");
@@ -106,10 +106,10 @@ public class InputManager : MonoBehaviour
 
     private void ReloadPerformed(InputAction.CallbackContext context)
     {
-        if (AmmoManager.Instance.IsReloading == false)
+        if (Ammo.Instance.IsReloading == false)
         {
             Debug.Log("Reloading weapon");
-            AmmoManager.Instance.IsReloading = true;
+            Ammo.Instance.IsReloading = true;
             _weaponShooting.TriggerReloadWeaponEvent();
         }
         else
@@ -118,7 +118,7 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        AmmoManager.Instance.IsReloading = false;
+        Ammo.Instance.IsReloading = false;
         // TODO: Need to add a time variable here (use context parameter) for how long the reload process will take, upon finishing, set isReloading to false.
         // Possibly better to use the time length of an audio clip.
     }

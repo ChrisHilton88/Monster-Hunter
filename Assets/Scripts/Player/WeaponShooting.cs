@@ -7,7 +7,7 @@ public class WeaponShooting : MonoBehaviour
 
     private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
 
-    private AudioSource _audioSource;
+    AudioSource _audioSource;
     [SerializeField] private AudioClip _weaponFiredClip;
     [SerializeField] private AudioClip _weaponReloadClip;
 
@@ -39,7 +39,7 @@ public class WeaponShooting : MonoBehaviour
 
     public void ShootBullet()
     {
-        if (AmmoManager.Instance.AmmoCount > 0)               // Check that there is a bullet available
+        if (Ammo.Instance.AmmoCount > 0)               // Check that there is a bullet available
         {
             Ray rayOrigin = Camera.main.ViewportPointToRay(_reticulePos);   
             RaycastHit hitInfo;
@@ -47,7 +47,6 @@ public class WeaponShooting : MonoBehaviour
             if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity))           
             {
                 StringManager.Instance.SwitchThroughTags(hitInfo);
-                //ObjectPoolManager.Instance.RequestBullet(hitInfo);      
 
                 if(hitInfo.transform.GetComponent<IDamageable>() != null)       // Check if GameObject has IDamageable
                 {
@@ -55,7 +54,7 @@ public class WeaponShooting : MonoBehaviour
                     Vector3 _damageSpawnPos = hitInfo.transform.GetChild(0).transform.position;     // All enemies first child is the spawn box
                     
                     int damageDealt = RandomDamageDealt();
-                    FloatingCombatTextPopUp.Instance.InstantiateDamagePopUp(_damageSpawnPos, damageDealt);
+                    FloatingCombatTextPopUp.Instance.ActivateDamagePopUp(_damageSpawnPos, damageDealt);
                     damageable.ReceiveDamage(damageDealt);
                 }
             }

@@ -47,6 +47,7 @@ public class WeaponShooting : MonoBehaviour
             if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity))           
             {
                 StringManager.Instance.SwitchThroughTags(hitInfo);
+                BulletObjectPool.Instance.RequestBullet(hitInfo);
 
                 if(hitInfo.transform.GetComponent<IDamageable>() != null)       // Check if GameObject has IDamageable
                 {

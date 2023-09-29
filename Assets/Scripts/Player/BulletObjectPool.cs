@@ -5,13 +5,14 @@ public class BulletObjectPool : MonoSingleton<BulletObjectPool>
 {
     int _bulletPoolCount = 50;        
 
-    Vector3 _spawnPos = new Vector3(40, 0, 1);         
+    Vector3 _spawnPos = new Vector3(40, 0, 1);
 
     [SerializeField] private GameObject _bulletContainer;    
     [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private List<GameObject> _bulletPool;      
+    [SerializeField] private List<GameObject> _bulletPool;
 
     //WaitForSeconds _instantiateTimer = new WaitForSeconds(0.25f);       
+
 
 
     void Start()
@@ -24,10 +25,7 @@ public class BulletObjectPool : MonoSingleton<BulletObjectPool>
     {
         for (int i = 0; i < poolCount; i++)
         {
-            GameObject bullet = Instantiate(_bulletPrefab, _spawnPos, Quaternion.identity);
-            bullet.transform.parent = _bulletContainer.transform;           
-            bullet.SetActive(false);            
-            _bulletPool.Add(bullet);           
+            CreateNewBullet(_bulletPrefab, _spawnPos, _bulletPool, _bulletContainer, false);         
         }
 
         return _bulletPool;                     
@@ -40,16 +38,23 @@ public class BulletObjectPool : MonoSingleton<BulletObjectPool>
         {
             if(bullet.activeInHierarchy == false)           
             {
-                bullet.SetActive(true);                     
-                bullet.transform.position = hitInfo.point;
+                bullet.SetActive(true);                 
+                bullet.transform.position = hitInfo.point;  
                 return bullet;                              
             }
         }
 
         // Dynamically create a bullet if needed
-        GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);       
-        newBullet.transform.parent = _bulletContainer.transform;      
-        _bulletPool.Add(newBullet);                                   
+        GameObject newBullet = CreateNewBullet(_bulletPrefab, _spawnPos, _bulletPool, _bulletContainer, true);
         return newBullet;                                            
+    }
+
+    GameObject CreateNewBullet(GameObject prefab, Vector3 pos, List<GameObject> list, GameObject container, bool isActive)
+    {
+        GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+        _bulletPool.Add(newBullet);
+        newBullet.transform.parent = _bulletContainer.transform;
+        newBullet.SetActive(isActive);
+        return newBullet;
     }
 }

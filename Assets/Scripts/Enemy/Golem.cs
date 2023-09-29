@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Golem : EnemyBase, IDamageable
@@ -18,7 +16,7 @@ public class Golem : EnemyBase, IDamageable
     void Start()
     {
         _health = _enemyHealth;
-        //  _agent.destination = SpawnManager.Instance.EndPoint.position;
+        _agent.destination = SpawnManager.Instance.EndPoint.position;
     }
 
     void Update()

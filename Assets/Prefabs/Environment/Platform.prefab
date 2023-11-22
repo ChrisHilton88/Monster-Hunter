@@ -1,0 +1,997 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1909615050376876754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2631224954242887365}
+  m_Layer: 0
+  m_Name: Platform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2631224954242887365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909615050376876754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.02, z: -0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7060505753087797117}
+  - {fileID: 248250250917226340}
+  - {fileID: 843748391366990127}
+  - {fileID: 573645173999321912}
+  - {fileID: 3497533235556477751}
+  - {fileID: 5176174605875937210}
+  - {fileID: 6560790518267291816}
+  - {fileID: 5987153986326040377}
+  - {fileID: 8490364994117608986}
+  - {fileID: 655983702994747252}
+  - {fileID: 2333714966114684703}
+  - {fileID: 8587074185105174573}
+  - {fileID: 2875719913935454793}
+  - {fileID: 3130303996986835495}
+  - {fileID: 1157269393311504825}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &248250250917363172
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2121758
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2034335
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.082134
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+--- !u!4 &248250250917226340 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+  m_PrefabInstance: {fileID: 248250250917363172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &573645173999720888
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2121682
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2034335
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.082134
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071071
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071065
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+--- !u!4 &573645173999321912 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+  m_PrefabInstance: {fileID: 573645173999720888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &655983702994871796
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge Connection (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.209
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.8873465
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.153325
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.965926
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2588186
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+--- !u!4 &655983702994747252 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+  m_PrefabInstance: {fileID: 655983702994871796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &843748391366853551
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2121735
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2034335
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.08213
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387944
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.38268363
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+--- !u!4 &843748391366990127 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+  m_PrefabInstance: {fileID: 843748391366853551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1157269393311630137
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Door Connection (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.9760003
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.003455
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.41153
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7010575
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.092295796
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.09229578
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+--- !u!4 &1157269393311504825 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+  m_PrefabInstance: {fileID: 1157269393311630137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2333714966114293151
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge Connection
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2121758
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2034335
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+--- !u!4 &2333714966114684703 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+  m_PrefabInstance: {fileID: 2333714966114293151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2875719913935591625
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Door Connection (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.976
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.506
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7010575
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.092295796
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.09229578
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+--- !u!4 &2875719913935454793 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+  m_PrefabInstance: {fileID: 2875719913935591625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3130303996986972327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Door Connection (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.4760003
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.003455
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.41153
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7010575
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.092295796
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.09229578
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+--- !u!4 &3130303996986835495 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+  m_PrefabInstance: {fileID: 3130303996986972327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3497533235556086199
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.1856785
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2034335
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.08213
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071069
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+--- !u!4 &3497533235556477751 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: f221f57d938e62048b2ff7d109e2ebf0, type: 3}
+  m_PrefabInstance: {fileID: 3497533235556086199}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5176174605876323642
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge Connection (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.209
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3873503
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.823197
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.965926
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2588186
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+--- !u!4 &5176174605875937210 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+  m_PrefabInstance: {fileID: 5176174605876323642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5987153986325648825
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge Connection (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.209
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.6373483
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.988261
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.965926
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2588186
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+--- !u!4 &5987153986326040377 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+  m_PrefabInstance: {fileID: 5987153986325648825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6560790518267425320
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge Connection (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.209
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.0123494
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.905729
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.965926
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2588186
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+--- !u!4 &6560790518267291816 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+  m_PrefabInstance: {fileID: 6560790518267425320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7060505753087409661
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2121673
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2034335
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.082138
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9238798
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.38268274
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+--- !u!4 &7060505753087797117 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: ac3d264a0fd8b144c9e9959192abd6f5, type: 3}
+  m_PrefabInstance: {fileID: 7060505753087409661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8490364994117745818
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Bridge Connection (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.209
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.2623475
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.070793
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.965926
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2588186
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+--- !u!4 &8490364994117608986 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e13f5274678b91849b5550bdea86953a, type: 3}
+  m_PrefabInstance: {fileID: 8490364994117745818}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8587074185104779949
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2631224954242887365}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_Name
+      value: Sewer Drain Junction Platform Door Connection
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.476
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.506
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7010575
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.092295796
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.09229578
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+--- !u!4 &8587074185105174573 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 4ad38a9f482d7df4fbcd13f20ca19411, type: 3}
+  m_PrefabInstance: {fileID: 8587074185104779949}
+  m_PrefabAsset: {fileID: 0}

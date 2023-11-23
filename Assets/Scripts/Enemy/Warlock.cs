@@ -25,8 +25,8 @@ public class Warlock : EnemyBase, IDamageable
 
     void Start()
     {
-        _health = _enemyHealth;     // Assign the base health for this enemy to it's own health value
-        //_agent.destination = SpawnManager.Instance.EndPoint.position;     // Set agents initial end point
+        _health = _enemyHealth;     
+        _agent.destination = SpawnManager.Instance.EndPoint.position;     
     }
 
     void Update()

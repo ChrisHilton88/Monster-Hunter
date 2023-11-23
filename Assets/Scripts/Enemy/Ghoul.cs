@@ -18,7 +18,7 @@ public class Ghoul : EnemyBase, IDamageable
     void Start()
     {
         _health = _enemyHealth;
-        //_agent.destination = SpawnManager.Instance.EndPoint.position;
+        _agent.destination = SpawnManager.Instance.EndPoint.position;
     }
 
     void Update()

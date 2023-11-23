@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoSingleton<SpawnManager> 
+public class SpawnManager : MonoSingleton<SpawnManager>
 {
     private int _waveCount;
 
@@ -10,7 +10,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     WaitForSeconds _spawnWaitTime = new WaitForSeconds(2);      // Caching the wait time between enemies spawning.
 
     [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private Transform _endPoint;   
+    [SerializeField] private Transform _endPoint;
 
     [SerializeField] private List<SOEnemyWaves> _waveList;      // Contains a list of all the SO wave assets.
 
@@ -22,28 +22,33 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     void Start()
     {
-        WaveCount = 1;
+        WaveCount = 0;
         if (_enemySpawnRoutine == null)
-            _enemySpawnRoutine = StartCoroutine(SpawningEnemiesRoutine());
+            _enemySpawnRoutine = StartCoroutine(ActivateEnemiesRoutine(0, _waveList[0].enemyList.Count));      // Start the game at wave 1 (element 0)
     }
 
-    // Spawning Enemies Routine
-    IEnumerator SpawningEnemiesRoutine()
+    //private void StartNewWave(int currentWaveNumber, int enemyCountPerWave)
+    //{
+    //    if (_enemySpawnRoutine == null)
+    //        _enemySpawnRoutine = StartCoroutine(ActivateEnemiesRoutine(currentWaveNumber, _waveList[0].enemyList.Count));
+    //}
+
+    // Activate enemies from the ObjectPool
+
+    IEnumerator ActivateEnemiesRoutine(int currentWaveNumber, int enemyCountPerWave)
     {
-        Debug.Log("Wave Count: " + WaveCount);
+        yield return new WaitForSeconds(2f);
 
-        while(WaveCount < _waveList.Count)
+        int enemyIncrementer = 0;       // Increments until total enemy count in current wave reached 
+
+        while (enemyIncrementer < enemyCountPerWave)     
         {
-            for (int i = 0; i < _waveList[i].enemyList.Count; i++)              // pass in an enemy count number to determine length of routine 
-            {
-                EnemyObjectPool.Instance.RequestEnemy();          // Keep requesting a new enemy every iteration.
-                yield return _spawnWaitTime;                        // Wait 2 seconds
-            }
-
-            WaveCount++;
-            Debug.Log("Wave Count: " + WaveCount);
+            GameObject temp = _waveList[currentWaveNumber].enemyList[enemyIncrementer].gameObject;      
+            EnemyObjectPool.Instance.RequestEnemy(temp);          
+            yield return _spawnWaitTime;
+            enemyIncrementer++;
         }
 
-        _enemySpawnRoutine = null;                              // When loop is finished, set the coroutine variable to null so we can run it again.
+        _enemySpawnRoutine = null;                             
     }
 }

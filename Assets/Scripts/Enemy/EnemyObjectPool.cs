@@ -4,10 +4,9 @@ using UnityEngine;
 public class EnemyObjectPool : MonoSingleton<EnemyObjectPool>
 {
     int _enemyPoolCount = 5;           
-    int _maxEnemyPrefabPools = 5;            
+    int _maxEnemyPrefabCount = 5;
 
-    Vector3 _spawnPos = new Vector3(40, 0, 1);          
-
+    [SerializeField] Transform _initialSpawnPos;
     [SerializeField] private GameObject _enemyContainer;           
     [SerializeField] private GameObject[] _enemyPrefabs;
     [SerializeField] private List<GameObject> _enemyPool;
@@ -15,32 +14,34 @@ public class EnemyObjectPool : MonoSingleton<EnemyObjectPool>
 
     void Start()
     {
-        //_enemyPool = GenerateEnemy(_enemyPoolCount);
+        _enemyPool = GenerateEnemy(_enemyPoolCount, _maxEnemyPrefabCount);
     }
 
     // Generates an Enemy List
-    //List<GameObject> GenerateEnemy(int poolCount)             
-    //{
-    //    for (int i = 0; i < poolCount; i++)                     
-    //    {
-    //        for (int j = 0; j < _maxEnemyPrefabPools; j++)
-    //        {
-    //            GameObject enemy = Instantiate(_enemyPrefabs[j], _spawnPos, Quaternion.LookRotation(Vector3.left, Vector3.up));  
-    //            enemy.transform.parent = _enemyContainer.transform;         
-    //            enemy.SetActive(false);                             
-    //            _enemyPool.Add(enemy);                              
-    //        }
-    //    }
+    // In the Inspector, this generates all 5 prefabs as a loop, 5 times. (instead of 5 ghouls, 5 cannibal etc)
+    List<GameObject> GenerateEnemy(int poolCount, int enemiesPerPool)
+    {
+        for (int i = 0; i < poolCount; i++)
+        {
+            for (int j = 0; j < enemiesPerPool; j++)
+            {
+                GameObject enemy = Instantiate(_enemyPrefabs[j], _initialSpawnPos.position, Quaternion.LookRotation(Vector3.left, Vector3.up));
+                enemy.transform.parent = _enemyContainer.transform;
+                enemy.SetActive(false);
+                _enemyPool.Add(enemy);
+            }
+        }
 
-    //    return _enemyPool;                                      
-    //}
+        return _enemyPool;
+    }
 
     // Request Enemy from the List
-    public GameObject RequestEnemy()                            
+    // TODO: Need to look for a specific enemy
+    public GameObject RequestEnemy(GameObject enemyPrefab)                            
     {
-        foreach (GameObject enemy in _enemyPool)                 
+        foreach (GameObject enemy in _enemyPool)        // Loop through the enemy container              
         {
-            if (enemy.activeInHierarchy == false)                
+            if (!enemy.activeInHierarchy && enemyPrefab.tag == enemy.tag)             // Check if active and correct name      
             {
                 enemy.SetActive(true);                          
                 return enemy;                                   
@@ -50,7 +51,7 @@ public class EnemyObjectPool : MonoSingleton<EnemyObjectPool>
         // Dynamically create an Enemy if needed
         GameObject newEnemy = Instantiate(_enemyPrefabs[0], transform.position, Quaternion.identity);       
         newEnemy.transform.parent = _enemyContainer.transform;      
-        _enemyPool.Add(newEnemy);                                   
+        _enemyPool.Add(newEnemy);       
         return newEnemy;                                            
     }
 }

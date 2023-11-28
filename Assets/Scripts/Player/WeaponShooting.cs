@@ -49,15 +49,17 @@ public class WeaponShooting : MonoBehaviour
                 StringManager.Instance.SwitchThroughTags(hitInfo);
                 BulletObjectPool.Instance.RequestBullet(hitInfo);
 
-                if(hitInfo.transform.GetComponent<IDamageable>() != null)       // Check if GameObject has IDamageable
+                if (hitInfo.transform.GetComponent<IDamageable>() != null)       // Check if GameObject has IDamageable
                 {
-                    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();    
+                    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
                     Vector3 _damageSpawnPos = hitInfo.transform.GetChild(0).transform.position;     // All enemies first child is the spawn box
-                    
+
                     int damageDealt = RandomDamageDealt();
                     FloatingCombatTextPopUp.Instance.ActivateDamagePopUp(_damageSpawnPos, damageDealt);
                     damageable.ReceiveDamage(damageDealt);
                 }
+                else
+                    Debug.Log("Hit target IDamageable is NULL - WeaponShooting");
             }
         }
         else

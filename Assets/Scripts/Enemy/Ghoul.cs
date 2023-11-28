@@ -13,23 +13,29 @@ public class Ghoul : EnemyBase, IDamageable
     #endregion
 
 
-    protected override sealed void Start()
+    protected sealed override void OnEnable()
     {
-        EnemyHealth = Health;
+        base.OnEnable();
+        EnemyHealth = Health;       // Keep setting EnemyHealth back to 100 when re-enabling game object
+    }
+
+    protected sealed override void Start()
+    {
+        
     }
 
     protected override sealed void FixedUpdate()
     {
         base.CheckState();
 
-        //if (_agent.velocity.magnitude > 0.01f)
-        //{
-        //    _animator.SetBool("IsMoving", true);
-        //}
-        //else
-        //{
-        //    _animator.SetBool("IsMoving", false);
-        //}
+        if (_agent.velocity.magnitude > 0.01f)
+        {
+            _animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            _animator.SetBool("IsMoving", false);
+        }
     }
 
     protected sealed override void CheckState()
@@ -39,20 +45,14 @@ public class Ghoul : EnemyBase, IDamageable
 
     public void ReceiveDamage(int damageReceived)
     {
-        if (damageReceived > _health)
+        if (damageReceived > EnemyHealth)
         {
-            _health = 0;
+            EnemyHealth = 0;
             base.Die();
         }
         else
         {
-            Debug.Log("Hit: " + gameObject.name);
-            _health -= damageReceived;
+            EnemyHealth -= damageReceived;
         }
-    }
-
-    public void ShowDamage()
-    {
-
     }
 }

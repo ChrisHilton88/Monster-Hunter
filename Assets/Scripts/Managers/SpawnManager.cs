@@ -16,8 +16,9 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     [SerializeField] private List<SOEnemyWaves> _waveList;      // Contains a list of all the SO wave assets.
 
     #region
-    public Transform EndPoint { get { return _endPoint; } }
     public int WaveCount { get { return _waveCount; } private set { _waveCount = value; } }                  // Counter to control the waves.
+    public Transform EndPoint { get { return _endPoint; } }
+    public Transform SpawnPoint { get { return _spawnPoint; } }
     #endregion
 
 

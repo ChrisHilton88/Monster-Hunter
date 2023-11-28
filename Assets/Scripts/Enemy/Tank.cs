@@ -17,11 +17,11 @@ public class Tank : EnemyBase, IDamageable
 
     void Start()
     {
-        _health = _enemyHealth;
+        //_health = _enemyHealth;
         _agent.destination = SpawnManager.Instance.EndPoint.position;
     }
 
-    void Update()
+    protected override void FixedUpdate()
     {
         if (_agent.velocity.magnitude > 0.01f)
         {
@@ -50,5 +50,10 @@ public class Tank : EnemyBase, IDamageable
     public void ShowDamage()
     {
 
+    }
+
+    protected override void CheckState()
+    {
+        throw new System.NotImplementedException();
     }
 }

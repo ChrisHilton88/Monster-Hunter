@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ghoul : EnemyBase, IDamageable
@@ -7,30 +5,36 @@ public class Ghoul : EnemyBase, IDamageable
     // 1 shot enemy
     // Anim States - Idle, Walk, Run, Death, Frenzy
 
-    public int _health;
+    private int _health = 100;
 
-    
-    void OnEnable()
+
+    #region Properties
+    protected int Health { get { return _health; } set { _health = value; } }
+    #endregion
+
+
+    protected override sealed void Start()
     {
-        base.GrabComponents();
+        EnemyHealth = Health;
     }
 
-    void Start()
+    protected override sealed void FixedUpdate()
     {
-        _health = _enemyHealth;
-        _agent.destination = SpawnManager.Instance.EndPoint.position;
+        base.CheckState();
+
+        //if (_agent.velocity.magnitude > 0.01f)
+        //{
+        //    _animator.SetBool("IsMoving", true);
+        //}
+        //else
+        //{
+        //    _animator.SetBool("IsMoving", false);
+        //}
     }
 
-    void Update()
+    protected sealed override void CheckState()
     {
-        if (_agent.velocity.magnitude > 0.01f)
-        {
-            _animator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            _animator.SetBool("IsMoving", false);
-        }
+        
     }
 
     public void ReceiveDamage(int damageReceived)

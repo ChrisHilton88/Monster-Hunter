@@ -15,11 +15,11 @@ public class Golem : EnemyBase, IDamageable
 
     void Start()
     {
-        _health = _enemyHealth;
+        //_health = _enemyHealth;
         _agent.destination = SpawnManager.Instance.EndPoint.position;
     }
 
-    void Update()
+    protected override void FixedUpdate()
     {
         if (_agent.velocity.magnitude > 0.01f)
         {
@@ -43,5 +43,10 @@ public class Golem : EnemyBase, IDamageable
             Debug.Log("Hit: " + gameObject.name);
             _health -= damageReceived;
         }
+    }
+
+    protected override void CheckState()
+    {
+        throw new System.NotImplementedException();
     }
 }

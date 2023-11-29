@@ -91,12 +91,7 @@ public class InputManager : MonoBehaviour
         if (Ammo.Instance.CanShoot == true)
         {
             _weaponShooting.TriggerWeaponShootingEvent();
-            Debug.Log("Shot weapon");
         }
-        else
-            Debug.Log("DIDN'T SHOOT!");
-            return;                    
-        // TODO: Add a parameter to ShootBullet<int> 
     }
 
     void ShootCanceled(InputAction.CallbackContext context)

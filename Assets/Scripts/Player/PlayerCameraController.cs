@@ -18,6 +18,7 @@ public class PlayerCameraController : MonoBehaviour
 
     public void CameraController(Vector2 direction)
     {   
+        // Old Input System
         //float mouseX = Input.GetAxis("Mouse X");                              // Get mouse movement on the X axis.
         //float mouseY = Input.GetAxis("Mouse Y");                              // Get mouse movement on the Y axis.
             

@@ -26,36 +26,39 @@ public class Ammo : MonoSingleton<Ammo>
     }
 
 
-
-    void OnEnable()
+    #region Initialisation
+    private void OnEnable()
     {
-        WeaponShooting.reloadWeapon += UpdateAmmoCount;
+        WeaponShooting.reloadWeapon += UpdateInternalAmmoCountOnReload;
         WeaponShooting.shootWeapon += ShotBullet;
     }
 
-    void Start()
+    private void OnDisable()
+    {
+        WeaponShooting.reloadWeapon -= UpdateInternalAmmoCountOnReload;
+        WeaponShooting.shootWeapon -= ShotBullet;
+    }
+
+    private void Start()
     {
         _currentAmmoCount = _maxAmmo;
         CanShoot = true;
     }
+    #endregion
 
-    void UpdateAmmoCount()
+    #region Events
+    // Responsible for updating the internal ammo count
+    private void UpdateInternalAmmoCountOnReload()
     {
-        // Maybe some IF checks to see if it is a reload or a Shoot
-
         _currentAmmoCount = _maxAmmo;
         Debug.Log("Updated internal ammo count to: " + _maxAmmo);
     }
 
-    void ShotBullet()
+    // Responsible for updating internally the current ammo count when shooting a bullet
+    private void ShotBullet()
     {
         _currentAmmoCount -= bullet;
         Debug.Log("Current Ammo Count: " + _currentAmmoCount);
     }
-
-    void OnDisable()
-    {
-        WeaponShooting.reloadWeapon -= UpdateAmmoCount;   
-        WeaponShooting.shootWeapon -= ShotBullet;   
-    }
+    #endregion
 }

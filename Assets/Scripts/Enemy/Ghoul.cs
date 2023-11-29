@@ -6,6 +6,7 @@ public class Ghoul : EnemyBase, IDamageable
     // Anim States - Idle, Walk, Run, Death, Frenzy
 
     private int _health = 100;
+    private int _ghoulAgentSpeed = 4;
 
 
     #region Properties
@@ -17,6 +18,7 @@ public class Ghoul : EnemyBase, IDamageable
     {
         base.OnEnable();
         EnemyHealth = Health;       // Keep setting EnemyHealth back to 100 when re-enabling game object
+        AgentSpeed = _ghoulAgentSpeed;
     }
 
     protected sealed override void Start()

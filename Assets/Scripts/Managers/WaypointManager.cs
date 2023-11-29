@@ -1,5 +1,5 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class WaypointManager : MonoSingleton<WaypointManager>
@@ -17,15 +17,20 @@ public class WaypointManager : MonoSingleton<WaypointManager>
     #endregion
 
 
+
+    #region Initialisation
     void Start()
     {
-        LastWayPoint = _waypoints.Count - 1;
+        LastWayPoint = _waypoints.Count;
+        Debug.Log("Waypoints Count: " + _waypoints.Count);
     }
+    #endregion
 
+    #region Methods
     // Responsible for the enemy calling into and choosing their next waypoint in the List (randomly) and returning the nextWaypoint
     public Transform GetNextWaypoint(int currentWaypoint, out int nextWaypoint)
     {
-        if(currentWaypoint < 12)        
+        if (currentWaypoint < 12)        
         {
             int randomNumber = RandomNumberGenerator(currentWaypoint, LastWayPoint);
             Transform newWaypoint = _waypoints[randomNumber];
@@ -39,27 +44,33 @@ public class WaypointManager : MonoSingleton<WaypointManager>
         }
     }
 
-    // Responsible for generating a new randon number to pass into the GetNextWaypoint() method
-    int RandomNumberGenerator(int minNumber, int maxNumber)     
+    // Responsible for generating a new random number to pass into the GetNextWaypoint() method (to select a new waypoint)
+    int RandomNumberGenerator(int minNumber, int maxNumber)
     {
-        int newRandomNumber = Random.Range(minNumber + 1, maxNumber);       
+        int newRandomNumber = Random.Range(minNumber + 1, maxNumber);
+        Debug.Log("new random number:" + newRandomNumber);   
         return newRandomNumber;
     }
 
     // Responsible for deciding whether the enemy should hide or not at the next destination
-    bool ShouldEnemyHideAtNewDestination()
+    public bool ShouldEnemyHideAtNewDestination()
     {
         int newRandomNumber = Random.Range(_minDiceRoll, _maxDiceRoll);
 
-        if(newRandomNumber <= _diceRollDivider)         // <= 30
+        if (newRandomNumber <= _diceRollDivider)         // <= 30
             return true;
         else return false;
     }
 
     // Responsible for deciding how long the enemy agent should hide for 
-    int RandomTimeToHide()
+    public int RandomTimeToHide()
     {
         int newRandomNumber = Random.Range(3, 8);
         return newRandomNumber;
     }
+    #endregion
+
+    #region Coroutines
+    
+    #endregion
 }

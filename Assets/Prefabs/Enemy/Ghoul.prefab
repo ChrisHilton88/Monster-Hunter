@@ -1981,8 +1981,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 2491302348921174348}
   m_Enabled: 1
   m_AgentTypeID: 1479372276
-  m_Radius: 0.5
-  m_Speed: 3.5
+  m_Radius: 0.1
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2009,6 +2009,10 @@ MonoBehaviour:
   _currentState: 0
   _enemyHealth: 100
   _currentWaypoint: 0
+  _agentSpeed: 0
+  _hasNewDestinationBeenFound: 0
+  _hasFinalWaypointBeenReached: 0
+  _shouldAgentHide: 0
 --- !u!1 &2491302348921174350
 GameObject:
   m_ObjectHideFlags: 0

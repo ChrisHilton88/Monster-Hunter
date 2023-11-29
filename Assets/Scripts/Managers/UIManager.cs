@@ -11,33 +11,35 @@ public class UIManager : MonoSingleton<UIManager>
     //public bool IsOptionsMenuOpen { get; private set; }
 
 
-
-    void OnEnable()
+    #region Initialisation
+    private void OnEnable()
     {
-        WeaponShooting.reloadWeapon += UpdateAmmoDisplay;
-        WeaponShooting.shootWeapon += ShotWeapon;
+        WeaponShooting.reloadWeapon += UpdateAmmoDisplayOnReload;
+        WeaponShooting.shootWeapon += ReduceBulletCount;
+    }
+    private void OnDisable()
+    {
+        WeaponShooting.reloadWeapon -= UpdateAmmoDisplayOnReload;
+        WeaponShooting.shootWeapon -= ReduceBulletCount;
     }
 
-    void Start()
+    private void Start()
     {
-        _ammoText.text = Ammo.Instance.MaxAmmo.ToString();
+        _ammoText.text = Ammo.Instance.MaxAmmo.ToString();          // Set visual ammo display count to equal MaxAmmo
     }
+    #endregion
 
-    // Update the visual display
-    void UpdateAmmoDisplay()
+    #region Events
+    // Update the visual display in the bottom left corner of screen
+    private void UpdateAmmoDisplayOnReload()
     {
         _ammoText.text = Ammo.Instance.MaxAmmo.ToString();
         Debug.Log("Update Ammo Display to: " + Ammo.Instance.MaxAmmo);
     }
 
-    void ShotWeapon()
+    private void ReduceBulletCount()
     {
-        _ammoText.text = Ammo.Instance.CurrentAmmoCount.ToString();  
+        _ammoText.text = Ammo.Instance.CurrentAmmoCount.ToString();
     }
-
-    void OnDisable()
-    {
-        WeaponShooting.reloadWeapon -= UpdateAmmoDisplay; 
-        WeaponShooting.shootWeapon -= ShotWeapon;   
-    }
+    #endregion
 }

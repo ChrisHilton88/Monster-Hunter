@@ -19,9 +19,12 @@ public abstract class EnemyBase : MonoBehaviour
 
     [SerializeField] private int _enemyHealth;
     [SerializeField] private int _currentWaypoint;
+    [SerializeField] private int _agentSpeed;
+    private int _agentStopSpeed = 0;
 
     [SerializeField] private bool _hasNewDestinationBeenFound;
     [SerializeField] private bool _hasFinalWaypointBeenReached;
+    [SerializeField] private bool _shouldAgentHide;
 
     protected NavMeshAgent _agent;
     protected Animator _animator;
@@ -30,8 +33,11 @@ public abstract class EnemyBase : MonoBehaviour
     protected EnemyStates CurrentState { get { return _currentState; } set { _currentState = value; } }
     protected int EnemyHealth { get { return _enemyHealth; } set { _enemyHealth = value; } }
     protected int CurrentWaypoint { get { return _currentWaypoint; } set { _currentWaypoint = value; } }
+    protected int AgentSpeed { get { return _agentSpeed; } set { _agentSpeed = value; } }   
+    protected int AgentStopSpeed { get { return _agentStopSpeed; } }
     protected bool HasNewDestinationBeenFound { get { return _hasNewDestinationBeenFound; } set { _hasNewDestinationBeenFound = value; } }
     protected bool HasFinalWaypointBeenReached { get { return _hasFinalWaypointBeenReached; } set { _hasFinalWaypointBeenReached = value; } }
+    protected bool ShouldAgentHide { get { return _shouldAgentHide; } set { _shouldAgentHide = value; } }
     #endregion
 
     private static Action<int> OnDeath;         // Pass in a points value on death
@@ -69,13 +75,15 @@ public abstract class EnemyBase : MonoBehaviour
     {
         CurrentState = EnemyStates.Idle;     // Always set initial state to run
         CurrentWaypoint = 0;    // Set all enemies first waypoint to be equal to 0.
-        _agent.speed = 0;
-        HasNewDestinationBeenFound = true;
-        _agent.SetDestination(WaypointManager.Instance.Waypoints[CurrentWaypoint].position);
-        //StartCoroutine(StartMoving());
+        _agent.speed = AgentStopSpeed;
+        _agent.Warp(SpawnManager.Instance.SpawnPoint.position);
+        HasNewDestinationBeenFound = true;      // Set to true at start it doesn't choose a new position immediately
+        ShouldAgentHide = false;
+        StartCoroutine(StartMoving(AgentSpeed));
     }
     #endregion
 
+    #region Methods
     protected abstract void FixedUpdate();
 
     protected virtual void CheckState()       // All enemies have individual behaviour/states (possibly) - Could be some common behaviour in some states
@@ -86,8 +94,6 @@ public abstract class EnemyBase : MonoBehaviour
                 // Enemy plays banging animation to show they are damaging the door
                 break;
             case EnemyStates.Hide:
-                // Set agent speed to 0
-                // Pause for a random amount of time - Idle animation/crouch to hide behind boxes
                 // Choose a new waypoint and resume movement
                 // Hide/Idle animation
                 break;
@@ -107,17 +113,22 @@ public abstract class EnemyBase : MonoBehaviour
     // Responsible for checking the distance to the next waypoint and calling the appropriate method
     protected virtual void CheckAgentDistanceToWaypoint()
     {
-        if(!HasNewDestinationBeenFound && _agent.remainingDistance < 0.5f)
+        if (!HasNewDestinationBeenFound && _agent.remainingDistance < 0.5f)
         {
-            if(CurrentWaypoint < 12)
+            // Agent reaches their new destination, they should now hide if TRUE
+            if(CurrentWaypoint < 12 && ShouldAgentHide)
+            {
+                StartCoroutine(HidingRoutine());
+            }
+            else if (CurrentWaypoint < 12 && !ShouldAgentHide)
             {
                 HasNewDestinationBeenFound = true;
                 SetNewAgentDestination();
-                StartCoroutine(WaitTimerToUpdateDestinationBool());
+                StartCoroutine(WaitTimerToUpdateDestinationBool());     // Wait 2 secs before being able to set a new waypoint pos
             }
             else
             {
-                SetFinalAgentDestination();
+                SetFinalAgentDestination();     // Set to last waypoint
             }
         }
     }
@@ -125,6 +136,11 @@ public abstract class EnemyBase : MonoBehaviour
     // Responsible for setting a new destination for the enemy agent
     protected virtual void SetNewAgentDestination()
     {
+        if (WaypointManager.Instance.ShouldEnemyHideAtNewDestination())     // If this returns true, AgentShouldHide
+        {
+            ShouldAgentHide = true;
+        }
+
         Transform newWaypoint = WaypointManager.Instance.GetNextWaypoint(CurrentWaypoint, out int nextWaypoint);
         CurrentWaypoint = nextWaypoint;
         _agent.SetDestination(newWaypoint.position);
@@ -133,9 +149,11 @@ public abstract class EnemyBase : MonoBehaviour
     // Responsible for setting the agents final destination and hadling any behaviour
     protected virtual void SetFinalAgentDestination()
     {
-        CurrentState = EnemyStates.EndPoint;
         HasFinalWaypointBeenReached = true;
-        _agent.speed = 0;
+        ShouldAgentHide = false;
+        _agent.speed = AgentStopSpeed;
+        CurrentState = EnemyStates.EndPoint;
+        // TODO: Play destroy animation
     }
 
     // Responsible for handling what happens to the enemy when they die
@@ -144,7 +162,6 @@ public abstract class EnemyBase : MonoBehaviour
         CurrentState = EnemyStates.Death;
         _animator.SetTrigger("IsDead");
         _agent.speed = 0;
-        // Disable enemy game object so as to returning it to the object pool
         ResetPositionOnDeath();
     }
 
@@ -152,16 +169,22 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void ResetPositionOnDeath()
     {
         _agent.Warp(SpawnManager.Instance.SpawnPoint.position);     // Set agent position back to spawn pos
-        CurrentState = EnemyStates.Idle;        // Set to idle for a short time before commencing 
         gameObject.SetActive(false);
     }
+    #endregion
 
+    #region Events
+
+    #endregion
+
+    #region Coroutines
     // Responsible for telling the agent they can start moving at the start of the game
-    protected IEnumerator StartMoving()
+    protected virtual IEnumerator StartMoving(int agentSpeed)
     {
-        yield return new WaitForSeconds(1f);
-        CurrentState = EnemyStates.Run;
-        _agent.speed = 3.5f;
+        yield return new WaitForSeconds(2f);        
+        _agent.SetDestination(WaypointManager.Instance.Waypoints[CurrentWaypoint].position);       
+        CurrentState = EnemyStates.Run;             
+        _agent.speed = AgentSpeed;                  
         HasNewDestinationBeenFound = false;
     }
 
@@ -171,4 +194,33 @@ public abstract class EnemyBase : MonoBehaviour
         yield return new WaitForSeconds(2f);
         HasNewDestinationBeenFound = false;
     }
+
+    // Responsible for the hiding routine
+    protected IEnumerator HidingRoutine()
+    {
+        int newTimeToHide = WaypointManager.Instance.RandomTimeToHide();
+        _agent.speed = AgentStopSpeed;
+        CurrentState = EnemyStates.Hide;
+        yield return new WaitForSeconds(newTimeToHide);
+
+        // As soon as the timer for hiding has finished, while the enemy is still on their current waypoint
+        // CurrentWaypoint is instantly set to 12
+        // Destination is also set to 12, agent starts moving a little bit
+
+        ShouldAgentHide = false;    
+        _agent.speed = AgentSpeed;
+        CurrentState = EnemyStates.Run;
+
+        Transform newWaypoint = WaypointManager.Instance.GetNextWaypoint(CurrentWaypoint, out int nextWaypoint);
+        CurrentWaypoint = nextWaypoint;
+
+        if(CurrentWaypoint == 12)
+        {
+            yield return null;
+            ShouldAgentHide = false;
+        }
+
+        _agent.SetDestination(newWaypoint.position);
+    }
+    #endregion
 }

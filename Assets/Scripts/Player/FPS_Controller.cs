@@ -75,6 +75,7 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 
         void FPSController(Vector2 movement)
         {
+            // Old Input System
             //float h = Input.GetAxis("Horizontal"); //horizontal inputs (a, d, leftarrow, rightarrow)
             //float v = Input.GetAxis("Vertical"); //veritical inputs (w, s, uparrow, downarrow)
 
@@ -213,6 +214,7 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 
         void HeadBobbing()
         {
+            // Old Input System
             //float h = Input.GetAxis("Horizontal");          // Horizontal input.
             //float v = Input.GetAxis("Vertical");            // Veritical inputs.
 

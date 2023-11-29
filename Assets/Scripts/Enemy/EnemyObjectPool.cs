@@ -51,7 +51,8 @@ public class EnemyObjectPool : MonoSingleton<EnemyObjectPool>
         // Dynamically create an Enemy if needed
         GameObject newEnemy = Instantiate(_enemyPrefabs[0], transform.position, Quaternion.identity);       
         newEnemy.transform.parent = _enemyContainer.transform;      
-        _enemyPool.Add(newEnemy);       
+        _enemyPool.Add(newEnemy);
+        Debug.Log("Built new enemy on the fly");
         return newEnemy;                                            
     }
 }

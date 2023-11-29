@@ -22,7 +22,6 @@ public class WaypointManager : MonoSingleton<WaypointManager>
     void Start()
     {
         LastWayPoint = _waypoints.Count;
-        Debug.Log("Waypoints Count: " + _waypoints.Count);
     }
     #endregion
 

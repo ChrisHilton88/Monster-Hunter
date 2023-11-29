@@ -7,10 +7,13 @@ public class Ghoul : EnemyBase, IDamageable
 
     private int _health = 100;
     private int _ghoulAgentSpeed = 4;
+    private int _ghoulPointsUponDeath = 50;
 
 
     #region Properties
     protected int Health { get { return _health; } set { _health = value; } }
+    protected int GhoulAgentSpeed { get { return _ghoulAgentSpeed; } }
+    protected int GhoulPointsUponDeath { get { return _ghoulPointsUponDeath; } }
     #endregion
 
 
@@ -18,12 +21,13 @@ public class Ghoul : EnemyBase, IDamageable
     {
         base.OnEnable();
         EnemyHealth = Health;       // Keep setting EnemyHealth back to 100 when re-enabling game object
-        AgentSpeed = _ghoulAgentSpeed;
+        AgentSpeed = GhoulAgentSpeed;
     }
 
     protected sealed override void Start()
     {
-        
+        base.Initialisation();
+        AgentPointsUponDeath = GhoulPointsUponDeath;
     }
 
     protected override sealed void FixedUpdate()

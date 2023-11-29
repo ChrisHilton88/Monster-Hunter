@@ -21,6 +21,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] private int _currentWaypoint;
     [SerializeField] private int _agentSpeed;
     private int _agentStopSpeed = 0;
+    private int _agentPointsUponDeath;
 
     [SerializeField] private bool _hasReachedCurrentWaypoint;
     [SerializeField] private bool _hasFinalWaypointBeenReached;
@@ -29,16 +30,20 @@ public abstract class EnemyBase : MonoBehaviour
     protected NavMeshAgent _agent;
     protected Animator _animator;
 
+    public static Action<int> OnEnemyDeath;
+
     #region Properties
     protected EnemyStates CurrentState { get { return _currentState; } set { _currentState = value; } }
     protected int EnemyHealth { get { return _enemyHealth; } set { _enemyHealth = value; } }
     protected int CurrentWaypoint { get { return _currentWaypoint; } set { _currentWaypoint = value; } }
     protected int AgentSpeed { get { return _agentSpeed; } set { _agentSpeed = value; } }   
     protected int AgentStopSpeed { get { return _agentStopSpeed; } }
+    protected int AgentPointsUponDeath { get { return _agentPointsUponDeath; } set { _agentPointsUponDeath = value; } }
     protected bool HasReachedCurrentWaypoint { get { return _hasReachedCurrentWaypoint; } set { _hasReachedCurrentWaypoint = value; } }
     protected bool HasFinalWaypointBeenReached { get { return _hasFinalWaypointBeenReached; } set { _hasFinalWaypointBeenReached = value; } }
     protected bool ShouldAgentHide { get { return _shouldAgentHide; } set { _shouldAgentHide = value; } }
     #endregion
+
 
 
 
@@ -153,15 +158,16 @@ public abstract class EnemyBase : MonoBehaviour
     // Responsible for handling what happens to the enemy when they die
     protected virtual void Die()
     {
+        OnEnemyDeath?.Invoke(AgentPointsUponDeath);
         CurrentState = EnemyStates.Death;
         _animator.SetTrigger("IsDead");
-        _agent.speed = 0;
         ResetPositionOnDeath();
     }
 
     // Responsible for resetting the game objects position in World Space when dying and disabling itself
     protected virtual void ResetPositionOnDeath()
     {
+        _agent.speed = AgentStopSpeed;
         _agent.Warp(SpawnManager.Instance.SpawnPoint.position);     // Set agent position back to spawn pos
         gameObject.SetActive(false);
     }

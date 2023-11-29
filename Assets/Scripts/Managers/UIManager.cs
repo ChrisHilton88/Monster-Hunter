@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _enemyText;
@@ -16,6 +17,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         WeaponShooting.reloadWeapon += UpdateAmmoDisplayOnReload;
         WeaponShooting.shootWeapon += ReduceBulletCount;
+        EnemyBase.OnEnemyDeath += UpdateScoreText;
     }
     private void OnDisable()
     {
@@ -40,6 +42,11 @@ public class UIManager : MonoSingleton<UIManager>
     private void ReduceBulletCount()
     {
         _ammoText.text = Ammo.Instance.CurrentAmmoCount.ToString();
+    }
+
+    private void UpdateScoreText(int points)
+    {
+        _scoreText.text = ScoreManager.Instance.TotalScore.ToString();
     }
     #endregion
 }

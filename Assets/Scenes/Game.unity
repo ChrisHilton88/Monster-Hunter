@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12471498, g: 0.12097253, b: 0.12182848, a: 1}
+  m_IndirectSpecularColor: {r: 0.13842137, g: 0.13503431, b: 0.13542862, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -318,8 +318,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.992934, b: 0.8352941, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.990566, g: 0.88213, b: 0.58406013, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2513,7 +2513,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1480852256}
-  _managers: {fileID: 943698706}
 --- !u!1001 &124695035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24426,6 +24425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1389227313}
+  - component: {fileID: 1389227314}
   m_Layer: 0
   m_Name: Greebles
   m_TagString: Console
@@ -24457,6 +24457,19 @@ Transform:
   m_Father: {fileID: 2068087245}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1389227314
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389227312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.89, y: 1, z: 1}
+  m_Center: {x: 0, y: 2.62, z: 0}
 --- !u!1 &1392847605 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: af65d779706b6482eb47ae86ce616206, type: 3}
@@ -26931,8 +26944,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.6703105, y: 1.429427, z: 2.8503945}
-  m_Center: {x: -0.44751623, y: 0.19841081, z: -0.005279694}
+  m_Size: {x: 2.6703105, y: 1.741785, z: 2.8503945}
+  m_Center: {x: -0.44751623, y: 0.35459083, z: -0.005279694}
 --- !u!1 &1512707611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: d6d4447ca9aba417baa61c0b7bbee7de, type: 3}
@@ -27391,12 +27404,24 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.008
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.035
+      value: 11.16
       objectReference: {fileID: 0}
     - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27404,7 +27429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.010894875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: m_LocalRotation.x
@@ -27412,7 +27437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9999407
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3497286374441318163, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: m_LocalRotation.z
@@ -27433,6 +27458,14 @@ PrefabInstance:
     - target: {fileID: 3503760010013013579, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559926251135889283, guid: 964413c647e7ca441b457d50316abc87, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559926251135889283, guid: 964413c647e7ca441b457d50316abc87, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6385163837487361588, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: _crosshair

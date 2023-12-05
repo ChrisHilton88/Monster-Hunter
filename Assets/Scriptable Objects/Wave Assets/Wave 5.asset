@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave 5
   m_EditorClassIdentifier: 
   _waveNumber: 5
-  _enemyTypes: 0200000000000000010000000300000004000000
+  _roundTimer: 20
   enemyList:
   - {fileID: 0}
   - {fileID: 0}

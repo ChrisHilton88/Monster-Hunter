@@ -13,12 +13,16 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void OnEnable()
     {
-        EnemyBase.OnEnemyDeath += AddToScore;
+        EnemyBase.OnEnemyDeath += AddPointsToScore;
     }
 
-    private void AddToScore(int points)
+    private void OnDisable()
+    {
+        EnemyBase.OnEnemyDeath -= AddPointsToScore; 
+    }
+
+    private void AddPointsToScore(int points)
     {
         TotalScore += points;
-        Debug.Log("Internal total score: " + TotalScore);
     }
 }

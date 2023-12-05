@@ -19,6 +19,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     public int WaveCount { get { return _waveCount; } private set { _waveCount = value; } }                  // Counter to control the waves.
     public Transform EndPoint { get { return _endPoint; } }
     public Transform SpawnPoint { get { return _spawnPoint; } }
+    public List<SOEnemyWaves> WaveList { get { return _waveList; } }
     #endregion
 
 
@@ -26,7 +27,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     {
         WaveCount = 0;
         if (_enemySpawnRoutine == null)
-            _enemySpawnRoutine = StartCoroutine(ActivateEnemiesRoutine(0, _waveList[0].enemyList.Count));      // Start the game at wave 1 (element 0)
+            _enemySpawnRoutine = StartCoroutine(ActivateEnemiesRoutine(0, _waveList[0].enemyList.Count, _waveList[0]._timeIntervalBetweenEnemies));      
     }
 
     //private void StartNewWave(int currentWaveNumber, int enemyCountPerWave)
@@ -37,10 +38,10 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     // Activate enemies from the ObjectPool
 
-    IEnumerator ActivateEnemiesRoutine(int currentWaveNumber, int enemyCountPerWave)
+    IEnumerator ActivateEnemiesRoutine(int currentWaveNumber, int enemyCountPerWave, float enemyIntervalTimer)
     {
         // TODO: Update this timer to be a parameter based on the wave number
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(enemyIntervalTimer);
 
         int enemyIncrementer = 0;       // Increments until total enemy count in current wave reached 
 
@@ -53,6 +54,8 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         }
 
         // Start a new timer to wait until the next wave spawns
+        // If there is any Remaining Time leftover from the round, this is added as a bonus to the Total Score
+        // New round starts straight away
         _enemySpawnRoutine = null;                             
     }
 }

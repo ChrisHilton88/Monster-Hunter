@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave 4
   m_EditorClassIdentifier: 
   _waveNumber: 4
-  _enemyTypes: 02000000000000000100000003000000
+  _roundTimer: 16
   enemyList:
   - {fileID: 3744996464874962630, guid: 1589b8ea22619924b83e94da79386cab, type: 3}
   - {fileID: 2689444756130209084, guid: 45ddc68d2dff4284a91857cfa576ea85, type: 3}

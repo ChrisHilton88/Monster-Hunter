@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Wave 2
   m_EditorClassIdentifier: 
   _waveNumber: 2
-  _enemyTypes: 0200000000000000
+  _timeIntervalBetweenEnemies: 0
+  _totalRoundTimer: 30
   enemyList:
   - {fileID: 2491302348921174348, guid: 61198c5903d5dbd4fad1b7f0eddd4d18, type: 3}
   - {fileID: 2491302348921174348, guid: 61198c5903d5dbd4fad1b7f0eddd4d18, type: 3}

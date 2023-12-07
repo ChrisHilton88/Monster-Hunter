@@ -13,5 +13,16 @@ MonoBehaviour:
   m_Name: Wave 8
   m_EditorClassIdentifier: 
   _waveNumber: 0
-  _enemyTypes: 0200000000000000000000000000000000000000
-  enemyList: []
+  _timeIntervalBetweenEnemies: 0
+  _totalRoundTimer: 0
+  enemyList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

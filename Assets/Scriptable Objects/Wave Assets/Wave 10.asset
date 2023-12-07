@@ -13,5 +13,26 @@ MonoBehaviour:
   m_Name: Wave 10
   m_EditorClassIdentifier: 
   _waveNumber: 0
-  _enemyTypes: 0000000000000000020000000000000000000000
-  enemyList: []
+  _timeIntervalBetweenEnemies: 0
+  _totalRoundTimer: 0
+  enemyList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

@@ -57,11 +57,13 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void OnEnable()
     {
         Initialisation();
+        UIManager.Instance.UpdateEnemyCount();  
     }
 
     protected virtual void OnDisable()
     {
         SpawnManager.globalInternalEnemyCount--;
+        UIManager.Instance.UpdateEnemyCount();
     }
 
     protected virtual void GrabComponents()
@@ -171,7 +173,6 @@ public abstract class EnemyBase : MonoBehaviour
     // Responsible for resetting the game objects position in World Space when dying and disabling itself
     protected virtual void ResetPositionOnDeath()
     {
-        Debug.Log("Testing");
         _agent.speed = AgentStopSpeed;
         _agent.Warp(SpawnManager.Instance.SpawnPoint.position);     // Set agent position back to spawn pos
         gameObject.SetActive(false);

@@ -26,7 +26,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     public int InitialRound { get { return _initialRound; } private set { _initialRound = value; } }    
     public int WaveCount { get { return _waveCount; } private set { _waveCount = value; } }                  // Incrementer to control the waves.
     public int TotalEnemyCount { get { return _totalEnemyCount; } private set { _totalEnemyCount = value; } }               // Keeps track of enemies per round
-    public int CurrentEnemyCount { get { return _currentEnemyCount; } private set { _currentEnemyCount = value; } }         // Keeps track of current enemy count
+    public int CurrentEnemyCountInWave { get { return _currentEnemyCount; } private set { _currentEnemyCount = value; } }         // Keeps track of current enemy count
     public float EnemyIntervalTimer { get { return _enemyIntervalTimer; } private set { _enemyIntervalTimer = value; } }
     public Transform EndPoint { get { return _endPoint; } }
     public Transform SpawnPoint { get { return _spawnPoint; } }
@@ -41,7 +41,6 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         EnemyBase.OnEnemyDeath += TrackRemainingEnemies;
         RoundTimerManager.OnRoundIntermission += RoundIntermission;
         RoundTimerManager.OnRoundStart += StartNewRound;
-        RoundTimerManager.OnRoundStart += UpdateInternalEnemyCount;
     }
 
     private void OnDisable()
@@ -49,7 +48,6 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         EnemyBase.OnEnemyDeath -= TrackRemainingEnemies;
         RoundTimerManager.OnRoundIntermission -= RoundIntermission;
         RoundTimerManager.OnRoundStart -= StartNewRound;
-        RoundTimerManager.OnRoundStart -= UpdateInternalEnemyCount;
     }
 
     private void Start()
@@ -64,7 +62,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         InitialRound = 0;
         WaveCount = InitialRound;
         TotalEnemyCount = WaveList[InitialRound].enemyList.Count;
-        CurrentEnemyCount = TotalEnemyCount;
+        CurrentEnemyCountInWave = TotalEnemyCount;
         EnemyIntervalTimer = WaveList[InitialRound]._timeIntervalBetweenEnemies;
     }
     #endregion
@@ -75,27 +73,23 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     {
         WaveCount++;
         TotalEnemyCount = WaveList[WaveCount].enemyList.Count;
-        CurrentEnemyCount = TotalEnemyCount;
+        CurrentEnemyCountInWave = TotalEnemyCount;
         EnemyIntervalTimer = WaveList[WaveCount]._timeIntervalBetweenEnemies;
     }
     #endregion
 
     #region Events
-    private void UpdateInternalEnemyCount()
-    {
-        Debug.Log("Global Internal Enemy Count: " + globalInternalEnemyCount);
-    }
-
     // Event responsible for tracking the internal enemy count per wave
-    private void TrackRemainingEnemies()
+    private void TrackRemainingEnemies()        // Called every time an enemy dies 
     {
-        if (CurrentEnemyCount <= 1)
+        // Check to see if it was the last enemy in a wave
+        if (CurrentEnemyCountInWave <= 1)
         {
-            RoundTimerManager.OnRoundEnd?.Invoke();
+            RoundTimerManager.OnRoundEnd?.Invoke();     // Trigger event early before timer finishes
             Debug.Log("Invoked OnRoundEnd method - CurrentEnemyCount <= 1");
         }
         else
-            CurrentEnemyCount--;
+            CurrentEnemyCountInWave--;
     }
 
     // Event responsible for updating internal values during intermission between waves

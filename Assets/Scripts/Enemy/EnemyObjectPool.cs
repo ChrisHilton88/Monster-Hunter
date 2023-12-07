@@ -55,10 +55,8 @@ public class EnemyObjectPool : MonoSingleton<EnemyObjectPool>
             if (enemyPrefab.tag == _enemyPrefabs[i].tag)        
             {
                 GameObject newEnemy = Instantiate(_enemyPrefabs[i], _initialSpawnPos.position, Quaternion.LookRotation(Vector3.left, Vector3.up));
-                Debug.LogError("Paused");
                 newEnemy.transform.parent = _enemyContainer.transform;
                 _enemyPool.Add(newEnemy);
-                Debug.Log("Built new enemy on the fly");
                 return newEnemy;
             }
         }

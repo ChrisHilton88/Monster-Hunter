@@ -13,9 +13,6 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         [Tooltip("How quickly the player head bobs")]
         private float _walkFrequency = 4.8f;        // How quickly the player head bobs while walking.
         [SerializeField]
-        [Tooltip("How quickly the player head bobs")]
-        private float _runFrequency = 7.8f;         // How quickly the player head bobs while running.
-        [SerializeField]
         [Tooltip("How dramatic the headbob is")]
         [Range(0.0f, 0.2f)]
         private float _heightOffset = 0.05f;        // How dramatic the bobbing is.

@@ -18,21 +18,20 @@ public class UIManager : MonoSingleton<UIManager>
     {
         WeaponShooting.reloadWeapon += UpdateAmmoDisplayOnReload;
         WeaponShooting.shootWeapon += ReduceBulletCount;
-        EnemyBase.OnEnemyDeath += UpdateEnemyCount;
         RoundTimerManager.OnRoundStart += UpdateEnemyCount;
     }
     private void OnDisable()
     {
         WeaponShooting.reloadWeapon -= UpdateAmmoDisplayOnReload;
         WeaponShooting.shootWeapon -= ReduceBulletCount;
-        EnemyBase.OnEnemyDeath -= UpdateEnemyCount;
         RoundTimerManager.OnRoundStart -= UpdateEnemyCount;
     }
 
     private void Start()
     {
         _ammoText.text = Ammo.Instance.MaxAmmo.ToString();          // Set visual ammo display count to equal MaxAmmo
-        _enemyText.text = SpawnManager.Instance.WaveList[0].enemyList.Count.ToString();         // Set enemy count equal to first wave count 
+        //_enemyText.text = SpawnManager.Instance.WaveList[0].enemyList.Count.ToString();         // Set enemy count equal to first wave count 
+        UpdateEnemyCount();
     }
     #endregion
 
@@ -57,11 +56,13 @@ public class UIManager : MonoSingleton<UIManager>
         _scoreText.text = ScoreManager.Instance.TotalScore.ToString();
     }
 
-    private void UpdateEnemyCount()
+    // Responsible for updating the enemy UI count in the top right screen
+    public void UpdateEnemyCount()
     {
-        _enemyText.text = SpawnManager.Instance.CurrentEnemyCount.ToString();
+        _enemyText.text = SpawnManager.globalInternalEnemyCount.ToString();     // Taking the static internal value value
     }
 
+    // Responsible for updating the remaining time UI text
     public void UpdateRemainingTextTime(double timer)
     {
         _remainingTimeText.text = timer.ToString();

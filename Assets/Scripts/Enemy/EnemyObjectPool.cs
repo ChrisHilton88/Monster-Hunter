@@ -39,21 +39,23 @@ public class EnemyObjectPool : MonoSingleton<EnemyObjectPool>
     // TODO: Need to look for a specific enemy
     public GameObject RequestEnemy(GameObject enemyPrefab)                            
     {
-        foreach (GameObject enemy in _enemyPool)        // Loop through the enemy container              
+        // Grab enemy if one is inactive in list
+        foreach (GameObject enemy in _enemyPool)                      
         {
-            if (!enemy.activeInHierarchy && enemyPrefab.tag == enemy.tag)             // Check if active and correct name      
+            if (!enemy.activeInHierarchy && enemyPrefab.tag == enemy.tag)                  
             {
                 enemy.SetActive(true);                          
                 return enemy;                                   
             }
         }
 
-        // Dynamically create an Enemy if needed
-        for (int i = 0; i < _enemyPrefabs.Length; i++)      // Loop through 5 times
+        // Else, dynamically create an Enemy if needed
+        for (int i = 0; i < _enemyPrefabs.Length; i++)      
         {
-            if (enemyPrefab.tag == _enemyPrefabs[i].tag)        // Check that the paramater GameObject tag EQUAL to array tag
+            if (enemyPrefab.tag == _enemyPrefabs[i].tag)        
             {
-                GameObject newEnemy = Instantiate(_enemyPrefabs[i], transform.position, Quaternion.identity);
+                GameObject newEnemy = Instantiate(_enemyPrefabs[i], _initialSpawnPos.position, Quaternion.LookRotation(Vector3.left, Vector3.up));
+                Debug.LogError("Paused");
                 newEnemy.transform.parent = _enemyContainer.transform;
                 _enemyPool.Add(newEnemy);
                 Debug.Log("Built new enemy on the fly");

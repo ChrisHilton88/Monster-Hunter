@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +5,8 @@ using UnityEngine;
 // Responsible for managing and spawning new enemies 
 public class SpawnManager : MonoSingleton<SpawnManager>
 {
+    public static int globalInternalEnemyCount = 0;     
+
     private int _initialRound;
     [SerializeField] private int _waveCount;
     [SerializeField] private int _totalEnemyCount;
@@ -40,6 +41,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         EnemyBase.OnEnemyDeath += TrackRemainingEnemies;
         RoundTimerManager.OnRoundIntermission += RoundIntermission;
         RoundTimerManager.OnRoundStart += StartNewRound;
+        RoundTimerManager.OnRoundStart += UpdateInternalEnemyCount;
     }
 
     private void OnDisable()
@@ -47,6 +49,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         EnemyBase.OnEnemyDeath -= TrackRemainingEnemies;
         RoundTimerManager.OnRoundIntermission -= RoundIntermission;
         RoundTimerManager.OnRoundStart -= StartNewRound;
+        RoundTimerManager.OnRoundStart -= UpdateInternalEnemyCount;
     }
 
     private void Start()
@@ -78,6 +81,11 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     #endregion
 
     #region Events
+    private void UpdateInternalEnemyCount()
+    {
+        Debug.Log("Global Internal Enemy Count: " + globalInternalEnemyCount);
+    }
+
     // Event responsible for tracking the internal enemy count per wave
     private void TrackRemainingEnemies()
     {
@@ -110,11 +118,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     {
         yield return null;
 
-        Debug.Log($"Starting new round with WaveNumber - {currentWaveNumber}, EnemyCount {enemyCountPerWave}, IntervalTimer {enemyIntervalTimer}");
-
         int enemyIncrementer = 0;       // Increments until total enemy count in current wave reached, reset each time  
-        Debug.Log("Incrementer: " + enemyIncrementer);
-        Debug.Log("EnemyCountPerWave: " + enemyCountPerWave);
 
         while (enemyIncrementer < enemyCountPerWave)
         {
@@ -122,7 +126,6 @@ public class SpawnManager : MonoSingleton<SpawnManager>
             EnemyObjectPool.Instance.RequestEnemy(temp);
             yield return new WaitForSeconds(enemyIntervalTimer);
             enemyIncrementer++;
-            Debug.Log("Incrementer: " + enemyIncrementer);
         }
 
         _enemySpawnRoutine = null;

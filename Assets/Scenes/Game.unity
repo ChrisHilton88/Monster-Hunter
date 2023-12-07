@@ -4040,7 +4040,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &235445911
 Transform:
   m_ObjectHideFlags: 0
@@ -4083,7 +4083,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.5
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 0476f06f46e1af94bae3a69d4be94a5b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 14204d1e5e659eb409b40e61096c1ae7, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &237038246 stripped
 GameObject:
@@ -4335,6 +4335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8716baa2f10a5468dafddd620280e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveCount: 0
+  _totalEnemyCount: 0
+  _currentEnemyCount: 0
   _spawnPoint: {fileID: 867514038}
   _endPoint: {fileID: 817213244}
   _waveList:
@@ -12384,7 +12387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &674546961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22320,7 +22323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1270317642
 Transform:
   m_ObjectHideFlags: 0
@@ -37263,7 +37266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1972735685
 Transform:
   m_ObjectHideFlags: 0
@@ -37306,7 +37309,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 34dbdccf9a9ba4d498d3e14b2d1d381f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f27e2afcfc102b045a8c10d5005189f8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1973423586 stripped
 GameObject:

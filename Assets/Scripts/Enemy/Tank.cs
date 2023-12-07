@@ -1,28 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Tank : EnemyBase, IDamageable
 {
     // 5 shot enemy
     // Anim States - Idle, Walk, Death, Shield
 
-    public int _health;
+    private int _tankHealth = 100;
+    private int _tankAgentSpeed = 3;
+    private int _tankPointsUponDeath = 400;
+
+    #region Properties
+    protected int TankHealth { get { return _tankHealth; } set { _tankHealth = value; } }
+    protected int TankAgentSpeed { get { return _tankAgentSpeed; } }
+    protected int TankPointsUponDeath { get { return _tankPointsUponDeath; } }
+    #endregion
 
 
-    void OnEnable()
+
+    #region Initialisation
+    // Values need to be re-assigned upon Enable
+    protected sealed override void OnEnable()
     {
-        base.GrabComponents();
+        EnemyHealth = TankHealth;
+        AgentSpeed = TankAgentSpeed;
+        base.OnEnable();
     }
 
-    void Start()
+    // Value is static, so only needs to be applied once
+    protected void Start()
     {
-        //_health = _enemyHealth;
-        _agent.destination = SpawnManager.Instance.EndPoint.position;
+        AgentPointsUponDeath = TankPointsUponDeath;
     }
+    #endregion
 
+    #region Methods
     protected override void FixedUpdate()
     {
+        base.CheckState();
+
         if (_agent.velocity.magnitude > 0.01f)
         {
             _animator.SetBool("IsMoving", true);
@@ -33,27 +46,24 @@ public class Tank : EnemyBase, IDamageable
         }
     }
 
+    protected override void CheckState()
+    {
+        // Add personalised state and behaviour
+    }
+    #endregion
+
+    #region Interfaces
     public void ReceiveDamage(int damageReceived)
     {
-        if (damageReceived > _health)
+        if (damageReceived > EnemyHealth)
         {
-            _health = 0;
+            EnemyHealth = 0;
             base.Die();
         }
         else
         {
-            Debug.Log("Hit: " + gameObject.name);
-            _health -= damageReceived;
+            EnemyHealth -= damageReceived;
         }
     }
-
-    public void ShowDamage()
-    {
-
-    }
-
-    protected override void CheckState()
-    {
-        throw new System.NotImplementedException();
-    }
+    #endregion
 }

@@ -1,27 +1,41 @@
-using UnityEngine;
-using UnityEngine.AI;
-
 public class Cannibal : EnemyBase, IDamageable
 {
     // 2 shot enemy
     // Anim States - Idle, Walk, Run, Hide, Death, Cannibalise, Flinch
 
-    public int _health;
+    private int _cannibalHealth = 150;
+    private int _cannibalAgentSpeed = 6;
+    private int _cannibalPointsUponDeath = 75;
+
+    #region Properties
+    protected int CannibalHealth { get { return _cannibalHealth; } set { _cannibalHealth = value; } }
+    protected int CannibalAgentSpeed { get { return _cannibalAgentSpeed; } }
+    protected int CannibalPointsUponDeath { get { return _cannibalPointsUponDeath; } }
+    #endregion
 
 
-    void OnEnable()
+
+    #region Initialisation
+    // Values need to be re-assigned upon Enable
+    protected sealed override void OnEnable()
     {
-        base.GrabComponents();  
+        EnemyHealth = CannibalHealth;
+        AgentSpeed = CannibalAgentSpeed;
+        base.OnEnable();
     }
 
-    void Start()
+    // Value is static, so only needs to be applied once
+    protected void Start()
     {
-        //_health = _enemyHealth;
-        _agent.destination = SpawnManager.Instance.EndPoint.position;
+        AgentPointsUponDeath = CannibalPointsUponDeath;
     }
+    #endregion
 
+    #region Methods
     protected override void FixedUpdate()
     {
+        base.CheckState();
+
         if (_agent.velocity.magnitude > 0.01f)
         {
             _animator.SetBool("IsMoving", true);
@@ -32,22 +46,24 @@ public class Cannibal : EnemyBase, IDamageable
         }
     }
 
+    protected override void CheckState()
+    {
+        // Add personalised state and behaviour
+    }
+    #endregion
+
+    #region Interfaces
     public void ReceiveDamage(int damageReceived)
     {
-        if (damageReceived > _health)
+        if (damageReceived > EnemyHealth)
         {
-            _health = 0;
+            EnemyHealth = 0;
             base.Die();
         }
         else
         {
-            Debug.Log("Hit: " + gameObject.name);
-            _health -= damageReceived;
+            EnemyHealth -= damageReceived;
         }
     }
-
-    protected override void CheckState()
-    {
-        throw new System.NotImplementedException();
-    }
+    #endregion
 }

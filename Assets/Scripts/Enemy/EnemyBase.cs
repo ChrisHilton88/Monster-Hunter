@@ -17,7 +17,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     [SerializeField] private EnemyStates _currentState;
 
-    [SerializeField] private int _enemyHealth;
+    private int _enemyHealth;
     [SerializeField] private int _currentWaypoint;
     [SerializeField] private int _agentSpeed;
     private int _agentStopSpeed = 0;
@@ -61,12 +61,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-
-    }
-
-    protected virtual void Start()
-    {
-        Initialisation();
+        SpawnManager.globalInternalEnemyCount--;
     }
 
     protected virtual void GrabComponents()
@@ -77,9 +72,10 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Initialisation()
     {
+        SpawnManager.globalInternalEnemyCount++;
         CurrentState = EnemyStates.Idle;     // Always set initial state to run
         CurrentWaypoint = 0;    // Set all enemies first waypoint to be equal to 0.
-        _agent.speed = AgentStopSpeed;
+        //_agent.speed = AgentStopSpeed;
         _agent.Warp(SpawnManager.Instance.SpawnPoint.position);
         HasReachedCurrentWaypoint = true;      // Set to true at start it doesn't choose a new position immediately
         ShouldAgentHide = false;
@@ -125,10 +121,10 @@ public abstract class EnemyBase : MonoBehaviour
     // Responsible for checking the distance to the next waypoint and calling the appropriate method
     protected virtual void CheckAgentDistanceToWaypoint()
     {
-        while (_agent.pathPending)
-            return;
+        //while (_agent.pathPending)
+        //    return;
 
-        if (!HasReachedCurrentWaypoint && _agent.remainingDistance < 0.5f)
+        if (!HasReachedCurrentWaypoint && !_agent.pathPending && _agent.remainingDistance < 0.5f)
         {
             // Agent reaches destination and checks whether they should hide
             ShouldAgentHide = WaypointManager.Instance.ShouldEnemyHideAtNewDestination();
@@ -160,7 +156,6 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void SetAgentFinalDestination()
     {
         StartCoroutine(SetAgentFinalDestinationRoutine());
-        
     }
 
     // Responsible for handling what happens to the enemy when they die
@@ -176,6 +171,7 @@ public abstract class EnemyBase : MonoBehaviour
     // Responsible for resetting the game objects position in World Space when dying and disabling itself
     protected virtual void ResetPositionOnDeath()
     {
+        Debug.Log("Testing");
         _agent.speed = AgentStopSpeed;
         _agent.Warp(SpawnManager.Instance.SpawnPoint.position);     // Set agent position back to spawn pos
         gameObject.SetActive(false);

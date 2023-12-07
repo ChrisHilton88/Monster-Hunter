@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 349108385613789945}
   - component: {fileID: 349108385613789950}
   - component: {fileID: 2609023556943787320}
-  - component: {fileID: 4733734047275525974}
   m_Layer: 0
   m_Name: Bullet VFX
   m_TagString: Untagged
@@ -4996,18 +4995,6 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 349108385613789945}
---- !u!114 &4733734047275525974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349108385613789951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fc8e447dedd7446b6054481a953f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2490484347236946577
 GameObject:
   m_ObjectHideFlags: 0

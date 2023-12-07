@@ -2090,7 +2090,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 486183198352219555}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -2115,10 +2115,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00af9bd7e8b72744dbdb786a55773cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyHealth: 201
-  _agent: {fileID: 0}
-  _animator: {fileID: 0}
-  _health: 0
+  _currentState: 0
+  _currentWaypoint: 0
+  _agentSpeed: 0
+  _hasReachedCurrentWaypoint: 0
+  _hasFinalWaypointBeenReached: 0
+  _shouldAgentHide: 0
 --- !u!1 &486183198352219557
 GameObject:
   m_ObjectHideFlags: 0

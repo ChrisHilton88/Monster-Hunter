@@ -1,26 +1,41 @@
-using UnityEngine;
-
 public class Golem : EnemyBase, IDamageable
 {
     // 4 shot enemy
     // Anim States - Idle, Walk, Charge, Death
 
-    public int _health;
+    private int _golemHealth = 300;
+    private int _golemAgentSpeed = 6;
+    private int _golemPointsUponDeath = 300;
+
+    #region Properties
+    protected int Health { get { return _golemHealth; } set { _golemHealth = value; } }
+    protected int GolemAgentSpeed { get { return _golemAgentSpeed; } }
+    protected int GolemPointsUponDeath { get { return _golemPointsUponDeath; } }
+    #endregion
 
 
-    void OnEnable()
+
+    #region Initialisation
+    // Values need to be re-assigned upon Enable
+    protected sealed override void OnEnable()
     {
-        base.GrabComponents();
+        EnemyHealth = Health;
+        AgentSpeed = GolemAgentSpeed;
+        base.OnEnable();
     }
 
-    void Start()
+    // Value is static, so only needs to be applied once
+    protected void Start()
     {
-        //_health = _enemyHealth;
-        _agent.destination = SpawnManager.Instance.EndPoint.position;
+        AgentPointsUponDeath = GolemPointsUponDeath;
     }
+    #endregion
 
+    #region Methods
     protected override void FixedUpdate()
     {
+        base.CheckState();
+
         if (_agent.velocity.magnitude > 0.01f)
         {
             _animator.SetBool("IsMoving", true);
@@ -31,22 +46,24 @@ public class Golem : EnemyBase, IDamageable
         }
     }
 
+    protected override void CheckState()
+    {
+        // Add personalised state and behaviour
+    }
+    #endregion
+
+    #region Interfaces
     public void ReceiveDamage(int damageReceived)
     {
-        if (damageReceived > _health)
+        if (damageReceived > EnemyHealth)
         {
-            _health = 0;
+            EnemyHealth = 0;
             base.Die();
         }
         else
         {
-            Debug.Log("Hit: " + gameObject.name);
-            _health -= damageReceived;
+            EnemyHealth -= damageReceived;
         }
     }
-
-    protected override void CheckState()
-    {
-        throw new System.NotImplementedException();
-    }
+    #endregion
 }

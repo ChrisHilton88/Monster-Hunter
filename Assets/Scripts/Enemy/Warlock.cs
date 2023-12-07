@@ -1,7 +1,3 @@
-using UnityEngine;
-using UnityEngine.AI;
-
-[RequireComponent (typeof(Animator), typeof(NavMeshAgent))]
 public class Warlock : EnemyBase, IDamageable
 {
     // 3 shot enemy
@@ -15,22 +11,39 @@ public class Warlock : EnemyBase, IDamageable
     // Add/Remove from total enemy count
     // Return back to Object Pool
 
-    public int _health;
+    private int _warlockHealth = 250;
+    private int _warlockAgentSpeed = 5;
+    private int _warlockPointsUponDeath = 250;
 
-    
-    void OnEnable()
+    #region Properties
+    protected int WarlockHealth { get { return _warlockHealth; } set { _warlockHealth = value; } }
+    protected int WarlockAgentSpeed { get { return _warlockAgentSpeed; } }
+    protected int WarlockPointsUponDeath { get { return _warlockPointsUponDeath; } }
+    #endregion
+
+
+
+    #region Initialisation
+    // Values need to be re-assigned upon Enable
+    protected sealed override void OnEnable()
     {
-        base.GrabComponents();
+        EnemyHealth = WarlockHealth;
+        AgentSpeed = WarlockAgentSpeed;
+        base.OnEnable();
     }
 
-    void Start()
+    // Value is static, so only needs to be applied once
+    protected void Start()
     {
-        //_health = _enemyHealth;     
-        _agent.destination = SpawnManager.Instance.EndPoint.position;     
+        AgentPointsUponDeath = WarlockPointsUponDeath;
     }
+    #endregion
 
+    #region Methods
     protected override void FixedUpdate()
     {
+        base.CheckState();
+
         if (_agent.velocity.magnitude > 0.01f)
         {
             _animator.SetBool("IsMoving", true);
@@ -41,22 +54,24 @@ public class Warlock : EnemyBase, IDamageable
         }
     }
 
+    protected override void CheckState()
+    {
+        // Add personalised state and behaviour
+    }
+    #endregion
+
+    #region Interfaces
     public void ReceiveDamage(int damageReceived)
     {
-        if (damageReceived > _health)
+        if (damageReceived > EnemyHealth)
         {
-            _health = 0;
+            EnemyHealth = 0;
             base.Die();
         }
         else
         {
-            Debug.Log("Hit: " + gameObject.name);
-            _health -= damageReceived;
+            EnemyHealth -= damageReceived;
         }
     }
-
-    protected override void CheckState()
-    {
-        throw new System.NotImplementedException();
-    }
+    #endregion
 }

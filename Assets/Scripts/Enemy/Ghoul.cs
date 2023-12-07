@@ -1,16 +1,14 @@
-using UnityEngine;
-
 public class Ghoul : EnemyBase, IDamageable
 {
     // 1 shot enemy
     // Anim States - Idle, Walk, Run, Death, Frenzy
 
-    private int _health = 100;
+    private int _ghoulHealth = 100;
     private int _ghoulAgentSpeed = 4;
     private int _ghoulPointsUponDeath = 50;
 
     #region Properties
-    protected int Health { get { return _health; } set { _health = value; } }
+    protected int GhoulHealth { get { return _ghoulHealth; } set { _ghoulHealth = value; } }
     protected int GhoulAgentSpeed { get { return _ghoulAgentSpeed; } }
     protected int GhoulPointsUponDeath { get { return _ghoulPointsUponDeath; } }
     #endregion
@@ -18,16 +16,17 @@ public class Ghoul : EnemyBase, IDamageable
 
 
     #region Initialisation
+    // Values need to be re-assigned upon Enable
     protected sealed override void OnEnable()
     {
-        base.OnEnable();
-        EnemyHealth = Health;       // Keep setting EnemyHealth back to 100 when re-enabling game object
         AgentSpeed = GhoulAgentSpeed;
+        EnemyHealth = GhoulHealth;
+        base.OnEnable();
     }
 
-    protected sealed override void Start()
+    // Value is static, so only needs to be applied once
+    protected void Start()
     {
-        base.Initialisation();
         AgentPointsUponDeath = GhoulPointsUponDeath;
     }
     #endregion

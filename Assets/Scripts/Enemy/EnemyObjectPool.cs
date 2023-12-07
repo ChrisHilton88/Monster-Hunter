@@ -49,10 +49,20 @@ public class EnemyObjectPool : MonoSingleton<EnemyObjectPool>
         }
 
         // Dynamically create an Enemy if needed
-        GameObject newEnemy = Instantiate(_enemyPrefabs[0], transform.position, Quaternion.identity);       
-        newEnemy.transform.parent = _enemyContainer.transform;      
-        _enemyPool.Add(newEnemy);
-        Debug.Log("Built new enemy on the fly");
-        return newEnemy;                                            
+        for (int i = 0; i < _enemyPrefabs.Length; i++)      // Loop through 5 times
+        {
+            if (enemyPrefab.tag == _enemyPrefabs[i].tag)        // Check that the paramater GameObject tag EQUAL to array tag
+            {
+                GameObject newEnemy = Instantiate(_enemyPrefabs[i], transform.position, Quaternion.identity);
+                newEnemy.transform.parent = _enemyContainer.transform;
+                _enemyPool.Add(newEnemy);
+                Debug.Log("Built new enemy on the fly");
+                return newEnemy;
+            }
+        }
+
+        GameObject empty = null;
+        Debug.Log("Returned empty GameObject in EnemyObjectPool - Trying to create enemy on the fly");
+        return empty;
     }
 }

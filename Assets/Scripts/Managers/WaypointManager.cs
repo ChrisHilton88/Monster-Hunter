@@ -47,7 +47,6 @@ public class WaypointManager : MonoSingleton<WaypointManager>
     int RandomNumberGenerator(int minNumber, int maxNumber)
     {
         int newRandomNumber = Random.Range(minNumber + 1, maxNumber);
-        Debug.Log("new random number:" + newRandomNumber);   
         return newRandomNumber;
     }
 

@@ -9,7 +9,6 @@ public class Ghoul : EnemyBase, IDamageable
     private int _ghoulAgentSpeed = 4;
     private int _ghoulPointsUponDeath = 50;
 
-
     #region Properties
     protected int Health { get { return _health; } set { _health = value; } }
     protected int GhoulAgentSpeed { get { return _ghoulAgentSpeed; } }
@@ -17,6 +16,8 @@ public class Ghoul : EnemyBase, IDamageable
     #endregion
 
 
+
+    #region Initialisation
     protected sealed override void OnEnable()
     {
         base.OnEnable();
@@ -29,7 +30,9 @@ public class Ghoul : EnemyBase, IDamageable
         base.Initialisation();
         AgentPointsUponDeath = GhoulPointsUponDeath;
     }
+    #endregion
 
+    #region Methods
     protected override sealed void FixedUpdate()
     {
         base.CheckState();
@@ -46,9 +49,11 @@ public class Ghoul : EnemyBase, IDamageable
 
     protected sealed override void CheckState()
     {
-        
+        // Add personalised state and behaviour
     }
+    #endregion
 
+    // Interface
     public void ReceiveDamage(int damageReceived)
     {
         if (damageReceived > EnemyHealth)

@@ -51,14 +51,12 @@ public class Ammo : MonoSingleton<Ammo>
     private void UpdateInternalAmmoCountOnReload()
     {
         _currentAmmoCount = _maxAmmo;
-        Debug.Log("Updated internal ammo count to: " + _maxAmmo);
     }
 
     // Responsible for updating internally the current ammo count when shooting a bullet
     private void ShotBullet()
     {
         _currentAmmoCount -= bullet;
-        Debug.Log("Current Ammo Count: " + _currentAmmoCount);
     }
     #endregion
 }

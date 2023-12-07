@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waveNumber: 1
   _timeIntervalBetweenEnemies: 1
-  _totalRoundTimer: 20
+  _totalRoundTimer: 10
   enemyList:
   - {fileID: 2491302348921174348, guid: 61198c5903d5dbd4fad1b7f0eddd4d18, type: 3}
   - {fileID: 2491302348921174348, guid: 61198c5903d5dbd4fad1b7f0eddd4d18, type: 3}

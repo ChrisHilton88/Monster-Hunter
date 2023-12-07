@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -17,17 +18,21 @@ public class UIManager : MonoSingleton<UIManager>
     {
         WeaponShooting.reloadWeapon += UpdateAmmoDisplayOnReload;
         WeaponShooting.shootWeapon += ReduceBulletCount;
-        EnemyBase.OnEnemyDeath += UpdateScoreText;
+        EnemyBase.OnEnemyDeath += UpdateEnemyCount;
+        RoundTimerManager.OnRoundStart += UpdateEnemyCount;
     }
     private void OnDisable()
     {
         WeaponShooting.reloadWeapon -= UpdateAmmoDisplayOnReload;
         WeaponShooting.shootWeapon -= ReduceBulletCount;
+        EnemyBase.OnEnemyDeath -= UpdateEnemyCount;
+        RoundTimerManager.OnRoundStart -= UpdateEnemyCount;
     }
 
     private void Start()
     {
         _ammoText.text = Ammo.Instance.MaxAmmo.ToString();          // Set visual ammo display count to equal MaxAmmo
+        _enemyText.text = SpawnManager.Instance.WaveList[0].enemyList.Count.ToString();         // Set enemy count equal to first wave count 
     }
     #endregion
 
@@ -45,10 +50,16 @@ public class UIManager : MonoSingleton<UIManager>
         _ammoText.text = Ammo.Instance.CurrentAmmoCount.ToString();
     }
 
-    // Update visual display in top left corner when an enemy dies
-    private void UpdateScoreText(int points)
+    // Update visual display in top left corner when an enemy dies - Called from ScoreManager after internal value is updated. 
+    // Had issue with conflicting operation of events as it was incorrectly updating the ScoreText, it was always 1 step behind the real internal value.
+    public void UpdateScoreText()
     {
         _scoreText.text = ScoreManager.Instance.TotalScore.ToString();
+    }
+
+    private void UpdateEnemyCount()
+    {
+        _enemyText.text = SpawnManager.Instance.CurrentEnemyCount.ToString();
     }
 
     public void UpdateRemainingTextTime(double timer)

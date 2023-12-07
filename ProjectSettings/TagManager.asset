@@ -21,6 +21,8 @@ TagManager:
   - Warlock
   - Golem
   - Critical
+  - FxTemporaire
+  - Concrete
   layers:
   - Default
   - TransparentFX

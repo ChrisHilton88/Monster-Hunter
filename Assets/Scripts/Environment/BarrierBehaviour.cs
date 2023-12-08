@@ -19,19 +19,22 @@ public class BarrierBehaviour : MonoBehaviour, IDamageable
         _meshRenderer = GetComponent<MeshRenderer>();   
     }
 
+    #region Interfaces
     public void ReceiveDamage(int damageReceived)
     {
         _health -= damageReceived;
 
-        if(_health < _destroyed)
+        if (_health < _destroyed)
         {
-            _particleSystem.gameObject.SetActive(true); 
+            _particleSystem.gameObject.SetActive(true);
             _boxCollider.enabled = false;
             _meshRenderer.enabled = false;
-            StartCoroutine(WaitForParticleSystem());
+            StartCoroutine(WaitForDestroyedParticleSystemRoutine());
         }
     }
+    #endregion
 
+    #region Methods
     private void CooldownTimer()
     {
         // Keep setting timer back to 0 everytime the object gets hit
@@ -42,8 +45,10 @@ public class BarrierBehaviour : MonoBehaviour, IDamageable
 
         // Restart timer all over again if the object gets shot while repairing itself
     }
+    #endregion
 
-    private IEnumerator WaitForParticleSystem()
+    #region Coroutines
+    private IEnumerator WaitForDestroyedParticleSystemRoutine()
     {
         while (_particleSystem.isPlaying)
         {
@@ -52,4 +57,8 @@ public class BarrierBehaviour : MonoBehaviour, IDamageable
 
         _particleSystem.gameObject.SetActive(false);
     }
+
+
+    #endregion
+
 }

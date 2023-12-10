@@ -1,5 +1,7 @@
 // Responsible for managing Player Ammo
 using System;
+using System.Collections;
+using UnityEngine;
 
 public class Ammo : MonoSingleton<Ammo>
 {
@@ -8,6 +10,10 @@ public class Ammo : MonoSingleton<Ammo>
 
     private bool _canShoot;
     private bool _isReloading = false;
+
+    [SerializeField] private AudioSource _audioSourceOnPlayer;
+
+    private WaitForSeconds _startGameShotDelayTimer = new WaitForSeconds(2f);
 
     #region Properties
     public int MinAmmo { get { return _minAmmo; } private set { _minAmmo = value; } }
@@ -33,9 +39,9 @@ public class Ammo : MonoSingleton<Ammo>
 
     private void Start()
     {
-        CurrentAmmoCount = MaxAmmo;             // At start of game, set the Ammo to the maximum amount
+        CurrentAmmoCount = MaxAmmo;             
         // TODO: Make a short delay so the player can't shoot and waste ammo while loading
-        CanShoot = true;                        // Make sure Player can shoot at the start of the game
+        StartCoroutine(StartingGameShotDelayRoutine());
     }
     #endregion
 
@@ -51,12 +57,38 @@ public class Ammo : MonoSingleton<Ammo>
     {
         CurrentAmmoCount--;
 
+        StartCoroutine(DelayTimeBetweenBulletsRoutine());   
+
         if(CurrentAmmoCount <= 0)
         {
             CurrentAmmoCount = MinAmmo;
+            StartCoroutine(DelayTimeBetweenEmptyAmmoRoutine());
         }
 
         UIManager.Instance.ReduceBulletCount();
+    }
+    #endregion
+
+    #region Coroutines
+    private IEnumerator DelayTimeBetweenBulletsRoutine()
+    {
+        CanShoot = false;
+        float timer = _audioSourceOnPlayer.clip.length;
+        yield return new WaitForSeconds(timer);
+        CanShoot = true;
+    }
+
+    private IEnumerator DelayTimeBetweenEmptyAmmoRoutine()
+    {
+        float timer = _audioSourceOnPlayer.clip.length;
+        yield return new WaitForSeconds(timer);
+    }
+
+    private IEnumerator StartingGameShotDelayRoutine()
+    {
+        CanShoot = false;
+        yield return _startGameShotDelayTimer;
+        CanShoot = true;
     }
     #endregion
 }

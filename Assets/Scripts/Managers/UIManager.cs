@@ -16,14 +16,14 @@ public class UIManager : MonoSingleton<UIManager>
     #region Initialisation
     private void OnEnable()
     {
-        WeaponShooting.reloadWeapon += UpdateAmmoDisplayOnReload;
-        WeaponShooting.shootWeapon += ReduceBulletCount;
+        WeaponShooting.OnReloadWeapon += UpdateAmmoDisplayOnReload;
+        WeaponShooting.OnShootWeapon += ReduceBulletCount;
         RoundTimerManager.OnRoundStart += UpdateEnemyCount;
     }
     private void OnDisable()
     {
-        WeaponShooting.reloadWeapon -= UpdateAmmoDisplayOnReload;
-        WeaponShooting.shootWeapon -= ReduceBulletCount;
+        WeaponShooting.OnReloadWeapon -= UpdateAmmoDisplayOnReload;
+        WeaponShooting.OnShootWeapon -= ReduceBulletCount;
         RoundTimerManager.OnRoundStart -= UpdateEnemyCount;
     }
 

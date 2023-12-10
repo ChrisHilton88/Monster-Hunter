@@ -7,44 +7,52 @@ public class WeaponShooting : MonoBehaviour
 
     private readonly Vector3 _reticulePos = new Vector3(0.5f, 0.5f, 0);
 
-    AudioSource _audioSource;
+    private AudioSource _audioSource;
     [SerializeField] private AudioClip _weaponFiredClip;
     [SerializeField] private AudioClip _weaponReloadClip;
+    [SerializeField] private AudioClip _emptyAmmoClip;
 
     [SerializeField] private Transform _laserOrigin;
 
-    Coroutine _shootDelayCoroutine;
-    Coroutine _reloadingCoroutine;
-    WaitForSeconds _shootDelayTime = new WaitForSeconds(2f);
+    private Coroutine _shootDelayCoroutine;
+    private Coroutine _reloadingCoroutine;
+    private WaitForSeconds _shootDelayTime = new WaitForSeconds(2f);
 
-    public static Action shootWeapon;      // Event that is responsible for passing ammo when shooting a weapon 
-    public static Action reloadWeapon;     // Event that is responsible for reloading ammo in current weapon
+    public static Action OnShootWeapon;      // Event that is responsible for passing ammo when shooting a weapon 
+    public static Action OnReloadWeapon;     // Event that is responsible for reloading ammo in current weapon
 
 
-    void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
 
+    #region Initialisation
     void OnEnable()
     {
-        shootWeapon += ShootBullet;
+        OnShootWeapon += ShootBullet;
+        Ammo.OnEmptyClip += EmptyAmmoClip;
+    }
+
+    void OnDisable()
+    {
+        OnShootWeapon -= ShootBullet;
+        Ammo.OnEmptyClip += EmptyAmmoClip;
     }
 
     void Start()
     {
         _shootDelayCoroutine = null;
         _reloadingCoroutine = null;
+        _audioSource = GetComponent<AudioSource>();
     }
+    #endregion
 
+    #region Methods
     public void ShootBullet()
     {
-        if (Ammo.Instance.AmmoCount > 0)               // Check that there is a bullet available
+        if (Ammo.Instance.CurrentAmmoCount > 0)               // Check that there is a bullet available
         {
-            Ray rayOrigin = Camera.main.ViewportPointToRay(_reticulePos);   
+            Ray rayOrigin = Camera.main.ViewportPointToRay(_reticulePos);
             RaycastHit hitInfo;
 
-            if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity))           
+            if (Physics.Raycast(rayOrigin, out hitInfo, Mathf.Infinity))
             {
                 StringManager.Instance.SwitchThroughTags(hitInfo);
                 BulletObjectPool.Instance.RequestBullet(hitInfo);
@@ -62,22 +70,22 @@ public class WeaponShooting : MonoBehaviour
                     Debug.Log("Hit target IDamageable is NULL - WeaponShooting class");
             }
         }
-        else
-        {
-            // Play sound effect to indicate empty ammo and the player needs to reload
-            // Add a UI element on the players gameplayer HUD to also visualise this
-        }
+    }
+    #endregion
+
+    #region Events
+    private void EmptyAmmoClip()
+    {
+        _audioSource.clip = _emptyAmmoClip;
+        _audioSource.Play();
     }
 
     public void TriggerWeaponShootingEvent()
     {
-        shootWeapon?.Invoke();
+        OnShootWeapon?.Invoke();
     }
+    #endregion
 
-    public void TriggerReloadWeaponEvent()
-    {
-        reloadWeapon?.Invoke();
-    }
 
     //public void ShootDelayTimer()
     //{
@@ -93,10 +101,7 @@ public class WeaponShooting : MonoBehaviour
         return randomNumber;
     }
 
-    void OnDisable()
-    {
-        shootWeapon -= ShootBullet;
-    }
+    
 
     // Coroutine controlling delay time of shooting and audio 
     //IEnumerator ShootDelayTimerRoutine()

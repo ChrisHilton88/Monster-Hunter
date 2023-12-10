@@ -28046,9 +28046,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 48605867}
     - target: {fileID: 6385163837487361588, guid: 964413c647e7ca441b457d50316abc87, type: 3}
+      propertyPath: _emptyAmmoClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 22be70dae318fab46bc9c4369bb35727, type: 3}
+    - target: {fileID: 6385163837487361588, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: _bulletContainer
       value: 
       objectReference: {fileID: 1152620799}
+    - target: {fileID: 6385163837487361588, guid: 964413c647e7ca441b457d50316abc87, type: 3}
+      propertyPath: _weaponFiredClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 02b600481882b8941a9ad49583d7911b, type: 3}
+    - target: {fileID: 6385163837487361588, guid: 964413c647e7ca441b457d50316abc87, type: 3}
+      propertyPath: _weaponReloadClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 22be70dae318fab46bc9c4369bb35727, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 964413c647e7ca441b457d50316abc87, type: 3}
 --- !u!1 &1525966346

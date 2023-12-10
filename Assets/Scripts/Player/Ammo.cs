@@ -9,8 +9,6 @@ public class Ammo : MonoSingleton<Ammo>
     private bool _canShoot;
     private bool _isReloading = false;
 
-    public static Action OnEmptyClip;
-
     #region Properties
     public int MinAmmo { get { return _minAmmo; } private set { _minAmmo = value; } }
     public int MaxAmmo { get { return _maxAmmo; } private set { _maxAmmo = value; } }   
@@ -49,15 +47,16 @@ public class Ammo : MonoSingleton<Ammo>
     //}
 
     // Responsible for updating internally the current ammo count when shooting a bullet
-    private void ShotBullet()
+    public void ShotBullet()
     {
         CurrentAmmoCount--;
 
         if(CurrentAmmoCount <= 0)
         {
             CurrentAmmoCount = MinAmmo;
-            OnEmptyClip?.Invoke();              // Trigger event - UI display pop up and audio
         }
+
+        UIManager.Instance.ReduceBulletCount();
     }
     #endregion
 }

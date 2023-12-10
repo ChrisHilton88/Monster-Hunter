@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class WeaponShooting : MonoBehaviour
@@ -20,6 +21,7 @@ public class WeaponShooting : MonoBehaviour
 
     public static Action OnShootWeapon;      // Event that is responsible for passing ammo when shooting a weapon 
     public static Action OnReloadWeapon;     // Event that is responsible for reloading ammo in current weapon
+    public static Action OnEmptyClip;        // Event that is responsible for managing audio/UI when Ammo clip is empty  
 
 
 
@@ -27,13 +29,13 @@ public class WeaponShooting : MonoBehaviour
     void OnEnable()
     {
         OnShootWeapon += ShootBullet;
-        Ammo.OnEmptyClip += EmptyAmmoClip;
+        OnEmptyClip += EmptyAmmoClip;
     }
 
     void OnDisable()
     {
         OnShootWeapon -= ShootBullet;
-        Ammo.OnEmptyClip += EmptyAmmoClip;
+        OnEmptyClip += EmptyAmmoClip;
     }
 
     void Start()
@@ -49,6 +51,10 @@ public class WeaponShooting : MonoBehaviour
     {
         if (Ammo.Instance.CurrentAmmoCount > 0)               // Check that there is a bullet available
         {
+            _audioSource.clip = _weaponFiredClip;
+            _audioSource.volume = 0.5f;
+            _audioSource.Play();    
+
             Ray rayOrigin = Camera.main.ViewportPointToRay(_reticulePos);
             RaycastHit hitInfo;
 
@@ -70,6 +76,8 @@ public class WeaponShooting : MonoBehaviour
                     Debug.Log("Hit target IDamageable is NULL - WeaponShooting class");
             }
         }
+        else
+            OnEmptyClip?.Invoke();          // Ammo must be empty
     }
     #endregion
 
@@ -77,6 +85,7 @@ public class WeaponShooting : MonoBehaviour
     private void EmptyAmmoClip()
     {
         _audioSource.clip = _emptyAmmoClip;
+        _audioSource.volume = 1f;
         _audioSource.Play();
     }
 

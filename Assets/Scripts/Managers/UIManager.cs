@@ -1,7 +1,7 @@
-using System;
 using TMPro;
 using UnityEngine;
 
+// Responsible for updating the visual display on the screen
 public class UIManager : MonoSingleton<UIManager>
 {
 
@@ -17,13 +17,13 @@ public class UIManager : MonoSingleton<UIManager>
     private void OnEnable()
     {
         WeaponShooting.OnReloadWeapon += UpdateAmmoDisplayOnReload;
-        WeaponShooting.OnShootWeapon += ReduceBulletCount;
+        //WeaponShooting.OnShootWeapon += ReduceBulletCount;
         RoundTimerManager.OnRoundStart += UpdateEnemyCount;
     }
     private void OnDisable()
     {
         WeaponShooting.OnReloadWeapon -= UpdateAmmoDisplayOnReload;
-        WeaponShooting.OnShootWeapon -= ReduceBulletCount;
+        //WeaponShooting.OnShootWeapon -= ReduceBulletCount;
         RoundTimerManager.OnRoundStart -= UpdateEnemyCount;
     }
 
@@ -44,7 +44,7 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     // Update visual display in the bottom left corner of the screen when shooting
-    private void ReduceBulletCount()
+    public void ReduceBulletCount()
     {
         _ammoText.text = Ammo.Instance.CurrentAmmoCount.ToString();
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider), typeof(MeshRenderer))]
 public abstract class DamageableBase : MonoBehaviour, IDamageable
 {
     private int _maxHealth;             // Let the inheriting object determine it's Max Health

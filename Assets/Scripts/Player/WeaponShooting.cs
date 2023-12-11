@@ -92,7 +92,7 @@ public class WeaponShooting : MonoBehaviour
 
                     int damageDealt = RandomDamageDealt();
                     FloatingCombatTextPopUp.Instance.ActivateDamagePopUp(_damageSpawnPos, damageDealt);
-                    damageable.ReceiveDamage(damageDealt);
+                    damageable.ReceiveDamage(damageDealt);      // Passes in damage to the enemy hit
                 }
                 else
                     Debug.Log("Hit target IDamageable is NULL - WeaponShooting class");
@@ -120,7 +120,6 @@ public class WeaponShooting : MonoBehaviour
         _audioSource.volume = 0.5f;
         _audioSource.Play();
         yield return new WaitForSeconds(_weaponFiredClip.length);     
-        Debug.Log("Length: " + _weaponFiredClip.length);    
         Ammo.Instance.CanShoot = true;
         _shootDelayCoroutine = null;
     }
@@ -133,7 +132,6 @@ public class WeaponShooting : MonoBehaviour
         _audioSource.volume = 0.5f;
         _audioSource.Play();
         yield return new WaitForSeconds(_weaponReloadClip.length);
-        Debug.Log("Length: " + _weaponFiredClip.length);
         Ammo.Instance.CanShoot = true;
         Ammo.Instance.CanReload = true;      
         _reloadingCoroutine = null;                     

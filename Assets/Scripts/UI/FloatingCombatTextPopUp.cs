@@ -7,28 +7,24 @@ public class FloatingCombatTextPopUp : MonoSingleton<FloatingCombatTextPopUp>
 
 
     // Create Damage PopUp Text
-    public void ActivateDamagePopUp(Vector3 pos, int damage)
+    public void ActivateDamagePopUp(Vector3 pos, int damage)        // Position of damage text pop up, damage dealt
     {
-        GameObject newPopUp;
+        GameObject obj;
 
-        if(damage > 70)
+        if(damage > 70)     // Critical hit
         {
-            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestCriticalPrefab();
-            obj.transform.position = pos + RandomVectorPos();
-            newPopUp = obj;
+            obj = FloatingCombatTextObjectPooling.Instance.RequestCriticalPrefab(pos, RandomVectorPos());
         }
-        else
+        else                // Normal hit
         {
-            GameObject obj = FloatingCombatTextObjectPooling.Instance.RequestNormalPrefab();
-            obj.transform.position = pos + RandomVectorPos();
-            newPopUp = obj;
+            obj = FloatingCombatTextObjectPooling.Instance.RequestNormalPrefab(pos, RandomVectorPos());
         }
 
-        TextMeshProUGUI temp = newPopUp.transform.GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI temp = obj.transform.GetComponentInChildren<TextMeshProUGUI>();
         temp.text = damage.ToString();
     }
 
-    // Generate a random Vector3
+    // Gives slight randomness to spawn pos
     Vector3 RandomVectorPos()
     {
         Vector3 newVector = new Vector3(Random.Range(-1f, 1f), Random.Range(_minRange, _maxRange), 0);

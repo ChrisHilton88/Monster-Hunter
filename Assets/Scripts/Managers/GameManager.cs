@@ -28,7 +28,6 @@ public class GameManager : MonoSingleton<GameManager>
     void Start()
     {
         CalculateTotalEnemyCount();
-        Debug.Log("Total Enemy Count: " + TotalEnemyCount);
         GameOver = false;
         Cursor.lockState = CursorLockMode.Confined;
     }

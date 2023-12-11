@@ -20,13 +20,12 @@ public class FloatingCombatTextAnimations : MonoBehaviour
         _time = 0;
     }
 
-    void Start()
+    private void Start()
     {
-        _origin = transform.position;
         _tmpU = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    void Update()
+    private void Update()
     {
         Color currentColor = _tmpU.color;
         currentColor.a = animAlphaColor.Evaluate(_time);
@@ -42,13 +41,18 @@ public class FloatingCombatTextAnimations : MonoBehaviour
         }
     }
 
-    Vector3 NewScale(float time)
+    public void UpdateOrigin(Vector3 pos)
+    {
+        _origin = pos;
+    }
+
+    private Vector3 NewScale(float time)
     {
         Vector3 textScale = new Vector3(1 * animScale.Evaluate(time), 1 * animScale.Evaluate(time), 1);
         return textScale;
     }
 
-    Vector3 NewPosition(float time)
+    private Vector3 NewPosition(float time)
     {
         Vector3 textPos = _origin + new Vector3(0, 1 * animHeight.Evaluate(time), 0);
         return textPos;

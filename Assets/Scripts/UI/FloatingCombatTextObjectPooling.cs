@@ -50,45 +50,56 @@ public class FloatingCombatTextObjectPooling : MonoSingleton<FloatingCombatTextO
     }
     #endregion
 
-
-
     #region Request from Object Pools
     //Handles GameObject requests
-    public GameObject RequestCriticalPrefab()
+    public GameObject RequestCriticalPrefab(Vector3 pos, Vector3 randomFactor)
     {
         foreach(GameObject prefab in _criticalTextPopUpList)
         {
             if(prefab.activeInHierarchy == false)
             {
-                prefab.SetActive(true);
+                NewPosition(prefab, pos, randomFactor);  
                 return prefab;
             }
         }
 
-        GameObject newObject = CreateSinglePrefab(_criticalTextPopUpPrefab, _criticalTextPopUpList, _criticalContainer);
+        Vector3 newObjectPos = pos + randomFactor;
+        GameObject newObject = CreateSinglePrefab(_criticalTextPopUpPrefab, _criticalTextPopUpList, _criticalContainer, newObjectPos);
         return newObject;
     }
 
-    public GameObject RequestNormalPrefab()
+    public GameObject RequestNormalPrefab(Vector3 pos, Vector3 randomFactor)
     {
         foreach (GameObject prefab in _normalTextPopUpList)
         {
-            if (prefab.activeInHierarchy == false)
+            if (prefab.activeInHierarchy == false)      
             {
-                prefab.SetActive(true);
+                NewPosition(prefab, pos, randomFactor);
                 return prefab;
             }
         }
 
-        GameObject newObject = CreateSinglePrefab(_normalTextPopUpPrefab, _normalTextPopUpList, _normalContainer);
+        Vector3 newObjectPos = pos + randomFactor;
+        GameObject newObject = CreateSinglePrefab(_normalTextPopUpPrefab, _normalTextPopUpList, _normalContainer, newObjectPos);
         return newObject;
     }
 
-    GameObject CreateSinglePrefab(GameObject prefab, List<GameObject> list, GameObject container)
+    // When an object is enabled, give it an updated position
+    private void NewPosition(GameObject obj, Vector3 pos, Vector3 randomFactor)
+    {
+        obj.SetActive(true);     // Activate prefab from the List
+        Vector3 newPos = pos + randomFactor;
+        FloatingCombatTextAnimations temp = obj.GetComponent<FloatingCombatTextAnimations>();
+        temp.UpdateOrigin(newPos);
+    }
+
+    // Create additional prefab on the fly if all the others are active
+    GameObject CreateSinglePrefab(GameObject prefab, List<GameObject> list, GameObject container, Vector3 pos)
     {
         prefab = Instantiate(prefab, _spawnPos, Quaternion.identity);
         list.Add(prefab);
         prefab.transform.SetParent(container.transform);
+        prefab.transform.position = pos;
         return prefab;
     }
     #endregion

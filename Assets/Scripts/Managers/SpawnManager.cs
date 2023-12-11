@@ -86,7 +86,6 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         if (CurrentEnemyCountInWave <= 1)
         {
             RoundTimerManager.OnRoundEnd?.Invoke();     // Trigger event early before timer finishes
-            Debug.Log("Invoked OnRoundEnd method - CurrentEnemyCount <= 1");
         }
         else
             CurrentEnemyCountInWave--;
@@ -96,7 +95,6 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     private void RoundIntermission()
     {
         UpdateInternalRoundValues();
-        Debug.Log("Round intermission - Updating internal variables");
     }
 
     // Event triggered when the intermission timer has come to an end

@@ -93,7 +93,6 @@ public class RoundTimerManager : MonoSingleton<RoundTimerManager>
     // Responsible for simply yielding time between round end and start, allowing internal values/spawns to be updated
     private IEnumerator RoundIntermissionRoutine()
     {
-        Debug.Log("Round Intermission - Waiting");
         yield return new WaitForSeconds(3f);
 
         int roundIncrementer = 0;

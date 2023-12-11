@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class WeaponShooting : MonoBehaviour
@@ -19,25 +18,26 @@ public class WeaponShooting : MonoBehaviour
     private Coroutine _emptyAmmoCoroutine;
     private Coroutine _shootDelayCoroutine;
     private Coroutine _reloadingCoroutine;
-    private WaitForSeconds _shootDelayTime = new WaitForSeconds(2f);
 
-    public static Action OnShootWeapon;      // Event that is responsible for passing ammo when shooting a weapon 
-    public static Action OnReloadWeapon;     // Event that is responsible for reloading ammo in current weapon
     public static Action OnEmptyClip;        // Event that is responsible for managing audio/UI when Ammo clip is empty  
+    public static Action OnReloadWeapon;     // Event that is responsible for reloading ammo in current weapon
+    public static Action OnShootWeapon;      // Event that is responsible for passing ammo when shooting a weapon 
 
 
 
     #region Initialisation
     void OnEnable()
     {
-        OnShootWeapon += ShootBulletEvent;
         OnEmptyClip += EmptyAmmoClipEvent;
+        OnReloadWeapon += ReloadWeaponEvent;
+        OnShootWeapon += ShootBulletEvent;
     }
 
     void OnDisable()
     {
+        OnEmptyClip -= EmptyAmmoClipEvent;
+        OnReloadWeapon -= ReloadWeaponEvent;
         OnShootWeapon -= ShootBulletEvent;
-        OnEmptyClip += EmptyAmmoClipEvent;
     }
 
     void Start()
@@ -55,34 +55,27 @@ public class WeaponShooting : MonoBehaviour
         int randomNumber = UnityEngine.Random.Range(_minDiceRoll, _maxDiceRoll);
         return randomNumber;
     }
-
-    private void ShootDelayTimer()
-    {
-        if (_shootDelayCoroutine == null)
-            _shootDelayCoroutine = StartCoroutine(ShootDelayTimerRoutine());
-        else
-            return;
-    }
-
-    // Called from InputManager
-    public void TriggerWeaponShootingEvent()
-    {
-        OnShootWeapon?.Invoke();
-    }
     #endregion
 
     #region Events
     private void EmptyAmmoClipEvent()
     {
         if(_emptyAmmoCoroutine == null)
-            _emptyAmmoCoroutine = StartCoroutine(DelayTimeBetweenEmptyAmmoRoutine());
+            _emptyAmmoCoroutine = StartCoroutine(EmptyAmmoDelayTimerRoutine());
     }
 
-    public void ShootBulletEvent()
+    private void ReloadWeaponEvent()
+    {
+        if (_reloadingCoroutine == null)
+            _reloadingCoroutine = StartCoroutine(ReloadWeaponDelayTimerRoutine());   
+    }
+
+    private void ShootBulletEvent()
     {
         if (Ammo.Instance.CurrentAmmoCount > 0)               // Check that there is a bullet available
         {
-            ShootDelayTimer();
+            if(_shootDelayCoroutine == null)
+                _shootDelayCoroutine = StartCoroutine(ShootDelayTimerRoutine());
 
             Ray rayOrigin = Camera.main.ViewportPointToRay(_reticulePos);
             RaycastHit hitInfo;
@@ -111,19 +104,7 @@ public class WeaponShooting : MonoBehaviour
     #endregion
 
     #region Coroutines
-    // Coroutine controlling delay time of shooting and audio
-    private IEnumerator ShootDelayTimerRoutine()
-    {
-        Ammo.Instance.CanShootBoolSwitch();
-        _audioSource.clip = _weaponFiredClip;
-        _audioSource.volume = 0.5f;
-        _audioSource.Play();
-        yield return new WaitForSeconds(_weaponFiredClip.length);                  // Can't make changes unless using a separate AudioSource component, OR amend audio clip.
-        _shootDelayCoroutine = null;
-        Ammo.Instance.CanShootBoolSwitch();
-    }
-
-    private IEnumerator DelayTimeBetweenEmptyAmmoRoutine()
+    private IEnumerator EmptyAmmoDelayTimerRoutine()
     {
         _audioSource.clip = _emptyAmmoClip;
         _audioSource.volume = 0.5f;
@@ -132,17 +113,41 @@ public class WeaponShooting : MonoBehaviour
         _emptyAmmoCoroutine = null;
     }
 
-    // TODO: Call this from somewhere
-    // TODO: Add a display message and audio sound to tell the player they need to reload.
-    // Play audio sounds for reloading, and once reloaded set the count to 10.
-    //IEnumerator ReloadingRoutine()
-    //{
-    //    _audioSource.clip = _weaponReloadClip;          // Assign reloading audio clip
-    //    _audioSource.Play();
-    //    yield return _weaponReloadClip.length;          // Yield until the clip finishes playing
-    //    //AmmoManager.Instance.IsReloading = true;          
-    //    AmmoManager.Instance.UpdateAmmoCount();         // Set Ammo Display count to 10
-    //    _reloadingCoroutine = null;                     // Let the player be able to reload again
-    //}
+    private IEnumerator ShootDelayTimerRoutine()
+    {
+        Ammo.Instance.CanShoot = false;
+        _audioSource.clip = _weaponFiredClip;
+        _audioSource.volume = 0.5f;
+        _audioSource.Play();
+        yield return new WaitForSeconds(_weaponFiredClip.length);     
+        Debug.Log("Length: " + _weaponFiredClip.length);    
+        Ammo.Instance.CanShoot = true;
+        _shootDelayCoroutine = null;
+    }
+
+    private IEnumerator ReloadWeaponDelayTimerRoutine()
+    {
+        Ammo.Instance.CanShoot = false;
+        Ammo.Instance.CanReload = false;
+        _audioSource.clip = _weaponReloadClip;          
+        _audioSource.volume = 0.5f;
+        _audioSource.Play();
+        yield return new WaitForSeconds(_weaponReloadClip.length);
+        Debug.Log("Length: " + _weaponFiredClip.length);
+        Ammo.Instance.CanShoot = true;
+        Ammo.Instance.CanReload = true;      
+        _reloadingCoroutine = null;                     
+        UIManager.Instance.UpdateAmmoDisplayOnReload();
+    }
+
+    // Responsible for handling timing events for shooting, reloading and empty clip
+    private IEnumerator WeaponBehaviourDelayTimerRoutine(bool test, AudioClip clip, float _clipVolume, float _clipLength, Coroutine co)
+    {
+        _audioSource.clip = clip;
+        _audioSource.volume = _clipVolume;
+        _audioSource.Play();
+        yield return new WaitForSeconds(_clipLength);
+        co = null;
+    }
     #endregion
 }

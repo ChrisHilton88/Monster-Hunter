@@ -16,14 +16,10 @@ public class UIManager : MonoSingleton<UIManager>
     #region Initialisation
     private void OnEnable()
     {
-        WeaponShooting.OnReloadWeapon += UpdateAmmoDisplayOnReload;
-        //WeaponShooting.OnShootWeapon += ReduceBulletCount;
         RoundTimerManager.OnRoundStart += UpdateEnemyCount;
     }
     private void OnDisable()
     {
-        WeaponShooting.OnReloadWeapon -= UpdateAmmoDisplayOnReload;
-        //WeaponShooting.OnShootWeapon -= ReduceBulletCount;
         RoundTimerManager.OnRoundStart -= UpdateEnemyCount;
     }
 
@@ -35,18 +31,24 @@ public class UIManager : MonoSingleton<UIManager>
     }
     #endregion
 
-    #region Events
+    #region Methods
+    // Update visual display in the bottom left corner of the screen when shooting
+    public void ReduceBulletCount()
+    {
+        _ammoText.text = Ammo.Instance.CurrentAmmoCount.ToString();
+    }
+
     // Update the visual display in the bottom left corner of screen when Reloading
-    private void UpdateAmmoDisplayOnReload()
+    public void UpdateAmmoDisplayOnReload()
     {
         _ammoText.text = Ammo.Instance.MaxAmmo.ToString();
         Debug.Log("Update Ammo Display to: " + Ammo.Instance.MaxAmmo);
     }
 
-    // Update visual display in the bottom left corner of the screen when shooting
-    public void ReduceBulletCount()
+    // Responsible for updating the remaining time UI text
+    public void UpdateRemainingTextTime(double timer)
     {
-        _ammoText.text = Ammo.Instance.CurrentAmmoCount.ToString();
+        _remainingTimeText.text = timer.ToString();
     }
 
     // Update visual display in top left corner when an enemy dies - Called from ScoreManager after internal value is updated. 
@@ -55,17 +57,13 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _scoreText.text = ScoreManager.Instance.TotalScore.ToString();
     }
+    #endregion
 
+    #region Events
     // Responsible for updating the enemy UI count in the top right screen
     public void UpdateEnemyCount()
     {
         _enemyText.text = SpawnManager.globalInternalEnemyCount.ToString();     // Taking the static internal value value
-    }
-
-    // Responsible for updating the remaining time UI text
-    public void UpdateRemainingTextTime(double timer)
-    {
-        _remainingTimeText.text = timer.ToString();
     }
     #endregion
 }

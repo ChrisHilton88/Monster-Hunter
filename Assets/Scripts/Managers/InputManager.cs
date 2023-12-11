@@ -23,8 +23,7 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.PlayerMovement.performed += PlayerMovementPerformed;
         _playerInputActions.Player.PlayerMovement.canceled += PlayerMovementCanceled;
         _playerInputActions.Player.Shoot.performed += ShootPerformed;
-        _playerInputActions.Player.Shoot.canceled += ShootCanceled;
-        //_playerInputActions.Player.Reload.performed += ReloadPerformed;
+        _playerInputActions.Player.Reload.performed += ReloadPerformed;
         _playerInputActions.Player.Reload.canceled += ReloadCanceled;
         _playerInputActions.Player.SniperZoom.performed += SniperZoomPerformed;
         _playerInputActions.Player.SniperZoom.canceled += SniperZoomCanceled;
@@ -39,7 +38,6 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.PlayerMovement.performed -= PlayerMovementPerformed;
         _playerInputActions.Player.PlayerMovement.canceled -= PlayerMovementCanceled;
         _playerInputActions.Player.Shoot.performed -= ShootPerformed;
-        _playerInputActions.Player.Shoot.canceled -= ShootCanceled;
         _playerInputActions.Player.SniperZoom.performed -= SniperZoomPerformed;
         _playerInputActions.Player.SniperZoom.canceled -= SniperZoomCanceled;
         _playerInputActions.Player.Cursor.performed -= CursorPerformed;
@@ -72,39 +70,20 @@ public class InputManager : MonoBehaviour
 
     private void ShootPerformed(InputAction.CallbackContext context)
     {
-        if (Ammo.Instance.CanShoot == true)         // Timer in between shots so the player can't spam shoot
-        {
-            _weaponShooting.TriggerWeaponShootingEvent();
-        }
+        if(Ammo.Instance.CanShoot)
+            WeaponShooting.OnShootWeapon?.Invoke();
     }
 
-    void ShootCanceled(InputAction.CallbackContext context)
+    private void ReloadPerformed(InputAction.CallbackContext context)
     {
-        //_weaponShooting.ShootDelayTimer();                                      // Start fire rate delay
+        if (Ammo.Instance.CanReload)
+            WeaponShooting.OnReloadWeapon?.Invoke();
     }
-
-    //private void ReloadPerformed(InputAction.CallbackContext context)
-    //{
-    //    if (Ammo.Instance.IsReloading == false)
-    //    {
-    //        Debug.Log("Reloading weapon");
-    //        Ammo.Instance.IsReloading = true;
-    //        _weaponShooting.TriggerReloadWeaponEvent();
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("DIDN'T RELOAD!");
-    //        return;
-    //    }
-
-    //    Ammo.Instance.IsReloading = false;
-    //    // TODO: Need to add a time variable here (use context parameter) for how long the reload process will take, upon finishing, set isReloading to false.
-    //    // Possibly better to use the time length of an audio clip.
-    //}
 
     private void ReloadCanceled(InputAction.CallbackContext context)
     {
-        // TODO: When the player presses the Reload button while the weapon is currently reloading, cancel reload.
+        // TODO: If Player presses 'R' key again while reloading is active, cancel reload
+        
     }
 
     private void SniperZoomPerformed(InputAction.CallbackContext context)

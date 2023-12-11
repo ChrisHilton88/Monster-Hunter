@@ -26852,11 +26852,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3503760010013013579, guid: 964413c647e7ca441b457d50316abc87, type: 3}
   m_PrefabInstance: {fileID: 1525713686}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1480852257 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6500793101347082984, guid: 964413c647e7ca441b457d50316abc87, type: 3}
-  m_PrefabInstance: {fileID: 1525713686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1481903335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28065,7 +28060,7 @@ PrefabInstance:
     - target: {fileID: 6385163837487361588, guid: 964413c647e7ca441b457d50316abc87, type: 3}
       propertyPath: _weaponReloadClip
       value: 
-      objectReference: {fileID: 8300000, guid: 22be70dae318fab46bc9c4369bb35727, type: 3}
+      objectReference: {fileID: 8300000, guid: 362aedd7cdcc4714cbcacc8b02cbbdc7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 964413c647e7ca441b457d50316abc87, type: 3}
 --- !u!1 &1525966346
@@ -38960,7 +38955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1912c6a9dd8cfb443a0ccfadb24a7938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSourceOnPlayer: {fileID: 1480852257}
 --- !u!1 &2052729936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 25f85aab6a363674c805e7c6bce8a05f, type: 3}
